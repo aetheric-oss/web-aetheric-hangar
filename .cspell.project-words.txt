@@ -1,0 +1,9 @@
+crossorigin
+infobox
+Nuxt
+nuxt
+offcanvas
+popperjs
+smartlook
+webapps
+commitlint
