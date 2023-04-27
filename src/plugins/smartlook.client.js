@@ -1,4 +1,4 @@
-import { onLoad } from "#imports";
+import { onLoad } from '#imports';
 
 export default () => {
   onLoad(() => {
