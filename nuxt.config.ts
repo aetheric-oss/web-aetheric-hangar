@@ -14,4 +14,20 @@ export default defineNuxtConfig({
         }
     },
     css: ['~/assets/styles/main.scss'],
+    vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    additionalData: '@use "@/assets/styles/_fly_arrow_variables.scss" as *;'
+                }
+            }
+        },
+    },
+    modules: [
+        '@pinia/nuxt',
+        'nuxt-icons'
+    ],
+    imports: {
+        dirs: ['store'],
+    },
 })
