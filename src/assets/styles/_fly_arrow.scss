@@ -174,3 +174,24 @@ header p {
     text-transform: uppercase;
     font-weight: 700;
 }
+
+.sidenav-text {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 30px;
+    letter-spacing: 0.1em;
+    text-decoration: none!important;
+    text-transform: uppercase;
+    color: var(--bs-white);
+}
+.sidenav-links {
+    text-decoration: none;
+}
+.sidenav-profile-icon {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    border: 1px solid var(--bs-white);
+}
