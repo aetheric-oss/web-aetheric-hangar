@@ -37,7 +37,7 @@
         </div>
     </nav>
     <div>
-        <slot />
+        <slot></slot>
     </div>
     <div class="container-fluid">
         <footer class="py-3 my-4">
