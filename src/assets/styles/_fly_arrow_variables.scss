@@ -8,6 +8,7 @@ $gray-dark: #3d414c;
 $gray-dark-rgb: 61, 65, 76;
 $primary: #4060ff;
 $primary-rgb: 64, 96, 255;
+$primary-dark: #1B202C;
 $secondary: #ff8a78;
 $secondary-rgb: 255, 138, 120;
 $info: $secondary;
@@ -17,7 +18,7 @@ $link-color-rgb: $secondary-rgb;
 
 $red: #c22e17;
 $teal: #2abb94;
-$purple: #9173c0;
+$purple: #7c60aa;
 $pink: #dc7b9a;
 $yellow: #d9b16d;
 $salmon: #ffb2a2;
@@ -56,3 +57,15 @@ $card-border-width: 0;
 $card-spacer-x: $spacer;
 $card-spacer-y: $spacer;
 $card-height: 100%;
+
+// other grays
+$gray-dark2: #222732; // at 3% opacity
+$gray-dark4: #373B46; // at 8% opacity
+$gray-dark-mild: #424752;
+$gray-dark-mild2: #4B505B;
+
+// navy colors
+$navy-light-muted: #BBBBC4;
+
+// dark mode
+$enable-dark-mode: false;

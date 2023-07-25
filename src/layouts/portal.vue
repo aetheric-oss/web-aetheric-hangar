@@ -1,0 +1,46 @@
+<template>
+    <div>
+        <MobileLayout v-show="isMobile">
+            <!-- Pass the slot content to the mobile layout -->
+            <slot name="default"></slot> <!-- Use the same slot in the mobile layout -->
+        </MobileLayout>
+
+        <DesktopLayout v-show="!isMobile">
+            <!-- Pass the slot content to the desktop layout -->
+            <slot name="default"></slot> <!-- Use the same slot in the desktop layout -->
+        </DesktopLayout>
+    </div>
+</template>
+
+<script setup>
+import { isMobile } from 'mobile-device-detect';
+import MobileLayout from '@/components/sub-layouts/mobile-layout.vue';
+import DesktopLayout from '@/components/sub-layouts/desktop-layout.vue';
+</script>
+
+<style scoped lang="scss">
+.nav-header {
+    background-color: var(--bs-black);
+    width: 100vw;
+    padding: 5px 12px;
+    margin: 0;
+
+    display: grid;
+    grid-template-rows: 1fr auto auto;
+    grid-template-areas: "navbar-brand-logo notification-bell mobile-nav-close-btn";
+
+    .navbar-brand {
+        grid-area: navbar-brand-logo;
+    }
+
+    .notification-bell-container {
+        grid-area: notification-bell;
+        margin: auto 0;
+    }
+
+    .mobile-nav-close-btn {
+        grid-area: mobile-nav-close-btn;
+        margin: auto 0;
+    }
+}
+</style>
