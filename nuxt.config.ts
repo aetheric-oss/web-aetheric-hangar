@@ -1,4 +1,3 @@
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
     srcDir: 'src/',
     app: {
@@ -12,7 +11,10 @@ export default defineNuxtConfig({
                 { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' }
             ]
         }
+        
     },
+    
+
     css: ['~/assets/styles/main.scss'],
     vite: {
         css: {
@@ -30,4 +32,12 @@ export default defineNuxtConfig({
     imports: {
         dirs: ['store'],
     },
-})
+    plugins: [
+        { src: '~/plugins/google-auth.js', mode: 'client' },
+    ],
+    build: { transpile: ["vue3-google-login"] },
+    runtimeConfig: {
+        public: { GOOGLE_LOGIN_AUTH_API_KEY: process.env.clientId },
+      },
+
+});
