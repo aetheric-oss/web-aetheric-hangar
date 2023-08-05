@@ -5,13 +5,11 @@
     "dev": "HOST=0.0.0.0 nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "prepare": "husky install"
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.3.1",
-    "husky": "^8.0.3",
     "nuxt": "^3.6.5",
     "sass": "^1.64.2",
     "sass-loader": "^13.2.0"
