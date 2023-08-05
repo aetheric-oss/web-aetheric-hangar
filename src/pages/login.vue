@@ -1,5 +1,5 @@
 <template>
-    <main class="login container-fluid">
+    <main class="login container-fluid p-4">
         <template v-if="isMobile">
         <MobileLoginLayout>
           <NuxtLayout name="mobile-login"></NuxtLayout>
@@ -23,11 +23,3 @@
   definePageMeta({ layout: 'auth/login' });
   </script>
   
-<style>
-  div#__nuxt,
-  #__layout,
-  #__layout > div,
-  #app {
-    min-height: 100vh;
-  }
-</style>

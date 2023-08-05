@@ -67,18 +67,19 @@ $utilities: map-merge(
 @import 'arrow-root.css';
 @import 'fly_arrow';
 
+html, body, div {
+    height: 100%;
+  }
+  
+  
 
 .login-background-svg {
-  width: 807px;
-  height: 752px;
+  width: 90%;
+  height: 90%;
   border-radius: 50px 0px 0px 50px;
 }
 
 .login {
   background-color: #1B202C;
   height: 100%;
-}
-
-.login-image {
-    
 }
