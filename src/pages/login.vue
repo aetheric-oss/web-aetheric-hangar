@@ -1,12 +1,16 @@
 <template>
-    <main class="login">
-      <MobileLoginLayout v-show="isMobile">
-        <NuxtLayout name="mobile-login"></NuxtLayout>
-      </MobileLoginLayout>
-  
-      <DesktopLoginLayout v-show="!isMobile">
-        <NuxtLayout name="desktop-login"></NuxtLayout>
-      </DesktopLoginLayout>
+    <main class="login container-fluid">
+        <template v-if="isMobile">
+        <MobileLoginLayout>
+          <NuxtLayout name="mobile-login"></NuxtLayout>
+        </MobileLoginLayout>
+        </template>
+
+      <template v-else>
+        <DesktopLoginLayout>
+          <NuxtLayout name="desktop-login"></NuxtLayout>
+        </DesktopLoginLayout>
+      </template>
     </main>
   </template>
   
@@ -20,5 +24,10 @@
   </script>
   
 <style>
-
+  div#__nuxt,
+  #__layout,
+  #__layout > div,
+  #app {
+    min-height: 100vh;
+  }
 </style>
