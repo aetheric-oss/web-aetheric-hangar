@@ -1,0 +1,45 @@
+<template>
+    <form>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-person"></i>
+                </span>
+            <label for="Username">Username</label>
+                <input type="username" class="form-control" aria-describedby="username" placeholder="Type username">
+            </div>     
+        </div>
+        <div class="form-group">
+        <label for="Pasword">Password</label>
+          <div class="input-group">
+                <input type="password" class="form-control"  placeholder="Type your password" v-model="password">
+                <span class="input-group-text" @click="togglePasswordVisibility">
+                    <i :class="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                </span>
+            </div>
+        </div>
+        <div class="py-0 px-10">
+            <a href="#" class="font-weight-bold text-end text-decoration-none">FORGOT PASSWORD?</p>
+        </div>
+        <button type="submit" class="btn btn-primary" @click="login">Login</button>
+      </form>
+</template>
+
+<script>
+    export default {
+      data() {
+        return {
+          username: '',
+          password: '',
+          showPassword: false
+        };
+      },
+      methods: {
+        togglePasswordVisibility() {
+          this.showPassword = !this.showPassword;
+        },
+        login() {
+        }
+      }
+    };
+    </script>
