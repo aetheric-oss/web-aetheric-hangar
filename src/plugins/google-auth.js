@@ -1,10 +1,10 @@
-import vue3GoogleLogin from 'vue3-google-login';
+import GoogleSignInPlugin  from 'vue3-google-signin';
 
 export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig().public
-  nuxtApp.vueApp.use(vue3GoogleLogin, {
+  nuxtApp.vueApp.use(GoogleSignInPlugin, {
     load: {
-      key: config.GOOGLE_LOGIN_AUTH_API_KEY,
+      client_id: config.GOOGLE_LOGIN_AUTH_API_KEY,
     },
-  })
-})
+  });
+});

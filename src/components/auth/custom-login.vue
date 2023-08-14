@@ -82,9 +82,11 @@ export default {
     align-items: center; 
     justify-content: center; 
 }
-.login-button:hover {
+.login-button:hover,
+.login-button:active {
   background-color: #FF5E45;
 }
+
 
 .btn-link {
   margin: 0;

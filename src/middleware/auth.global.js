@@ -5,5 +5,4 @@ export default defineNuxtRouteMiddleware((to, from) => {
     if (!authStore.isLoggedIn && to.path === "/dashboard/") {
         return navigateTo("/");
     }
-    return;
 });
