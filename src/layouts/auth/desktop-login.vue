@@ -27,6 +27,7 @@
                         <a href="#" class="font-weight-bold text-decoration-underline">Sign up for FREE</a>
                         </p>
                     </div>
+                    
                 </main>
       </section>
       <section class="col-sm-8">
@@ -80,8 +81,8 @@ html,body, div #__nuxt, #__layout{
 }
 
 .custom-input-field {
-            width: 345px;
-            height: 80px;
+            width: 80%;
+            height: 80%;
             padding: 8px, 0px, 8px, 0px;
             border-radius: 25px;
             display: flex;
@@ -128,6 +129,4 @@ html,body, div #__nuxt, #__layout{
     letter-spacing: 0.1em;
     text-align: center;
   }
-
-
 </style>
