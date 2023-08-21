@@ -1,5 +1,5 @@
 <template>
-    <main class="login container-fluid p-4">
+    <main class="p-3 bg-color">
         <template v-if="isMobile">
         <MobileLoginLayout>
           <NuxtLayout name="mobile-login"></NuxtLayout>

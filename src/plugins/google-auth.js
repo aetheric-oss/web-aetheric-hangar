@@ -7,4 +7,4 @@ export default defineNuxtPlugin((nuxtApp) => {
       client_id: config.GOOGLE_LOGIN_AUTH_API_KEY,
     },
   })
-})
+});

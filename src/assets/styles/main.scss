@@ -59,6 +59,7 @@ $utilities: map-merge(
                         ),
                 )
             ),
+        
     )
 );
 @import 'bootstrap/scss/utilities/api';
@@ -74,9 +75,12 @@ $utilities: map-merge(
   border-radius: 50px 0px 0px 50px;
 }
 
-.login {
+.bg-color {
   background-color: #1B202C;
-  height: 100%;
+}
+
+.mobile-bg {
+  background-image: url('src/assets/icons/login/mobile-background.svg');
 }
 
 .desktop-login-menu-svg {
@@ -134,4 +138,17 @@ $utilities: map-merge(
 
 .desktop-button-input input:focus {
     outline: none;
+  }
+
+
+.mobile-button-input {
+  background-color: transparent;  
+    padding: 9px 7px;
+    border-radius: 20px;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }

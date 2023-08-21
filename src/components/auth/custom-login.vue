@@ -1,12 +1,12 @@
 <template>
   <div class="justify-content-center form-group">
     <div class="p-1 text-white input-group">
-      <label for="Username"> Username</label>
-      <div class="input-group-addon desktop-button-input">
+      <label for="Username" class="text-gray"> Username</label>
+      <div class="input-group-addon desktop-button-input border border-white ">
         <i class="bi bi-person"></i>
         <input
           type="username"
-          class="desktop-button-input text-white border-0"
+          class="desktop-button-input text-white"
           aria-describedby="username"
           placeholder="Type username"
           v-model="username"
@@ -16,12 +16,12 @@
   </div>
   <div class="justify-content-center form-group ">
     <div class="p-1 text-white input-group ">
-      <label for="Pasword">Password</label>
-      <div class="input-group-addon desktop-button-input">
+      <label for="Pasword" class="text-gray">Password</label>
+      <div class="input-group-addon desktop-button-input border border-white ">
         <i class="bi bi-lock text-dark"></i>
             <input v-if="showPassword"
               type="text"
-              class="desktop-button-input text-white border-0"
+              class="desktop-button-input text-white"
               placeholder="Type your password"
               v-model="password"
             /><input v-else
@@ -39,7 +39,7 @@
   <div class="p-1 d-flex justify-content-end">
     <a
       href="#"
-      class="font-weight-bold text-decoration-underline text-white p-1"
+      class="font-weight-bold text-decoration-underline text-white p-1 mr-1"
     >FORGOT PASSWORD?</a
     >
   </div>
@@ -75,7 +75,6 @@ export default {
 <style>
 .login-button {
     background-color: #FF5E45;
-    height: 60px;
     width: 95%;
     display: block;
     margin: 0 auto;
@@ -84,7 +83,7 @@ export default {
 }
 .login-button:hover,
 .login-button:active {
-  background-color: #FF5E45;
+  background-color: #FF5E45 !important;
 }
 
 

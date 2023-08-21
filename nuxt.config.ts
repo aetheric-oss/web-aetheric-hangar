@@ -26,7 +26,7 @@ export default defineNuxtConfig({
     modules: [
         '@pinia/nuxt',
         'nuxt-icons',
-        'nuxt-vue3-google-signin'
+        'nuxt-vue3-google-signin',
     ],
     imports: {
         dirs: ['store'],
@@ -41,5 +41,5 @@ export default defineNuxtConfig({
       },
       googleSignIn: {
         clientId: process.env.clientId,
-      }
+      },
 });

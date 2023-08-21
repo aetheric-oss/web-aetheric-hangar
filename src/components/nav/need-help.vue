@@ -4,7 +4,7 @@
             <PhQuestion size="24"/>
         </div>
         <div class="need-help-text">
-            Need help?
+            Need help ?
         </div>
     </div>
 </template>
