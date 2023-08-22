@@ -59,7 +59,6 @@ $utilities: map-merge(
                         ),
                 )
             ),
-        
     )
 );
 @import 'bootstrap/scss/utilities/api';
@@ -67,7 +66,6 @@ $utilities: map-merge(
 // 8. Custom FlyArrow.io class overrides
 @import 'arrow-root.css';
 @import 'fly_arrow';
-
 
 .login-background-svg {
   width: 80%;
@@ -84,71 +82,70 @@ $utilities: map-merge(
 }
 
 .desktop-login-menu-svg {
-    width: 400px;
-    height: 34.31px;
-    gap: 10px;
+  width: 400px;
+  height: 34.31px;
+  gap: 10px;
 }
 
 .welcome-login-text {
-    font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .custom-input-field {
-    width: 90%;
-    height: 80%;
-    padding: 8px, 0px, 8px, 0px;
-    border-radius: 25px;
-    display: flex;
-    gap: 5px;
+  width: 90%;
+  height: 80%;
+  padding: 8px 0px 8px 0px; /* Adjusted padding */
+  border-radius: 25px;
+  display: flex;
+  gap: 5px;
 }
 
 .icon-label {
-    display: flex;
-    align-items: center;
-  }
-  
-  .icon {
-    margin-right: 10px;
-  }
+  display: flex;
+  align-items: center;
+}
 
-  .desktop-button-input {
-    padding: 10px 15px;
-    width: 100%;
-    height: 80%;
-    border-radius: 25px;
-    align-items: center;
-    gap: 10px;
-    background-color: #8086ed1a;
-    border: none;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
+.icon {
+  margin-right: 10px;
+}
 
-  .desktop-button-input input {
-  background-color: transparent; 
-  border: none; 
+.desktop-button-input {
+  padding: 10px 15px; /* Adjusted padding */
+  width: 100%;
+  height: 80%;
+  border-radius: 25px;
+  align-items: center;
+  gap: 10px;
+  background-color: #8086ed1a;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.desktop-button-input input {
+  background-color: transparent;
+  border: none;
   flex: 1;
   height: 100%;
-  padding: 0; 
-  color: white; 
-  outline: none; 
+  padding: 0;
+  color: white;
+  outline: none;
   box-shadow: none;
 }
 
 .desktop-button-input input:focus {
-    outline: none;
-  }
-
+  outline: none;
+}
 
 .mobile-button-input {
-  background-color: transparent;  
-    padding: 9px 7px;
-    border-radius: 20px;
-    align-items: center;
-    gap: 5px;
-    border: none;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
+  background-color: transparent;
+  padding: 9px 7px;
+  border-radius: 20px;
+  align-items: center;
+  gap: 5px;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

@@ -1,14 +1,14 @@
-<template >
-    <button
-        class="justify-content-center text-white border border-white" 
-        style="cursor: pointer;"
-        :class="buttonClass"  
-        :disabled="!isReady" 
-        @click="() => login()"
-      >
-      <img class="google" src="~/assets/icons/google.svg" alt="Google" />
-      Login with Google
-    </button>
+<template>
+  <button
+    class="justify-content-center text-white border border-white"
+    style="cursor: pointer;"
+    :class="buttonClass"
+    :disabled="!isReady"
+    @click="login"
+  >
+    <img class="google" src="~/assets/icons/google.svg" alt="Google" />
+    Login with Google
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -21,11 +21,9 @@ import {
 } from "vue3-google-signin";
 import { computed } from "vue";
 
-
 const props = defineProps({
   isDesktop: Boolean,
 });
-
 
 const buttonClass = computed(() => {
   return props.isDesktop ? "desktop-button-input" : "mobile-button-input";
@@ -42,22 +40,19 @@ const handleOnSuccess = (response: AuthCodeFlowSuccessResponse) => {
   }
 };
 
-
 const handleOnError = (errorResponse: AuthCodeFlowErrorResponse) => {
   console.log("Error: ", errorResponse);
 };
-
 
 const { isReady, login } = useTokenClient({
   onSuccess: handleOnSuccess,
   onError: handleOnError,
 });
-
 </script>
 
 <style>
 .google {
-    width: 10%;
-    height: 70%;
+  width: 10%;
+  height: 70%;
 }
 </style>
