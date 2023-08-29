@@ -14,8 +14,8 @@
 
 <script setup>
 import { isMobile } from 'mobile-device-detect';
-import MobileLayout from '@/components/sub-layouts/mobile-layout.vue';
-import DesktopLayout from '@/components/sub-layouts/desktop-layout.vue';
+import MobileLayout from '@/layouts/sub-layouts/mobile-layout.vue';
+import DesktopLayout from '@/layouts/sub-layouts/desktop-layout.vue';
 </script>
 
 <style scoped lang="scss">
