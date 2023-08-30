@@ -1,13 +1,9 @@
 <template>
-    <!-- Page content -->
     <div>
-        <!-- <NuxtLayout name="portal"> -->
-        <!-- -->
-            <div class="container my-3">
-                <h1>Dashboard page</h1>
-                Arrow DAO starter template for Nuxt 3 webapps here
-            </div>
-        <!-- </NuxtLayout> -->
+        <div class="container my-3">
+            <h1>Dashboard page</h1>
+            Arrow DAO starter template for Nuxt 3 webapps here
+        </div>
     </div>
 </template>
 
