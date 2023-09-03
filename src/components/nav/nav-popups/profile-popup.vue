@@ -11,12 +11,12 @@
                     </div>
                 </div>
                 <div class="profile-links">
-                    <SidenavCard :cardText="'Profile Settings'">
+                    <SidenavCard :cardText="'Profile Settings'" :path="`/profile/settings/`">
                         <template #left-icon>
                             <PhDiscordLogo size="22" weight="fill" />
                         </template>
                     </SidenavCard>
-                    <SidenavCard :cardText="'Privacy & Security'">
+                    <SidenavCard :cardText="'Privacy & Security'" :path="`/profile/privacy-and-security/`">
                         <template #left-icon>
                             <PhDiscordLogo size="22" weight="fill" />
                         </template>
@@ -26,7 +26,7 @@
                             <PhDiscordLogo size="22" weight="fill" />
                         </template>
                     </SidenavCard>
-                    <SidenavCard :cardText="'My Profile'" :noBackground="true">
+                    <SidenavCard :cardText="'My Profile'" :noBackground="true" :path="`/profile/settings/`">
                         <template #left-icon>
                             <img src="/img/demo/my-profile.png" alt="Profile Image">
                         </template>
