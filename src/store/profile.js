@@ -19,6 +19,8 @@ export const useProfileStore = defineStore("profile", {
     return {
       profile: {
         name: 'Patricia Hale',
+        publicName: 'Miss Patricia',
+        arrowBalance: '203,00',
         currentBusiness: {
           name: 'Arctic Ocean',
           imgSrc: '/img/demo/current-business.png'
@@ -58,6 +60,8 @@ export const useProfileStore = defineStore("profile", {
   getters: {
     getUser: state => state.profile,
     getUsername: state => state.profile.name,
+    getPublicName: state => state.profile.publicName,
+    getArrowBalance: state => state.profile.arrowBalance,
     getCurrentBusiness: state => state.profile.currentBusiness,
     getBusinesses: (state) => {
       return sortBusinessesList(state.profile.businessesList);
