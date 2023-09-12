@@ -3,7 +3,7 @@
         <div class="p-1 text-white input-group">
             <label for="Username" class="text-gray">Username</label>
             <div class="input-group-addon desktop-button-input border border-white">
-                <i class="bi bi-person"></i>
+                <PhUserCircle :size="24" />
                 <input
                     type="username"
                     class="desktop-button-input text-white"
@@ -18,7 +18,7 @@
         <div class="p-1 text-white input-group">
             <label for="Password" class="text-gray">Password</label>
             <div class="input-group-addon desktop-button-input border border-white">
-                <i class="bi bi-lock text-dark"></i>
+                <PhLock :size="24" class="text-dark"/>
                 <input v-if="showPassword"
                     type="text"
                     class="desktop-button-input text-white"
@@ -31,7 +31,8 @@
                     v-model="password"
                 />
             <button type="button" class="btn btn-link m-0 p-0" @click="toggleShow">
-                <i class="eye-color" :class="{ 'bi bi-eye-slash': showPassword, 'bi bi-eye': !showPassword }"></i>
+                <PhEye v-if="!showPassword" :size="24" class="eye-color" />
+                <PhEyeSlash v-if="showPassword" :size="24" class="eye-color" />
             </button>
             </div>
         </div>
@@ -48,7 +49,7 @@
 </template>
 
 <script>
-import "bootstrap-icons/font/bootstrap-icons.css";
+import { PhUserCircle, PhLock, PhEye, PhEyeSlash } from "@phosphor-icons/vue";
 
 export default {
     data() {
@@ -56,6 +57,12 @@ export default {
         showPassword: false,
         password: null
     };
+},
+components: {
+    PhUserCircle,
+    PhLock,
+    PhEye,
+    PhEyeSlash
 },
 computed: {
     buttonLabel() {
@@ -71,9 +78,9 @@ methods: {
 
 </script>
 
-<style>
+<style  scoped lang="scss">
 .login-button {
-    background-color: #FF5E45;
+    background-color: $coral-red;
     width: 95%;
     display: block;
     margin: 0 auto;
@@ -81,9 +88,9 @@ methods: {
     justify-content: center;
 }
 
-.login-button:hover,
+.login-button:hover
 .login-button:active {
-    background-color: #FF5E45 !important;
+    background-color:  $coral-red!important;
 }
 
 .btn-link {
@@ -92,7 +99,7 @@ methods: {
 }
 
 .eye-color {
-    color: #FF5E45;
+    color: $coral-red;
     vertical-align: middle;
 }
 
