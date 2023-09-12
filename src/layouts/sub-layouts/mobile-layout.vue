@@ -30,10 +30,12 @@
                 </div>
             </DashboardNavContent>
         </div>
-        <div class="portal-container-mobile" id="main">
+        <div class="portal-container-mobile overflow-y-scroll" id="main">
             <div class="container my-3">
                 <!-- Page content -->
                 <slot></slot>
+            </div>
+            <div id="modal-container" class="position-absolute">
             </div>
         </div>
     </div>
