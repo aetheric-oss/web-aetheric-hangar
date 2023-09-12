@@ -2,9 +2,14 @@
     <div class="m-auto w-100">
         <div class="d-flex">
             <h5 class="m-0 flex-grow-1 align-self-center">Contact Info</h5>
-            <button class="btn align-self-center m-0" data-toggle="modal" data-target="#profileContactModal" @click="showModal">
-                <PhPencil :size="32" color="#ff5e45" />
-            </button>
+            <GenericModal modalId="contact-info-modal" title="contact">
+                <template #activation-button>
+                    <PhPencil size="30" color="#ff5e45" />
+                </template>
+                <template #content>
+                    <p>Hello from the modal!</p>
+                </template>
+            </GenericModal>
         </div>
         <div class="pe-2">
             <div v-for="(info, index) in formattedContactInfo" :key="index">
