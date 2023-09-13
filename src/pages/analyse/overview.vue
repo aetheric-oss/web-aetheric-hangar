@@ -1,6 +1,8 @@
 <template>
-    <h1>Analyse</h1>
-    <p>Overview</p>
+    <div>
+        <h1>Analyse</h1>
+        <p>Overview</p>
+    </div>
 </template>
 
 <script setup>
