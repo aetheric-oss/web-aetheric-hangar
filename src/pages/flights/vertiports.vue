@@ -1,6 +1,8 @@
 <template>
-    <h1>Flights</h1>
-    <p>Vertiports</p>
+    <div>
+        <h1>Flights</h1>
+        <p>Vertiports</p>
+    </div>
 </template>
 
 <script setup>

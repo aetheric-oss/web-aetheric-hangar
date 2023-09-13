@@ -1,6 +1,8 @@
 <template>
-    <h1>Manage Assets</h1>
-    <p>Manage your assets here for VTOL Aircrafts</p>
+    <div>
+        <h1>Manage Assets</h1>
+        <p>Manage your assets here for VTOL Aircrafts</p>
+    </div>
 </template>
 
 <script setup>

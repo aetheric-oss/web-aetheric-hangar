@@ -1,6 +1,8 @@
 <template>
-    <h1>Manage Assets</h1>
-    <p>Manage your assets here</p>
+    <div>
+        <h1>Manage Assets</h1>
+        <p>Manage your assets here</p>
+    </div>
 </template>
 
 <script setup>

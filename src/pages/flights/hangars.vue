@@ -1,6 +1,8 @@
 <template>
-    <h1>Flights</h1>
-    <p>Hangars</p>
+    <div>
+        <h1>Flights</h1>
+        <p>Hangars</p>
+    </div>
 </template>
 
 <script setup>
