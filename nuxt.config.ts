@@ -1,4 +1,3 @@
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
     srcDir: 'src/',
     app: {
@@ -13,6 +12,7 @@ export default defineNuxtConfig({
             ]
         }
     },
+
     css: ['~/assets/styles/main.scss'],
     vite: {
         css: {
@@ -25,9 +25,21 @@ export default defineNuxtConfig({
     },
     modules: [
         '@pinia/nuxt',
-        'nuxt-icons'
+        'nuxt-icons',
+        'nuxt-vue3-google-signin',
     ],
     imports: {
         dirs: ['store'],
     },
-})
+    plugins: [
+        { src: '~/plugins/google.auth.js', mode: 'client' },
+    ],
+
+    build: { transpile: ["GoogleSignInPlugin"] },
+    runtimeConfig: {
+        public: { GOOGLE_LOGIN_AUTH_API_KEY: process.env.clientId },
+      },
+      googleSignIn: {
+        clientId: process.env.clientId,
+      },
+});
