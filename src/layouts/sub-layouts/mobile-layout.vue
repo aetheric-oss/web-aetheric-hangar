@@ -1,4 +1,4 @@
-<template>
+<template #default>
     <div class="full-cover">
         <div class="nav-header" id="fixed-mobile-header">
             <router-link :to="'/dashboard'" class="navbar-brand">
