@@ -1,4 +1,4 @@
-<template>
+<template #default>
     <div class="portal-page">
         <div class="container-fluid portal-container">
             <div class="nav" id="sidebar">

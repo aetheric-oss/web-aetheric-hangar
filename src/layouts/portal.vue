@@ -2,15 +2,18 @@
     <div>
         <Loading />
         <div id="portal">
-            <MobileLayout v-if="isMobile">
-                <!-- Pass the slot content to the mobile layout -->
-                <slot name="default"></slot> <!-- Use the same slot in the mobile layout -->
-            </MobileLayout>
-
-            <DesktopLayout v-if="!isMobile">
-                <!-- Pass the slot content to the desktop layout -->
-                <slot name="default"></slot> <!-- Use the same slot in the desktop layout -->
-            </DesktopLayout>
+            <div>
+                <MobileLayout v-if="isMobile">
+                    <!-- Pass the slot content to the mobile layout -->
+                    <slot name="default"></slot> <!-- Use the same slot in the mobile layout -->
+                </MobileLayout>
+            </div>
+            <div>
+                <DesktopLayout v-if="!isMobile">
+                    <!-- Pass the slot content to the desktop layout -->
+                    <slot name="default"></slot> <!-- Use the same slot in the desktop layout -->
+                </DesktopLayout>
+            </div>
         </div>
     </div>
 </template>

@@ -5,7 +5,7 @@
             <h3 class="m-0">My Profile</h3>
             <div class="profile-menu d-flex gap-1 w-100 py-1">
                 <router-link :to="item.path" v-for="(item, index) in profileMenu" :key="index">
-                    <div class="profile-menu-item rounded-pill" :class="{ 'active-profile': activePageIndex == index}">
+                    <div class="profile-menu-item rounded-pill" :class="{ 'active-profile': activePageIndex === index}">
                         <h5 class="profile-menu-item-text text-light">
                             {{ item.name }}
                         </h5>

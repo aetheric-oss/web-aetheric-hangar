@@ -1,7 +1,7 @@
 <template>
-    <div class="notification-bell-container" @click="openNotificationPopup">
+    <button class="btn btn-icon notification-bell-container" @click="openNotificationPopup">
         <PhBell :size="14" />
-    </div>
+    </button>
 </template>
 
 <script setup>
@@ -16,7 +16,7 @@ function openNotificationPopup() {
 .notification-bell-container {
     justify-content: center;
     align-items: center;
-    padding: 4px 11px;
+    padding: 9px 11px;
     width: 36px;
     height: 36px;
     color: var(--bs-white);
