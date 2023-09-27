@@ -1,5 +1,7 @@
 <template>
-    <button class="btn align-self-center m-0"  @click="showModal">
+    <button type="button" class="btn align-self-center m-0 p-0"
+        @click="showModal"
+    >
         <slot name="activation-button"></slot>
     </button>
     <client-only>
@@ -9,8 +11,8 @@
                 :class="{ 'modal-box': true, 'd-block': open, 'd-none': !open }"
                 :id="modalId"
             >
-                <div class="modal-content">
-                    <div class="modal-header-box d-grid">
+                <div class="modal-content d-flex align-items-end flex-column">
+                    <div class="modal-header-box d-grid w-100">
                         <div class="modal-heading sidenav-text my-auto mx-0 align-self-center">
                             {{ title }}
                         </div>
@@ -18,7 +20,12 @@
                             <PhX size="22" color="white"/>
                         </div>
                     </div>
-                    <slot name="content"></slot>
+                    <div class="w-100 mb-1" style="overflow-y: scroll">
+                        <slot name="content"></slot>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-submit w-100 m-0 mt-auto text-light" v-if="submitDetails.showSubmitButton === true" @click="submit">
+                        {{ submitDetails.title }}
+                    </button>
                 </div>
             </div>
         </Teleport>
@@ -35,6 +42,14 @@ const props = defineProps({
     title: {
         type: String,
         required: false
+    },
+    handleSubmit: {
+        type: Function,
+        required: false
+    },
+    submitDetails: {
+        type: Object,
+        required: false
     }
 });
 const modalId = props.modalId;
@@ -45,6 +60,15 @@ const showModal = () => {
 const closeModal = () => {
     open.value = false;
 };
+const handleSubmit = props.handleSubmit;
+const submit = () => {
+    handleSubmit();
+    closeModal();
+};
+const submitDetails = ref(props.submitDetails ? props.submitDetails : {
+    showSubmitButton: true,
+    title: 'Submit'
+});
 </script>
 
 
@@ -57,7 +81,8 @@ const closeModal = () => {
     left:0;
     width: 100vw;
     height: 100vh;
-    padding: 10px;
+    background: $primary-dark;
+
 }
 .modal-header-box {
     grid-template-columns: 1fr auto;

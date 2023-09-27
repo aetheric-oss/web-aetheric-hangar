@@ -6,15 +6,17 @@
         <div class="pe-2">
             <div v-for="(addr, index) in formattedAddresses" :key="index" class="pb-2">
                 <div class="d-flex gap-1">
-                    <h6 class="fs-7 my-auto mx-0">{{ addr.type }}</h6>
+                    <h6 class="fs-7 my-auto mx-0">{{ addr.type }}
+                        <span v-show="addr.name">: {{ addr.name }}</span>
+                    </h6>
                     <div class="ms-auto">
                         <button class="btn m-0 p-0" @click="toggleMaskedStatus(index)">
                             <PhEye :size="20" color="#ff5e45" v-show="addr.isMasked"/>
                             <PhEyeSlash :size="20" color="#ff5e45" v-show="!addr.isMasked"/>
                         </button>
-                        <button class="btn m-0 p-0" @click="toggleMaskedStatus(index)">
+                        <AddressModal :addressInfo="addr" @update="updateAddress">
                             <PhPencil :size="20" color="#ff5e45" />
-                        </button>
+                        </AddressModal>
                     </div>
                 </div>
                 <div class="d-flex gap-1">
@@ -23,7 +25,9 @@
             </div>
         </div>
         <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-outline-primary">Add New</button>
+            <AddressModal @add="addAddress">
+                <span class="btn btn-outline-primary">Add New</span>
+            </AddressModal>
         </div>
     </div>
 </template>
@@ -31,24 +35,25 @@
 <script setup>
 import { reactive, computed } from 'vue'
 import { PhPencil, PhEye, PhEyeSlash } from "@phosphor-icons/vue";
-const maskedAddress = (address) => {
+import AddressModal from './address-modal.vue';
+const maskAddress = (addr) => {
     return {
-        line1: address.line1.slice(0, 2) + '*'.repeat(address.line1.length - 3) + address.line1.slice(-1),
-        line2: '*'.repeat(address.line2.length),
-        city: address.city[0] + '*'.repeat(address.city.length - 1),
-        state: address.state[0] + '*'.repeat(address.state.length - 1),
-        zip: address.zip.slice(0, 2) + '*'.repeat(address.zip.length - 2)
+        address: addr.address.slice(0, 2) + '*'.repeat(addr.address.length - 3) + addr.address.slice(-1),
+        town: addr.town[0] + '*'.repeat(addr.town.length - 1),
+        state: addr.state[0] + '*'.repeat(addr.state.length - 1),
+        country: addr.country.slice(0, 2) + '*'.repeat(addr.country.length - 2),
+        postalCode: addr.postalCode.slice(0, 2) + '*'.repeat(addr.postalCode.length - 2)
     };
 }
 const addresses =  [
     {
         type: 'residence',
         address: {
-            line1: '1234 Main St',
-            line2: 'Apt 123',
-            city: 'San Francisco',
+            address: '1234 Main St',
+            town: 'San Francisco',
             state: 'CA',
-            zip: '94111'
+            country: 'US',
+            postalCode: '94111'
         },
         isMasked: true
     },
@@ -56,11 +61,11 @@ const addresses =  [
         type: 'shipping',
         name: 'NAME',
         address: {
-            line1: '1234 Main St',
-            line2: 'Apt 123',
-            city: 'San Francisco',
+            address: '1234 Main St',
+            town: 'San Francisco',
             state: 'CA',
-            zip: '94111'
+            country: 'US',
+            postalCode: '94111'
         },
         isMasked: true
     }
@@ -68,20 +73,34 @@ const addresses =  [
 const formattedAddresses = reactive(addresses.map((info) => {
     return {
         ...info,
-        maskedAddress: maskedAddress(info.address),
+        maskedAddress: maskAddress(info.address),
         type: info.type.replace(/\b\w/g, l => l.toUpperCase()) + ' Address'
     }
 }))
 const valueToDisplay = computed(() => {
     return (index) => {
         let address = formattedAddresses[index].isMasked ? formattedAddresses[index].maskedAddress : formattedAddresses[index].address;
-        return `${address.line1} <br>
-        ${address.line2}, ${address.city}, ${address.state} <br>
-        ${address.zip}`;
+        return `${address.address} <br>
+        ${address.town}, ${address.state} <br>
+        ${address.country} ${address.postalCode}`;
     };
 });
 const toggleMaskedStatus = (index) => {
     formattedAddresses[index].isMasked = !formattedAddresses[index].isMasked;
+};
+const addAddress = (address) => {
+    formattedAddresses.push({
+        ...address,
+        isMasked: true,
+        maskedAddress: maskAddress(address.address)
+    });
+};
+const updateAddress = (address, index) => {
+    formattedAddresses[index] = {
+        ...address,
+        isMasked: true,
+        maskedAddress: maskAddress(address.address)
+    };
 };
 </script>
 
