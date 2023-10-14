@@ -1,21 +1,20 @@
 <template>
-    <main class="p-3 bg-color">
+    <main class="p-3 bg-color vh-100">
         <template v-if="isMobile">
             <MobileLoginLayout>
-                <NuxtLayout name="mobile-login"></NuxtLayout>
+                <h1>Mobile</h1>
             </MobileLoginLayout>
         </template>
         <template v-else>
             <DesktopLoginLayout>
-                <NuxtLayout name="desktop-login"></NuxtLayout>
+                <h1>Desktop</h1>
             </DesktopLoginLayout>
         </template>
     </main>
 </template>
 
 <script setup>
-import MobileLoginLayout from '~/layouts/auth/mobile-login.vue';
 import { isMobile } from 'mobile-device-detect';
-import DesktopLoginLayout from '~/layouts/auth/desktop-login.vue';
+
 definePageMeta({ layout: 'auth/login' });
 </script>

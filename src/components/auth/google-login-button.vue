@@ -26,7 +26,7 @@ const props = defineProps({
 });
 
 const buttonClass = computed(() => {
-    return props.isDesktop ? "desktop-button-input" : "mobile-button-input";
+    return props.isDesktop ? "desktop-button-input" : "mobile-button-input -4";
 });
 
 const router = useRouter();
@@ -35,9 +35,7 @@ const handleOnSuccess = (response: AuthCodeFlowSuccessResponse) => {
     const authStore = useAuthStore();
     authStore.login();
 
-    if (authStore.userAuth) {
-        router.push('/dashboard/');
-    }
+    router.push('/dashboard/');
 };
 
 const handleOnError = (errorResponse: AuthCodeFlowErrorResponse) => {
