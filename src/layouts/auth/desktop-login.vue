@@ -11,7 +11,6 @@
                 <div class="button-spacing p-3">
                     <div class="d-flex">
                         <GoogleLogin :is-desktop="true" />
-                        <!-- Add error msg -->
                     </div>
                 </div>
                 <div class="divider-container">
@@ -19,7 +18,8 @@
                     <div class="divider-text">OR</div>
                     <div class="divider-line"></div>
                 </div>
-                <CustomLogin />
+                <p v-if="error" class="text-danger text-center" v-html="error"></p>
+                <CustomLogin @error="handleError"/>
                 <div class="h-25 py-40 px-0 mb-10">
                     <h5 class="poppins-style text-white p-3">
                         Don’t have an account?
@@ -50,44 +50,31 @@ export default {
         GoogleLogin,
         CustomLogin
     },
+    data() {
+        return {
+            error: null
+        };
+    },
+    methods: {
+        handleError(errorMessage) {
+            this.error = errorMessage;
+        }
+    }
 }
 
 </script>
 
 <style>
-html, body, div #__nuxt, #__layout {
-    height: 100%!important;
-    width: 100%!important;
-    overflow: hidden;
-}
 
 .custom-input-field {
     width: 80%;
     height: 80%;
-    padding: 8px 0px 8px 0px; /* Adjusted padding */
+    padding: 8px 0px 8px 0px;
     border-radius: 25px;
     display: flex;
     gap: 5px;
 }
 
-.divider-container {
-    display: flex;
-    align-items: center;
-}
-
-.divider-line {
-    flex-grow: 1;
-    border-top: 1px solid #ccc;
-}
-
-.divider-text {
-    margin: 0 10px;
-    color: #999;
-}
-
-.not-having-account {
-    height: 10%;
-}
 
 .poppins-style {
     font-family: Poppins, sans-serif;
