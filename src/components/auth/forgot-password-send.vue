@@ -24,7 +24,7 @@
         <div class="text-center py-3 px-0">
             <nuxt-link
                 to="/login"
-                class="text-white text-decoration-none font-rubic"> <PhArrowLeft class="text-white" :size="24" /> Go to login
+                class="text-white text-decoration-none font-rubik"> <PhArrowLeft class="text-white" :size="24" /> Go to login
             </nuxt-link>
         </div>
     </section>

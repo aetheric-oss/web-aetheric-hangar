@@ -26,7 +26,7 @@
             <div class="text-center p-3 px-0">
                 <nuxt-link
                     to="/login"
-                    class="text-white text-decoration-none font-rubic"> <PhArrowLeft class="text-white" :size="24" /> Back
+                    class="text-white text-decoration-none font-rubik"> <PhArrowLeft class="text-white" :size="24" /> Back
                 </nuxt-link>
             </div>
         </form>
