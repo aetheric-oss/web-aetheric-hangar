@@ -1,9 +1,9 @@
 <template>
     <div class="m-auto w-100">
-        <div class="d-flex">
+        <div class="d-flex pe-2">
             <h5 class="m-0 flex-grow-1 align-self-center">contact</h5>
-            <button class="btn align-self-center m-0 p-0 me-2" @click="showModal">
-                <PhPencil size="30" color="#ff5e45" />
+            <button class="btn btn-icon text-primary" @click="showModal">
+                <PhPencil size="30" />
             </button>
         </div>
         <div class="pe-2">
@@ -18,13 +18,13 @@
                     </div>
                     <div class="d-flex ms-auto my-auto me-0">
                         <ContactVerificationModal :contactForm="info" :index="index" v-if="!info.isVerified">
-                            <div class="my-auto mx-0 align-self-center ms-1 me-2">
-                                <PhWarning :size="24" color="#f31b65" weight="fill"/>
-                            </div>
+                            <button class="btn btn-icon text-warning fs-4 ms-1 me-2">
+                                <PhWarning :size="24" weight="fill" />
+                            </button>
                         </ContactVerificationModal>
-                        <button class="btn m-0 p-0 lh-1" @click="toggleMaskedStatus(index)">
-                            <PhEye :size="20" color="#ff5e45" v-show="info.isMasked"/>
-                            <PhEyeSlash :size="20" color="#ff5e45" v-show="!info.isMasked"/>
+                        <button class="btn btn-icon text-primary fs-5" @click="toggleMaskedStatus(index)">
+                            <PhEye :size="20" v-show="info.isMasked"/>
+                            <PhEyeSlash :size="20" v-show="!info.isMasked"/>
                         </button>
                     </div>
                 </div>

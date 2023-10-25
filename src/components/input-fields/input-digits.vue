@@ -8,11 +8,11 @@
                 @input="(input) => $emit('input', input.target.value)"
             />
             <div class="input-digit__arrows ms-auto">
-                <btn class="btn btn-icon input-digit__arrow-up" @click="incrementValue">
-                    <PhCaretUp :size="10" color="#fff" />
+                <btn class="btn btn-icon text-white input-digit__arrow-up" @click="incrementValue">
+                    <PhCaretUp :size="10" />
                 </btn>
-                <btn class="btn btn-icon input-digit__arrow-down" @click="decrementValue">
-                    <PhCaretDown :size="10" color="#fff" />
+                <btn class="btn btn-icon text-white input-digit__arrow-down" @click="decrementValue">
+                    <PhCaretDown :size="10" />
                 </btn>
             </div>
         </div>

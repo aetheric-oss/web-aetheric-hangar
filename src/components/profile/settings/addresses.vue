@@ -10,12 +10,12 @@
                         <span v-show="addr.name">: {{ addr.name }}</span>
                     </h6>
                     <div class="ms-auto">
-                        <button class="btn m-0 p-0" @click="toggleMaskedStatus(index)">
-                            <PhEye :size="20" color="#ff5e45" v-show="addr.isMasked"/>
-                            <PhEyeSlash :size="20" color="#ff5e45" v-show="!addr.isMasked"/>
+                        <button class="btn btn-icon text-primary" @click="toggleMaskedStatus(index)">
+                            <PhEye :size="20" v-show="addr.isMasked"/>
+                            <PhEyeSlash :size="20" v-show="!addr.isMasked"/>
                         </button>
                         <AddressModal :addressInfo="addr" @update="updateAddress">
-                            <PhPencil :size="20" color="#ff5e45" />
+                            <PhPencil :size="20" />
                         </AddressModal>
                     </div>
                 </div>
