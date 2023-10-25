@@ -13,9 +13,9 @@
                     placeholder="Enter Password"
                 />
                 <div class="ms-auto px-1">
-                    <button class="btn btn-icon m-0 p-0 lh-1" @click="showPassword = !showPassword">
-                        <PhEye :size="20" color="#fff" v-show="showPassword"/>
-                        <PhEyeSlash :size="20" color="#fff" v-show="!showPassword"/>
+                    <button class="btn btn-icon text-white lh-1" @click="showPassword = !showPassword">
+                        <PhEye :size="20" v-show="showPassword"/>
+                        <PhEyeSlash :size="20" v-show="!showPassword"/>
                     </button>
                 </div>
             </div>

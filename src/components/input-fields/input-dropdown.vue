@@ -7,9 +7,9 @@
                     <slot name="left-icon"></slot>
                 </div>
                 <div class="form-control input__field w-100 text-light">{{ selectedValue }}</div>
-                <button class="btn btn-icon m-0 py-0 ms-auto px-1 lh-1" @click="toggleDropdown" role="button">
-                    <PhCaretDown :size="20" color="#fff" v-show="!showDropdown"/>
-                    <PhCaretUp :size="20" color="#fff" v-show="showDropdown"/>
+                <button class="btn btn-icon text-white py-0 ms-auto px-1 lh-1" @click="toggleDropdown" role="button">
+                    <PhCaretDown :size="20" v-show="!showDropdown"/>
+                    <PhCaretUp :size="20" v-show="showDropdown"/>
                 </button>
             </div>
             <div class="input__dropdown p-1 pt-2" v-show="showDropdown">

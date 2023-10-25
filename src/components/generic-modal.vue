@@ -1,7 +1,5 @@
 <template>
-    <button type="button" class="btn align-self-center m-0 p-0"
-        @click="showModal"
-    >
+    <button type="button" class="btn btn-icon text-primary fs-5" @click="showModal">
         <slot name="activation-button"></slot>
     </button>
     <client-only>
@@ -16,8 +14,10 @@
                         <div class="modal-heading sidenav-text my-auto mx-0 align-self-center">
                             {{ title }}
                         </div>
-                        <div class="modal-close-btn m-auto d-block" @click="closeModal">
-                            <PhX size="22" color="white"/>
+                        <div class="modal-close-btn m-auto d-block">
+                            <button class="btn btn-icon text-white fs-3" @click="closeModal">
+                                <PhX size="22"/>
+                            </button>
                         </div>
                     </div>
                     <div class="w-100 mb-1" style="overflow-y: scroll">

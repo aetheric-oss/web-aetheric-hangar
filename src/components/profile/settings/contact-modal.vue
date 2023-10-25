@@ -15,9 +15,9 @@
                             <div class="modal-heading sidenav-text my-auto mx-0 align-self-center">
                                 contact
                             </div>
-                            <div class="modal-close-btn m-auto d-block" @click="closeModal">
-                                <PhX size="22" color="white"/>
-                            </div>
+                            <button class="btn btn-icon text-white fs-3" @click="closeModal">
+                                <PhX size="22" />
+                            </button>
                         </div>
                         <div class="w-100 mb-1" style="overflow-y: scroll">
                             <div class="stepper__container d-flex align-items-end flex-column h-100">
