@@ -1,4 +1,4 @@
-<template>
+<template #default>
     <div class="full-cover">
         <div class="nav-header" id="fixed-mobile-header">
             <router-link :to="'/dashboard'" class="navbar-brand">
@@ -30,10 +30,12 @@
                 </div>
             </DashboardNavContent>
         </div>
-        <div class="portal-container-mobile" id="main">
+        <div class="portal-container-mobile overflow-y-scroll" id="main">
             <div class="container my-3">
                 <!-- Page content -->
                 <slot></slot>
+            </div>
+            <div id="modal-container" class="position-absolute">
             </div>
         </div>
     </div>

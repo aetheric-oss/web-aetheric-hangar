@@ -1,21 +1,28 @@
 <template>
     <div>
-        <MobileLayout v-show="isMobile">
-            <!-- Pass the slot content to the mobile layout -->
-            <slot name="default"></slot> <!-- Use the same slot in the mobile layout -->
-        </MobileLayout>
-
-        <DesktopLayout v-show="!isMobile">
-            <!-- Pass the slot content to the desktop layout -->
-            <slot name="default"></slot> <!-- Use the same slot in the desktop layout -->
-        </DesktopLayout>
+        <Loading />
+        <div id="portal">
+            <div>
+                <MobileLayout v-if="isMobile">
+                    <!-- Pass the slot content to the mobile layout -->
+                    <slot name="default"></slot> <!-- Use the same slot in the mobile layout -->
+                </MobileLayout>
+            </div>
+            <div>
+                <DesktopLayout v-if="!isMobile">
+                    <!-- Pass the slot content to the desktop layout -->
+                    <slot name="default"></slot> <!-- Use the same slot in the desktop layout -->
+                </DesktopLayout>
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup>
 import { isMobile } from 'mobile-device-detect';
-import MobileLayout from '@/components/sub-layouts/mobile-layout.vue';
-import DesktopLayout from '@/components/sub-layouts/desktop-layout.vue';
+import Loading from '../components/loading.vue';
+import MobileLayout from '@/layouts/sub-layouts/mobile-layout.vue';
+import DesktopLayout from '@/layouts/sub-layouts/desktop-layout.vue';
 </script>
 
 <style scoped lang="scss">

@@ -6,8 +6,8 @@ $light: #f1f4ff;
 $light-rgb: 241, 244, 255;
 $gray-dark: #3d414c;
 $gray-dark-rgb: 61, 65, 76;
-$primary: #4060ff;
-$primary-rgb: 64, 96, 255;
+$primary: #FF5E45;
+$primary-rgb: 255, 93, 70;
 $primary-dark: #1B202C;
 $secondary: #ff8a78;
 $secondary-rgb: 255, 138, 120;
@@ -15,7 +15,10 @@ $info: $secondary;
 $info-rgb: $secondary-rgb;
 $link-color: $secondary;
 $link-color-rgb: $secondary-rgb;
-
+$success: #28bb94;
+$success-rgb: 40, 187, 148;
+$warning: #f31b65;
+$warning-rgb: 243, 27, 101;
 $red: #c22e17;
 $coral-red: #ff5e45;
 $teal: #2abb94;
@@ -27,6 +30,7 @@ $orange: #e08d48;
 $magenta: #ab6397;
 $blue: #432198;
 $indigo: #693dd4;
+$dark-purple-gray: #3f3569;
 
 $body-color: $black;
 $body-color-rgb: $black-rgb;
@@ -61,9 +65,15 @@ $card-height: 100%;
 
 // other grays
 $gray-dark2: #222732; // at 3% opacity
+$gray-dark3: #3F4357; // at 5% opacity
 $gray-dark4: #373B46; // at 8% opacity
 $gray-dark-mild: #424752;
 $gray-dark-mild2: #4B505B;
+$gray-dark-mild3: #545861;
+$gray-dark-mild4: #484d62;
+$gray-light: #A7A7BA;
+$gray-light2: #BBBBC4;
+$gray-light3: #CCCDE0;
 
 // navy colors
 $navy-light-muted: #BBBBC4;

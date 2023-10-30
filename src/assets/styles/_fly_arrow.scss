@@ -8,11 +8,63 @@ h2 {
     font-family: 'Libre Baskerville', serif;
 }
 
+h5 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.1em;
+    color: $gray-light;
+    text-align: left;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+h6 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 12px;
+    letter-spacing: 0.1em;
+    color: $gray-light;
+    text-align: left;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.fs-7 {
+    font-size: 0.6rem !important;
+}
+
 p {
+    font-family: 'Poppins', sans-serif;
     margin-top: 1em;
     margin-bottom: 1em;
     line-height: 1.5;
-    letter-spacing: normal;
+    letter-spacing: 0.1em;
+}
+
+div {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-align: left;
+}
+
+/** Display Text **/
+.dt-1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 24px;
+    letter-spacing: 0.1em;
+    text-align: left;
+}
+
+.dark-bg {
+    background-color: $primary-dark;
+    color: var(--bs-white);
 }
 
 .font-rubik {
@@ -71,6 +123,10 @@ p {
     );
 }
 
+.btn-outline-primary {
+    --bs-btn-hover-color: var(--bs-white);
+}
+
 .btn-secondary {
     --bs-btn-color: var(--bs-white);
     --bs-btn-hover-color: var(--bs-white);
@@ -84,6 +140,18 @@ p {
     --bs-btn-disabled-color: var(--bs-white);
     --bs-btn-disabled-bg: var(--bs-secondary);
     --bs-btn-disabled-border-color: var(--bs-secondary);
+}
+
+.btn-icon {
+    border-width: 0;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+}
+
+.btn-submit {
+    border: 1em solid $gray-dark-mild2;
+    font-weight: 400;
 }
 
 a,
@@ -166,7 +234,14 @@ header p {
 }
 
 .modal-content {
-    background-color: var(--bs-body-color);
+    background: $gray-dark-mild;
+    border-radius: 16px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    margin: 10px;
 }
 
 .modal-content .btn-close {
