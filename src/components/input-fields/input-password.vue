@@ -13,7 +13,7 @@
                     placeholder="Enter Password"
                 />
                 <div class="ms-auto px-1">
-                    <button class="btn btn-icon text-white lh-1" @click="showPassword = !showPassword">
+                    <button class="btn btn-icon text-white lh-1" @click="toggleEvent">
                         <PhEye :size="20" v-show="showPassword"/>
                         <PhEyeSlash :size="20" v-show="!showPassword"/>
                     </button>
@@ -44,4 +44,8 @@ const props = defineProps({
 const emit = defineEmits(['input']);
 const showPassword = ref(false);
 const inputValueObj = ref(props.inputValue);
+const toggleEvent = (event) => {
+    event.preventDefault();
+    showPassword.value = !showPassword.value;
+}
 </script>
