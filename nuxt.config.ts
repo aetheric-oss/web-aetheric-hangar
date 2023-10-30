@@ -23,8 +23,15 @@ export default defineNuxtConfig({
       ],
     },
   },
-
-  css: ["~/assets/styles/main.scss"],
+  css: [
+    'bootstrap/dist/css/bootstrap.min.css',
+    '~/assets/styles/main.scss'
+  ],
+  script: [
+    {
+      src: 'bootstrap/dist/js/bootstrap.bundle.min.js'
+    }
+  ],
   vite: {
     css: {
       preprocessorOptions: {
