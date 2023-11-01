@@ -25,5 +25,5 @@
     transparent 25%
   );
 
-  --logo: url(public/img/logo-services.svg);
+  --logo: url(img/logo-services.svg);
 }
