@@ -9,8 +9,8 @@
                 <input class="form-control input__field w-100 text-light"
                     :id="id"
                     :type="type"
-                    v-model="inputValueObj"
-                    @input="(input) => $emit('input', input.target.value)"
+                    v-model="modelValue"
+                    @input="(input) => $emit('update:modelValue', input.target.value)"
                     :placeholder="placeholder"
                 />
                 <div class="ms-auto px-1">
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="input__error" v-if="error">{{ error }}</div>
+        <div class="input__error" v-if="errorValue">{{ errorValue }}</div>
     </div>
 </template>
 
@@ -36,7 +36,7 @@ const props = defineProps({
         type: String,
         required: true
     },
-    inputValue: {
+    modelValue: {
         type: String,
         required: true,
         default: ''
@@ -45,11 +45,18 @@ const props = defineProps({
         type: String,
         required: true,
     },
-    error: {
+    errorValue: {
         type: String,
         required: false
     }
 });
-const emit = defineEmits(['input']);
-const inputValueObj = ref(props.inputValue);
+const emit = defineEmits(['update:modelValue', 'update:errorValue']);
+const modelValue = computed({
+    get: () => props.modelValue,
+    set: (value) => emit('update:modelValue', value)
+});
+const errorValue = computed({
+    get: () => props.errorValue,
+    set: (value) => emit('update:errorValue', value)
+});
 </script>

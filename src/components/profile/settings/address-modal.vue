@@ -24,33 +24,29 @@
                     id="name"
                     label="Name"
                     type="text"
-                    :inputValue="form.name"
                     placeholder="Enter Name"
-                    @input="form.name = $event"
+                    v-model="form.name"
                 />
                 <InputText
                     id="address"
                     label="Address Line"
                     type="text"
-                    :inputValue="form.address.address"
                     placeholder="Enter Address"
-                    @input="form.address.address = $event"
+                    v-model="form.address.address"
                 />
                 <InputText
                     id="postalCode"
                     label="Postal Code"
                     type="text"
-                    :inputValue="form.address.postalCode"
                     placeholder="Enter Postal Code"
-                    @input="form.address.postalCode = $event"
+                    v-model="form.address.postalCode"
                 />
                 <InputText
                     id="town"
                     label="Town"
                     type="text"
-                    :inputValue="form.address.town"
                     placeholder="Enter Town"
-                    @input="form.address.town = $event"
+                    v-model="form.address.town"
                 />
                 <InputDropdown
                     id="country"
@@ -65,9 +61,8 @@
                     id="state"
                     label="State"
                     type="text"
-                    :inputValue="form.address.state"
                     placeholder="Enter State"
-                    @input="form.address.state = $event"
+                    v-model="form.address.state"
                 />
             </form>
         </template>

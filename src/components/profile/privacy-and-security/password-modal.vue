@@ -1,13 +1,21 @@
 <template>
     <div>
-        <button type="button" class="btn btn-icon text-primary" @click="showModal">
+        <button
+            type="button"
+            class="btn btn-icon text-primary"
+            @click="showModal"
+        >
             <PhPencil size="30" />
         </button>
         <client-only>
             <Teleport to="#modal-container" key="password-modal">
                 <div
-                    v-show="open"
-                    :class="{ 'modal-box': true, 'd-block': open, 'd-none': !open }"
+                    v-show="visibility.modal"
+                    :class="{
+                        'modal-box': true,
+                        'd-block': visibility.modal,
+                        'd-none': !visibility.modal
+                    }"
                     id="password-modal"
                 >
                     <div class="modal-content d-flex align-items-end flex-column">
@@ -15,7 +23,10 @@
                             <div class="modal-heading sidenav-text my-auto mx-0 align-self-center">
                                 password
                             </div>
-                            <button class="btn btn-icon text-white fs-3" @click="closeModal">
+                            <button
+                                class="btn btn-icon text-white fs-3"
+                                @click="toggleVisibility('modal')"
+                            >
                                 <PhX size="22" />
                             </button>
                         </div>
@@ -29,7 +40,12 @@
                                     <div v-show="step === 2">
                                         <h3 class="fs-2 mt-3">Get your activation code.</h3>
                                         <div class="w-100 align-items-center d-flex flex-column justify-content-center">
-                                            <button class="btn btn-outline-primary" @click="submit">Resend e-mail</button>
+                                            <button
+                                                class="btn btn-outline-primary"
+                                                @click="submit"
+                                            >
+                                                Resend e-mail
+                                            </button>
                                             <div class="text-center">
                                                 Keep having troubles? <a href="#">GET HELP</a>.
                                             </div>
@@ -41,26 +57,26 @@
                                                 id="verification-code"
                                                 label="Verification code"
                                                 type="text"
-                                                :inputValue="verificationCode"
                                                 placeholder="Type in your code"
-                                                @input="verificationCode = $event"
+                                                v-model="form.verificationCode"
                                             />
                                             <InputPassword
                                                 id="new-password"
                                                 label="New password"
                                                 type="text"
-                                                :inputValue="newPass"
                                                 placeholder="Type in your new password"
-                                                @input="newPass = $event"
+                                                v-model="form.newPass"
                                             />
                                             <InputPassword
                                                 id="confirm-password"
                                                 label="Confirm password"
                                                 type="text"
-                                                :inputValue="confirmPass"
                                                 placeholder="Confirm your new password"
-                                                @input="confirmPass = $event"
+                                                v-model="form.confirmPass"
                                             />
+                                            <div class="input__error" v-if="errorValue">
+                                                {{ errorValue }}
+                                            </div>
                                         </div>
                                     </div>
                                 </form>
@@ -80,45 +96,62 @@
 </template>
 
 <script setup>
-import { PhPencil, PhUserCircle, PhX } from "@phosphor-icons/vue";
+import { PhPencil, PhX } from "@phosphor-icons/vue";
 import InputText from '@/components/input-fields/input-text.vue';
 import InputPassword from "@/components/input-fields/input-password.vue";
-const verificationCode = ref('');
-const newPass = ref('');
-const confirmPass = ref('');
+
+// Reactive State Variables
+const form = reactive({
+    verificationCode: '',
+    newPass: '',
+    confirmPass: ''
+});
+const visibility = reactive({
+    modal: false
+});
 let step = ref(1);
+
+// Computed Properties
+const errorValue = computed ({
+    get: () => {
+        if (!form.verificationCode || !form.newPass || !form.confirmPass) {
+            return 'All fields must be filled';
+        }
+        if (form.newPass !== form.confirmPass) {
+            return 'Passwords do not match';
+        }
+        return '';
+    }
+});
+
+// Component Methods/Functions
+const toggleVisibility = (key) => {
+    visibility[key] =!visibility[key];
+}
+const resetData = () => {
+    form.verificationCode = '';
+    form.newPass = '';
+    form.confirmPass = '';
+    step.value = 1;
+};
 const sendVerificationCode = () => {
     step.value = 2;
 };
-const open = ref(false);
 const showModal = () => {
-    open.value = true;
+    toggleVisibility('modal');
     resetData();
 };
-const closeModal = () => {
-    open.value = false;
-};
 const submit = () => {
-    if (!verificationCode.value || !newPass.value || !confirmPass.value) {
-        console.log('all fields must be filled');
-        return;
-    }
-    if (newPass.value !== confirmPass.value) {
-        console.log('passwords do not match');
+    if (errorValue.value!== '') {
         return;
     }
     changePassword();
-    closeModal();
+    toggleVisibility('modal');
 };
 const changePassword = () => {
     console.log('change password');
 };
-const resetData = () => {
-    verificationCode.value = '';
-    newPass.value = '';
-    confirmPass.value = '';
-    step.value = 1;
-};
+
 </script>
 
 <style scoped lang="scss">
@@ -128,7 +161,7 @@ const resetData = () => {
 .modal-box {
     display: none;
     position: fixed;
-    z-index: 999;
+    z-index: 1000;
     top: 0;
     left:0;
     width: 100vw;
