@@ -40,9 +40,8 @@
                                                 id="email"
                                                 label="Email address"
                                                 type="text"
-                                                :inputValue="form.value"
                                                 placeholder="Type your email address"
-                                                @input="form.value = $event"
+                                                v-model="form.value"
                                             >
                                                 <template #left-icon>
                                                     <PhUserCircle size="20" color="#fff" />
@@ -153,7 +152,7 @@ const resetData = () => {
 .modal-box {
     display: none;
     position: fixed;
-    z-index: 999;
+    z-index: 1000;
     top: 0;
     left:0;
     width: 100vw;

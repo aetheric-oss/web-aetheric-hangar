@@ -14,7 +14,7 @@
             <div class="d-flex pe-2">
                 <div class="flex-grow-1 form-text">
                     <h5 class="m-0">Public Name</h5>
-                    <div class="fs-5">{{ publicName }}</div>
+                    <div class="fs-5 text-white">{{ publicName }}</div>
                 </div>
                 <button class="btn btn-icon text-primary">
                     <PhPencil :size="32" />
@@ -25,7 +25,7 @@
             <div class="d-flex pe-2">
                 <div class="flex-grow-1 form-text">
                     <h5 class="m-0">Arrow Balance</h5>
-                    <div class="fs-5 dt-1">{{ arrowBalance }} ARROW</div>
+                    <div class="fs-5 dt-1 text-white">{{ arrowBalance }} ARROW</div>
                 </div>
                 <button class="btn btn-icon text-primary">
                     <PhCaretRight :size="32" />

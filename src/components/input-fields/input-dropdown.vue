@@ -6,7 +6,7 @@
                 <div class="px-1">
                     <slot name="left-icon"></slot>
                 </div>
-                <div class="form-control input__field w-100 text-light">{{ selectedValue }}</div>
+                <div class="selected-value form-control input__field w-100 text-light border-0 lh-1">{{ selectedValue }}</div>
                 <button class="btn btn-icon text-white py-0 ms-auto px-1 lh-1" @click="toggleDropdown" role="button">
                     <PhCaretDown :size="20" v-show="!showDropdown"/>
                     <PhCaretUp :size="20" v-show="showDropdown"/>
@@ -80,3 +80,9 @@ let selectItem = (index) => {
     showDropdown.value = false;
 };
 </script>
+
+<style scoped lang="scss">
+div.selected-value {
+    background-color: transparent;
+}
+</style>
