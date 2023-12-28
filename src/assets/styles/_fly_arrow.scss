@@ -226,6 +226,7 @@ header p {
     margin-bottom: 0 !important;
 }
 
+
 .infobox {
     padding: 24px;
     border: 1px solid var(--bs-teal);
@@ -359,7 +360,6 @@ header p {
 }
 
 .mobile-button-input {
-    background-color: transparent;
     padding: 9px 7px;
     border-radius: 20px;
     align-items: center;
@@ -368,4 +368,8 @@ header p {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.manage-assets-header {
+    background-color: $muted-blue;
 }

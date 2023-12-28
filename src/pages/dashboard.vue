@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container my-3">
+        <div>
             <h1>Dashboard page</h1>
             Arrow DAO starter template for Nuxt 3 webapps here
         </div>
