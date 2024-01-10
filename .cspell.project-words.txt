@@ -5,6 +5,7 @@ commitlint
 crossorigin
 infobox
 fullbar
+flyarrow
 Nuxt
 nuxt
 offcanvas

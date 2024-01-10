@@ -4,10 +4,9 @@
             id="first-name"
             label="First Name"
             type="text"
-            :inputValue="firstName"
             placeholder="First Name"
-            :error="firstNameError"
-            @input="firstName = $event"
+            v-model="firstName"
+            v-model:errorValue="firstNameError"
         >
             <template #left-icon>
                 <PhPencil size="20" color="#fff" />
@@ -19,9 +18,8 @@
         <span>{{ firstName }}</span>
         <InputPassword
             id="password"
-            :inputValue="password"
-            :error="passwordError"
-            @input="password = $event"
+            v-model="password"
+            v-model:errorValue="passwordError"
         />
         <span class="text-light">{{ password }}</span>
         <InputDropdown
