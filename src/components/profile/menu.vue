@@ -69,7 +69,7 @@ onMounted(() => {
         }
 
         .profile-menu-item {
-            background-color: $gray-dark;
+            background-color: var(--bs-gray-dark);
             padding: 8px 16px;
             height: 34px;
             white-space: nowrap; /* Prevent text wrapping */
@@ -77,7 +77,7 @@ onMounted(() => {
         }
 
         .active-profile {
-            background-color: $gray-dark-mild3;
+            background-color: var(--bs-gray-500);
         }
     }
 }

@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import GenericModal from '../../generic-modal.vue';
+import GenericModal from '../../../generic-modal.vue';
 const props = defineProps({
     contactForm: {
         type: Object,

@@ -11,7 +11,7 @@
         </template>
         <template #content>
             <form class="container">
-                <InputDropdown
+                <FormInputDropdown
                     id="type"
                     label="Type"
                     type="text"
@@ -20,35 +20,35 @@
                     @dropdownInput="onTypeInput"
                     :items="types"
                 />
-                <InputText
+                <FormInputText
                     id="name"
                     label="Name"
                     type="text"
                     placeholder="Enter Name"
                     v-model="form.name"
                 />
-                <InputText
+                <FormInputText
                     id="address"
                     label="Address Line"
                     type="text"
                     placeholder="Enter Address"
                     v-model="form.address.address"
                 />
-                <InputText
+                <FormInputText
                     id="postalCode"
                     label="Postal Code"
                     type="text"
                     placeholder="Enter Postal Code"
                     v-model="form.address.postalCode"
                 />
-                <InputText
+                <FormInputText
                     id="town"
                     label="Town"
                     type="text"
                     placeholder="Enter Town"
                     v-model="form.address.town"
                 />
-                <InputDropdown
+                <FormInputDropdown
                     id="country"
                     label="Country"
                     type="text"
@@ -57,7 +57,7 @@
                     @dropdownInput="onCountryInput"
                     :items="countries"
                 />
-                <InputText
+                <FormInputText
                     id="state"
                     label="State"
                     type="text"
@@ -70,89 +70,97 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from "vue";
-import { PhPencil } from "@phosphor-icons/vue";
-import GenericModal from '../../generic-modal.vue';
-import InputText from '@/components/input-fields/input-text.vue';
-import InputDropdown from "@/components/input-fields/input-dropdown.vue";
-const props = defineProps({
-    addressInfo: {
-        type: Object,
-        required: false
-    }
-});
-const displayTitle = computed(() => {
-    return props.contactInfo ? 'Edit Address Info' : 'Add Address Info';
-});
-let form = ref( props.addressInfo ? props.addressInfo : {
-    type: '',
-    name: '',
-    address: {
-        address: '',
-        postalCode: '',
-        town: '',
-        country: '',
-        state: ''
-    }
-});
-const types = ref([
-    {
-        'name': 'Shipping Address',
-        'value': 'shipping',
-    },
-    {
-        'name': 'Billing Address',
-        'value': 'billing',
-    },
-    {
-        'name': 'Residence Address',
-        'value': 'residence',
-    }
-]);
-let selectedType = ref({});
-const onTypeInput = (selectedItem) => {
-    selectedType.value = selectedItem ? selectedItem : {};
-    form.value.type = selectedItem ? selectedItem.value : '';
-};
-const countries = ref([
-    {
-        'name': 'United States',
-        'value': 'US',
-    },
-    {
-        'name': 'Canada',
-        'value': 'CA',
-    },
-    {
-        'name': 'United Kingdom',
-        'value': 'GB',
-    },
-    {
-        'name': 'India',
-        'value': 'IN',
-    }
-]);
-let selectedCountry = ref({});
-const onCountryInput = (selectedItem) => {
-    selectedCountry.value = selectedItem ? selectedItem : {};
-    form.value.address.country = selectedItem ? selectedItem.value : '';
-};
-const handleSubmit = () => {
+    import { computed } from "vue";
+    const props = defineProps({
+        addressInfo: {
+            type: Object,
+            required: false,
+        },
+    });
+    const displayTitle = computed(() => {
+        return props.contactInfo ? "Edit Address Info" : "Add Address Info";
+    });
+
+    const emit = defineEmits(["add", "update"]);
+
+    // Reactive vars
+    let form = ref({
+        type: "",
+        name: "",
+        address: {
+            address: "",
+            postalCode: "",
+            town: "",
+            country: "",
+            state: "",
+        },
+    });
     if (props.addressInfo) {
-        updateAddress();
-    } else {
-        addAddress();
+        form = props.addressInfo;
     }
-};
-const submitDetails = ref({
-    showSubmitButton: true,
-    title: 'Save changes'
-});
-const emit = defineEmits(['add', 'update']);
-function addAddress() {
-    emit('add', form.value);
-};
-function updateAddress() {
-    emit('update', form.value);
-};
+
+    const types = ref([
+        {
+            name: "Shipping Address",
+            value: "shipping",
+        },
+        {
+            name: "Billing Address",
+            value: "billing",
+        },
+        {
+            name: "Residence Address",
+            value: "residence",
+        },
+    ]);
+    let selectedType = ref({});
+
+    const countries = ref([
+        {
+            name: "United States",
+            value: "US",
+        },
+        {
+            name: "Canada",
+            value: "CA",
+        },
+        {
+            name: "United Kingdom",
+            value: "GB",
+        },
+        {
+            name: "India",
+            value: "IN",
+        },
+    ]);
+    const selectedCountry = ref({});
+
+    const submitDetails = ref({
+        showSubmitButton: true,
+        title: "Save changes",
+    });
+
+    // functions
+    const onTypeInput = (selectedItem) => {
+        selectedType.value = selectedItem ? selectedItem : {};
+        form.value.type = selectedItem ? selectedItem.value : "";
+    };
+    const onCountryInput = (selectedItem) => {
+        selectedCountry.value = selectedItem ? selectedItem : {};
+        form.value.address.country = selectedItem ? selectedItem.value : "";
+    };
+    const handleSubmit = () => {
+        if (props.addressInfo) {
+            updateAddress();
+        } else {
+            addAddress();
+        }
+    };
+
+    function addAddress() {
+        emit("add", form.value);
+    }
+    function updateAddress() {
+        emit("update", form.value);
+    }
 </script>

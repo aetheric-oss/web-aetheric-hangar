@@ -48,13 +48,13 @@ const props = defineProps({
     grid-template-areas: "card-left-icon card-text card-right-icon";
     gap: 12px;
     width: 100%;
-    background-color: $gray-dark-mild2;
+    background-color: var(--bs-gray-600);
     border-radius: 12px;
     color: var(--bs-white);
     padding: 12px;
 
     &.highlight-bg {
-        background-color: $gray-dark4;
+        background-color: var(--bs-gray-700);
     }
 
     &.no-background {
@@ -86,7 +86,7 @@ const props = defineProps({
             line-height: 40px;
             letter-spacing: 0.1em;
             text-align: left;
-            color: $navy-light-muted;
+            color: var(--bs-blue-100);
         }
     }
 }

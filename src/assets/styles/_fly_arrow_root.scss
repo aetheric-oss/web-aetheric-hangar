@@ -1,0 +1,41 @@
+:root {
+    --arrow-bg-gradient-bottom-left-xl: radial-gradient(
+        circle at bottom left,
+        rgba(var(--bs-dark-rgb), 0.8),
+        transparent 35%
+    );
+    --arrow-bg-gradient-bottom-left-md: radial-gradient(
+        circle at bottom left,
+        rgba(var(--bs-dark-rgb), 0.7),
+        transparent 35%
+    );
+    --arrow-bg-gradient-top-right-xl: radial-gradient(
+        circle at top right,
+        rgba(var(--bs-secondary-rgb), 0.8),
+        transparent 35%
+    );
+    --arrow-bg-gradient-top-right-md: radial-gradient(
+        circle at top right,
+        rgba(var(--bs-secondary-rgb), 0.8),
+        transparent 25%
+    );
+    --arrow-bg-gradient-top-left-md: radial-gradient(
+        circle at top left,
+        rgba(var(--bs-light-rgb), 0.8),
+        transparent 25%
+    );
+
+    --arrow-drop-shadow: drop-shadow(6px 6px 15px #FFB2A250) drop-shadow(-6px 0px 10px #343CC250);
+
+    --logo: url(public/img/logo-services.svg);
+
+    @each $color, $value in $blues {
+        --#{$prefix}#{$color}: #{$value};
+    }
+    @each $color, $value in $indigos {
+        --#{$prefix}#{$color}: #{$value};
+    }
+    @each $color, $value in $purples {
+        --#{$prefix}#{$color}: #{$value};
+    }
+}

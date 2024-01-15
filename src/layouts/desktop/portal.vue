@@ -35,7 +35,7 @@ const toggleNotificationsPopup = () => {
 
 <style scoped lang="scss">
 .nav-header {
-    background-color: $primary-dark;
+    background-color: var(--bs-dark);
     padding: 5px 0;
     grid-template-columns: 1fr auto;
     grid-template-areas: "navbar-brand-logo notification-bell";
@@ -78,7 +78,7 @@ const toggleNotificationsPopup = () => {
         width: 100%;
         min-width: 300px;
         grid-area: side-nav;
-        background-color: $primary-dark;
+        background-color: var(--bs-dark);
 
         .side-nav {
             padding-top: 15px;

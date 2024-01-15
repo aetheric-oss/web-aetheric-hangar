@@ -5,7 +5,7 @@
             class="btn btn-icon text-primary"
             @click="showModal"
         >
-            <PhPencil size="30" />
+            <IconPencil size="30" />
         </button>
         <client-only>
             <Teleport to="#modal-container" key="password-modal">
@@ -53,21 +53,21 @@
                                         <hr>
                                         <div>
                                             <div class="mb-2 text-center">We sent you an e-mail with a verification code.</div>
-                                            <InputText
+                                            <FormInputText
                                                 id="verification-code"
                                                 label="Verification code"
                                                 type="text"
                                                 placeholder="Type in your code"
                                                 v-model="form.verificationCode"
                                             />
-                                            <InputPassword
+                                            <FormInputPassword
                                                 id="new-password"
                                                 label="New password"
                                                 type="text"
                                                 placeholder="Type in your new password"
                                                 v-model="form.newPass"
                                             />
-                                            <InputPassword
+                                            <FormInputPassword
                                                 id="confirm-password"
                                                 label="Confirm password"
                                                 type="text"
@@ -96,10 +96,6 @@
 </template>
 
 <script setup>
-import { PhPencil, PhX } from "@phosphor-icons/vue";
-import InputText from '@/components/input-fields/input-text.vue';
-import InputPassword from "@/components/input-fields/input-password.vue";
-
 // Reactive State Variables
 const form = reactive({
     verificationCode: '',
@@ -166,7 +162,7 @@ const changePassword = () => {
     left:0;
     width: 100vw;
     height: 100vh;
-    background: $primary-dark;
+    background: var(--bs-blue-900);
 
 }
 .modal-header-box {

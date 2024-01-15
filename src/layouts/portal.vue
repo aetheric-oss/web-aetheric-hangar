@@ -1,28 +1,19 @@
 <template>
     <div>
         <Loading />
-        <div id="portal">
-            <div>
-                <MobileLayout v-if="isMobile">
-                    <!-- Pass the slot content to the mobile layout -->
-                    <slot name="default"></slot> <!-- Use the same slot in the mobile layout -->
-                </MobileLayout>
-            </div>
-            <div>
-                <DesktopLayout v-if="!isMobile">
-                    <!-- Pass the slot content to the desktop layout -->
-                    <slot name="default"></slot> <!-- Use the same slot in the desktop layout -->
-                </DesktopLayout>
-            </div>
-        </div>
+        <NuxtLayout :name="layout">
+            <template #default>
+                <slot name="default"></slot>
+            </template>
+        </NuxtLayout>
     </div>
 </template>
 
 <script setup>
-import { isMobile } from 'mobile-device-detect';
-import Loading from '../components/loading.vue';
-import MobileLayout from '@/layouts/sub-layouts/mobile-layout.vue';
-import DesktopLayout from '@/layouts/sub-layouts/desktop-layout.vue';
+    import { isMobile } from "mobile-device-detect";
+    import Loading from "../components/loading.vue";
+
+    const layout = isMobile ? 'mobile-portal' : 'desktop-portal'
 </script>
 
 <style scoped lang="scss">

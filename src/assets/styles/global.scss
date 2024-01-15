@@ -1,0 +1,24 @@
+@import 'bootstrap/scss/functions';
+
+@import 'fly_arrow_variables';
+@import 'bootstrap/scss/variables';
+
+@import 'fly_arrow_variables-dark';
+@import 'bootstrap/scss/variables-dark';
+
+$all-colors: map-merge-multiple(
+    $blues,
+    $indigos,
+    $purples,
+    $pinks,
+    $reds,
+    $oranges,
+    $yellows,
+    $greens,
+    $teals,
+    $cyans
+);
+$theme-colors: map-merge($theme-colors, $colors);
+
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
