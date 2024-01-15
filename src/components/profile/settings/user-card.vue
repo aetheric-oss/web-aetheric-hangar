@@ -6,7 +6,7 @@
             </div>
             <h5 class="align-self-center text-light">{{ username }}</h5>
             <div class="my-auto mx-0 align-self-center ms-1">
-                <PhCheck class="text-success" :size="32" color="#28bb94" weight="bold" v-if="isUserVerified" />
+                <PhCheck class="text-success" :size="32" weight="bold" v-if="isUserVerified" />
                 <PhWarning class="text-warning" :size="32" weight="fill" v-else/>
             </div>
         </div>

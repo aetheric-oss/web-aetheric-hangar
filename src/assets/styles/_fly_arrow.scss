@@ -62,6 +62,10 @@ div {
     text-align: left;
 }
 
+.lh-0 {
+    line-height: 0;
+}
+
 .dark-bg {
     background-color: $primary-dark;
     color: var(--bs-white);
