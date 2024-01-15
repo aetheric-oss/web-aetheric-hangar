@@ -31,7 +31,7 @@
             </DashboardNavContent>
         </div>
         <div class="portal-container-mobile overflow-y-scroll" id="main">
-            <div class="container my-3">
+            <div>
                 <!-- Page content -->
                 <slot></slot>
             </div>

@@ -19,3 +19,6 @@ googleSignInsetaf
 signin
 tput
 rubic
+RECHARGERS
+VERTIPODS
+

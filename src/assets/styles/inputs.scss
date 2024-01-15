@@ -110,3 +110,24 @@ input {
         box-shadow: 0px 5px 23px -5px rgba(160, 156, 163, 0.7)!important;
     }
 }
+
+.manage-header-color {
+    background-color: $muted-blue;
+}
+
+.button-default-assets-header {
+    background-color: $gray-light4;
+}
+
+.assets-header {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    font-family: 'Libre Baskerville', serif;
+    letter-spacing: 0.1em;
+    text-align: left;
+}
+
+.assets-header:hover {
+    background-color: $gray-light3 !important;
+}

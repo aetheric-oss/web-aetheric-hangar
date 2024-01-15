@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Manage Assets</h1>
-        <p>Manage your assets here for VTOL Aircrafts</p>
+        <p>Group Management</p>
     </div>
 </template>
 
@@ -9,7 +9,7 @@
 definePageMeta({
     layout: 'portal',
     category: 'Manage Assets',
-    title: 'VTOL Aircrafts',
+    title: 'Group Management',
     showInSidebar: true
 });
 

@@ -11,13 +11,13 @@ export const usePagesMenuStore = defineStore("pages-menu", {
             icon: 'menu/manage-assets',
             pages: [
             {
-              name: 'Overview',
-              path: '/manage-assets/overview',
+              name: 'My assets',
+              path: '/manage-assets/my-assets',
               order: 1
             },
             {
-              name: 'VTOL-Aircraft',
-              path: '/manage-assets/vtol-aircrafts',
+              name: 'Group Management',
+              path: '/manage-assets/group-management',
               order: 2
             },
             ]

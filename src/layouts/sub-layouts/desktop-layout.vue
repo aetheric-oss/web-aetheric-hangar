@@ -15,7 +15,7 @@
                 </DashboardNavContent>
             </div>
             <div id="main" class="overflow-y-scroll">
-                <div class="container my-3">
+                <div>
                     <!-- Page content -->
                     <slot></slot>
                 </div>
