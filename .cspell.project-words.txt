@@ -21,4 +21,6 @@ tput
 rubic
 RECHARGERS
 VERTIPODS
-
+CLIENTID
+darkmode
+nuxi

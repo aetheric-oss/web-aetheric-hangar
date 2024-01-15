@@ -1,19 +1,15 @@
 <template>
     <div>
-        <Menu :activePageIndex="0"></Menu>
+        <ProfileMenu :activePageIndex="0"/>
         <hr class="m-1">
-        <UserCard />
+        <ProfileSettingsUserCard />
         <hr class="m-1">
-        <ContactInfo />
+        <ProfileSettingsContactInfo />
         <hr class="m-1">
-        <Addresses />
+        <ProfileSettingsAddresses />
     </div>
 </template>
 
 <script setup>
-import Menu from '@/components/profile/menu.vue';
-import UserCard from '@/components/profile/settings/user-card.vue';
-import ContactInfo from '@/components/profile/settings/contact-info.vue';
-import Addresses from '@/components/profile/settings/addresses.vue';
 definePageMeta({ layout: 'portal' });
 </script>

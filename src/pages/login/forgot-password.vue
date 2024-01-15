@@ -1,22 +1,30 @@
 <template>
-    <main class="bg-color p-3 vh-100">
-        <template v-if="isMobile">
-            <MobileLoginLayout>
-                <NuxtLayout name="mobile-forgot-password"></NuxtLayout>
-            </MobileLoginLayout>
-        </template>
-        <template v-else>
-            <DesktopLoginLayout class="bg-color">
-                <NuxtLayout name="desktop-forgot-password"></NuxtLayout>
-            </DesktopLoginLayout>
-        </template>
-    </main>
+    <div class="h-100">
+        <NuxtLayout name="login">
+            <template #content>
+                <AuthForgotPassword @sendMail="handleMail" v-if="!sendMail" />
+                <AuthForgotPasswordSend true v-else />
+            </template>
+
+            <template #image>
+                <img
+                    src="/img/forgot-password-background.jpg"
+                    alt="Login Forgot Password Arrow Background"
+                    loading="lazy"
+                />
+            </template>
+        </NuxtLayout>
+    </div>
 </template>
 
-<script setup>
-import { isMobile } from 'mobile-device-detect';
-import MobileLoginBackground from '@/assets/icons/login/mobile-login-background.svg';
-import MobileLoginLayout from '~/layouts/auth/mobile-forgot-password.vue';
-import DesktopLoginLayout from '~/layouts/auth/desktop-forgot-password.vue';
-definePageMeta({ layout: 'auth/login' });
+<script setup lang="ts">
+    definePageMeta({
+        layout: false,
+    });
+
+    let sendMail = ref(false);
+
+    let handleMail = (mailSend: boolean) => {
+        sendMail.value = mailSend;
+    };
 </script>

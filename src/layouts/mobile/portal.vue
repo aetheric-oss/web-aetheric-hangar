@@ -103,7 +103,7 @@ const toggleNotificationsPopup = () => {
     }
 }
 .nav-header {
-    background-color: $primary-dark;
+    background-color: var(--bs-dark);
     margin: 0;
     padding-top: 8px;
     padding-bottom: 8px;

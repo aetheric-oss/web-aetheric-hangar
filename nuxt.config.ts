@@ -1,5 +1,6 @@
 export default defineNuxtConfig({
   srcDir: "src/",
+
   app: {
     head: {
       titleTemplate: (chunk) => `FlyArrow.io${chunk && " - " + chunk}`,
@@ -23,42 +24,52 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: [
-    'bootstrap/dist/css/bootstrap.min.css',
-    '~/assets/styles/main.scss'
-  ],
-  script: [
-    {
-      src: 'bootstrap/dist/js/bootstrap.bundle.min.js'
-    }
-  ],
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData:
-            '@use "@/assets/styles/_fly_arrow_variables.scss" as *;',
-        },
-      },
-    },
-  },
-  modules: ["@pinia/nuxt", "nuxt-icons", "nuxt-vue3-google-signin"],
+
+  css: ["~/assets/styles/main.scss"],
+
+  modules: ["@nuxt/devtools", "@pinia/nuxt", "nuxt-vue3-google-signin"],
+
   imports: {
     dirs: ["store"],
   },
-  plugins: [{ src: "~/plugins/google.auth.js", mode: "client" }],
 
+  plugins: [{ src: "~/plugins/google.auth.js", mode: "client" }],
   build: { transpile: ["GoogleSignInPlugin"] },
+
   runtimeConfig: {
-    public: { GOOGLE_LOGIN_AUTH_API_KEY: process.env.clientId },
+    public: { GOOGLE_LOGIN_AUTH_API_KEY: process.env.GOOGLE_CLIENTID },
   },
-  googleSignIn: {
-    clientId: process.env.clientId,
-  },
+
   nitro: {
     prerender: {
       concurrency: 1,
       failOnError: false,
     },
+  },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "@/assets/styles/global.scss" as *;'
+        },
+      },
+    },
+  },
+
+  // Plugin settings
+  devtools: {
+    enabled: false,
+
+    vscode: {
+      enabled: true,
+    },
+
+    timeline: {
+      enabled: true,
+    },
+  },
+
+  googleSignIn: {
+    clientId: process.env.GOOGLE_CLIENTID,
   },
 });

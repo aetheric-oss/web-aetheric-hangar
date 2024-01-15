@@ -1,6 +1,6 @@
 <template>
     <div>
-        <InputText
+        <FormInputText
             id="first-name"
             label="First Name"
             type="text"
@@ -9,20 +9,20 @@
             v-model:errorValue="firstNameError"
         >
             <template #left-icon>
-                <PhPencil size="20" color="#fff" />
+                <IconPencil size="20" color="#fff" />
             </template>
             <template #right-icon>
-                <PhCaretRight size="20" color="#fff" />
+                <IconCaretRight size="20" color="#fff" />
             </template>
-        </InputText>
+        </FormInputText>
         <span>{{ firstName }}</span>
-        <InputPassword
+        <FormInputPassword
             id="password"
             v-model="password"
             v-model:errorValue="passwordError"
         />
         <span class="text-light">{{ password }}</span>
-        <InputDropdown
+        <FormInputDropdown
             id="dropdown"
             label="Dropdown"
             type="text"
@@ -33,7 +33,7 @@
             :items="items"
         />
         <span class="text-light">{{ dropdown.value }}</span>
-        <InputDigits
+        <FormInputDigits
             id="digits"
             :inputValue="1"
             digitLabel="Digits"
@@ -44,12 +44,8 @@
 </template>
 
 <script setup>
-import { PhPencil, PhCaretRight, PhCheck, PhWarning } from "@phosphor-icons/vue";
-import InputText from '@/components/profile/input-fields/input-text.vue';
-import InputPassword from "@/components/profile/input-fields/input-password.vue";
-import InputDropdown from "@/components/profile/input-fields/input-dropdown.vue";
-import InputDigits from "@/components/profile/input-fields/input-digits.vue";
-import { computed, ref } from 'vue';
+
+// Reactive vars
 const firstName = ref('');
 const firstNameError = ref('Enter Valid');
 const password = ref('');
@@ -81,10 +77,13 @@ const items = ref([
         value: 5
     }
 ])
+const inputValueObj = ref(1);
+
 let dropdown = ref({});
 let dropdownError = ref('Enter Valid');
+
+// Functions
 const onDropdownInput = (selectedItem) => {
     dropdown.value = selectedItem ? { ...selectedItem } : {};
 };
-const inputValueObj = ref(1);
 </script>

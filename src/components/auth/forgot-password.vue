@@ -1,79 +1,59 @@
 <template>
     <section>
-        <div class="px-2 pt-3">
-                <p class="text-white justify-content-left welcome-login-text fw-normal fs-3 lh-base">Forgot your password?</p>
-                <p class="text-white text-left font-family-poppins">Enter your email address and we will send you instructions to reset your password.</p>
-        </div>
-        <form class="form-group">
-            <div class="justify-content-center form-group">
-                <div class="p-2 text-white input-group mb-2">
-                    <label for="Email" class="text-gray">E-mail address</label>
-                    <div class="input-group-addon desktop-button-input border border-white">
-                        <PhUserCircle :size="24" />
-                        <input
-                            type="email"
-                            class="desktop-button-input text-white"
-                            aria-describedby="email"
-                            placeholder="Type your email address"
-                            v-model="email"
-                            />
-                    </div>
-                </div>
-                <div class="justify-content-center p-1 text-center text-white">
-                    <button type="button" class="btn login-button" @click="resetPassword">Reset password</button>
-                </div>
-            </div>
-            <div class="text-center p-3 px-0">
+        <h1 class="fs-3">Forgot your password?</h1>
+        <p class="pb-3">
+            Enter your email address and we will send you instructions to reset
+            your password.
+        </p>
+        <form>
+            <p v-if="error" class="text-warning text-center" v-html="error"></p>
+            <FormInputText
+                id="email"
+                label="E-mail address"
+                type="email"
+                placeholder="Type your e-mail address"
+                modelValue="form.email"
+            >
+                <template #icon-left
+                    ><IconUserCircle size="1.5rem" class="text-light"
+                /></template>
+            </FormInputText>
+            <button
+                class="btn btn-primary w-100 shadow my-3"
+                type="button"
+                @click="resetPassword"
+            >
+                Reset password
+            </button>
+            <div class="text-center">
                 <nuxt-link
                     to="/login"
-                    class="text-white text-decoration-none font-rubik"> <PhArrowLeft class="text-white" :size="24" /> Back
+                    class="text-white text-decoration-none font-rubik"
+                >
+                    <IconArrowLeft class="text-white" :size="24" /> Back
                 </nuxt-link>
             </div>
         </form>
     </section>
 </template>
 
-<script>
-import { useAuthStore } from '@/store/auth';
-import { PhUserCircle, PhArrowLeft } from "@phosphor-icons/vue";
+<script setup lang="ts">
+    import { useAuthStore } from "@/store/auth";
 
+    const store = useAuthStore();
+    const emit = defineEmits<{
+        (e: "sendMail", value: boolean): void;
+    }>();
 
-export default {
-    data() {
-        return {
-            email: "",
-            store: useAuthStore(),
-        };
-    },
-    components: {
-        PhUserCircle,
-        PhArrowLeft
-    },
-    methods: {
-        resetPassword() {
-            // TODO: Replace with actual login logic using Axios
-            console.log(this.email);
-            this.store.setEmail(this.email);
-            this.$emit('sendMail', true);
-        }
-    }
-};
+    // Reactive vars
+    const error = ref("");
+    const email = ref("");
 
+    // Functions
+    const resetPassword = () => {
+        // TODO: Replace with actual login logic using Axios
+        console.log(email.value);
+        store.setEmail(email.value);
+        emit('sendMail', true);
+    };
 </script>
-
-<style  scoped lang="scss">
-.login-button {
-    background-color: $coral-red;
-    width: 95%;
-    display: block;
-    margin: 0 auto;
-    align-items: center;
-    justify-content: center;
-}
-
-.login-button:hover
-.login-button:active {
-    background-color:  $coral-red!important;
-}
-
-</style>

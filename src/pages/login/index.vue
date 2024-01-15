@@ -1,21 +1,35 @@
 <template>
-    <main class="p-3 bg-color vh-100">
-        <template v-if="isMobile">
-            <MobileLoginLayout>
-                <NuxtLayout name="mobile-login"></NuxtLayout>
-            </MobileLoginLayout>
-        </template>
-        <template v-else>
-            <DesktopLoginLayout>
-                <NuxtLayout name="desktop-login"></NuxtLayout>
-            </DesktopLoginLayout>
-        </template>
-    </main>
+    <div class="h-100">
+        <NuxtLayout name="login">
+            <template #content>
+                <h1 class="fs-3">Welcome back to Hangar</h1>
+                <div class="my-3">
+                    <AuthLoginGoogle />
+                </div>
+                <div class="d-flex">
+                    <hr class="flex-grow-1 border border-1 border-light" />
+                    <span class="align-self-center px-2">OR</span>
+                    <hr class="flex-grow-1 border border-1 border-light" />
+                </div>
+                <AuthLoginLocal />
+                <h5 class="pt-3 fs-6">
+                    Don't have an account? <a href="#">Sign up for FREE</a>
+                </h5>
+            </template>
+
+            <template #image>
+                <img
+                    src="/img/login-background.jpg"
+                    alt="Login Arrow Background"
+                    loading="lazy"
+                />
+            </template>
+        </NuxtLayout>
+    </div>
 </template>
 
-<script setup>
-import { isMobile } from 'mobile-device-detect';
-import MobileLoginLayout from '~/layouts/auth/mobile-login.vue';
-import DesktopLoginLayout from '~/layouts/auth/desktop-login.vue';
-definePageMeta({ layout: 'auth/login' });
+<script setup lang="ts">
+    definePageMeta({
+        layout: false,
+    });
 </script>

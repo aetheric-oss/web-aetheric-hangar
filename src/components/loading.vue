@@ -19,12 +19,12 @@ nuxtApp.hook("page:finish", () => {
 
 <style scoped lang="scss">
 .loading-background {
-    background-color: $primary-dark;
+    background-color: var(--bs-dark);
     z-index: 1000;
 }
 .loading-spinner {
     border: 4px solid #f3f3f3;
-    border-top: 4px solid $primary;
+    border-top: 4px solid var(--bs-primary);
     border-radius: 50%;
     width: 30px;
     height: 30px;

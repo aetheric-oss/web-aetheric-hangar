@@ -9,14 +9,13 @@
                 <div class="company-name">{{ business.name }}</div>
             </div>
             <div class="interchange-button" @click="openBusinessPopup">
-                <PhArrowsLeftRight :size="22" />
+                <IconArrowsLeftRight :size="22" />
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import { PhArrowsLeftRight } from "@phosphor-icons/vue";
 const emit = defineEmits(['openBusinessChangePopup']);
 function openBusinessPopup() {
     emit('openBusinessChangePopup', ['.business-popup', true]);
@@ -42,13 +41,13 @@ const props = defineProps({
     grid-template-areas: "business-acc-logo business-text interchange-button";
     gap: 16px;
     width: 100%;
-    background-color: $gray-dark4;
+    background-color: var(--bs-gray-700);
     border-radius: 8px;
     color: var(--bs-white);
     padding: 12px;
 
     &.mild-background {
-        background-color: $gray-dark-mild2;
+        background-color: var(--bs-gray-600);
     }
 
     .business-acc-logo {
