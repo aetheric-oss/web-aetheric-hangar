@@ -1,5 +1,5 @@
 <template>
-    <header class="container">
+    <header class="container-fluid">
         <div class="row">
             <div class="col-auto">
                 <section aria-label="breadcrumb" class="first d-md-flex">
@@ -28,7 +28,7 @@
                     :key="index"
                     type="button"
                     class="btn mx-1 rounded-pill assets-header"
-                    :class="{'bg-success text-white': state, 'manage-header-color text-black': !state}"
+                    :class="{'bg-success text-white': state, 'button-default-assets-header text-black': !state}"
                     @click="selectButton(index)"
                 >
                     {{ buttons[index].label }}
@@ -50,7 +50,7 @@ const selectButton = (index) => {
 
 const buttons = [
     { label: '{E}VTOL AIRCRAFT' },
-    { label: 'VERTIPOTS & PADS' },
+    { label: 'VERTIPODS  & PADS' },
     { label: 'PILOTS' },
     { label: 'RECHARGERS' },
 ];

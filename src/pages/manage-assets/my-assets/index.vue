@@ -10,8 +10,8 @@
 </template>
 
 <script setup>
-import DesktopMyAssetsHeader from '~/layouts/header/manage-assets.vue';
-import ConfigBar from '~/layouts/config-bar.vue';
+import DesktopMyAssetsHeader from '@/components/header/manage-assets.vue';
+import ConfigBar from '@/components/header/config-bar.vue';
 
 definePageMeta({
     layout: 'portal',
