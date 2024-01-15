@@ -1,5 +1,5 @@
 <template>
-    <section class="container">
+    <section class="container-fluid">
         <div class="row mx-auto mt-2">
             <div class="col">
                 <img
