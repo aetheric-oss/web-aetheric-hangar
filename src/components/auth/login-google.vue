@@ -7,7 +7,7 @@
     >
         <img
             class="google"
-            src="~/assets/icons/login/google.svg"
+            src="/icons/login/google.svg"
             alt="Google"
         />
         Login with Google

@@ -18,7 +18,8 @@ import {
     PhBell,
     PhX,
     PhDiscordLogo,
-    PhQuestion
+    PhQuestion,
+    PhList
   } from '@phosphor-icons/vue';
 
   export default defineNuxtPlugin((nuxtApp) => {
@@ -38,4 +39,5 @@ import {
     nuxtApp.vueApp.component("IconClose", PhX);
     nuxtApp.vueApp.component("IconDiscordLogo", PhDiscordLogo);
     nuxtApp.vueApp.component("IconQuestion", PhQuestion);
+    nuxtApp.vueApp.component("IconList", PhList);
   });

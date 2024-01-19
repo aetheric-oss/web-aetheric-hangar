@@ -3,11 +3,10 @@
 </template>
 
 <script setup>
-definePageMeta({
-    layout: 'portal',
-    category: 'Documents',
-    title: 'Documents',
-    showInSidebar: true
-});
-
+    definePageMeta({
+        layout: "portal",
+        category: "Documents",
+        title: "Documents",
+        showInSidebar: true,
+    });
 </script>

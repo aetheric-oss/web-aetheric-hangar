@@ -17,6 +17,14 @@
     </main>
 </template>
 
+<script setup>
+    useHead({
+        bodyAttrs: {
+            "data-bs-theme": "dark",
+        },
+    });
+</script>
+
 <style lang="scss">
     @include media-breakpoint-up("lg") {
         .login-image img {
@@ -44,13 +52,3 @@
         }
     }
 </style>
-
-<script setup>
-    import Loading from "../components/loading.vue";
-
-    useHead({
-        bodyAttrs: {
-            "data-bs-theme": "dark",
-        },
-    });
-</script>

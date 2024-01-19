@@ -3,6 +3,9 @@ html, body, body > div {
     height: 100%;
     width: 100%;
 }
+div, a, button, input {
+    letter-spacing: 1px;
+}
 
 .min-h-100 {
     min-height: 100%;
@@ -20,7 +23,6 @@ html, body, body > div {
 
 /** Display Text **/
 .dt-1 {
-    font-family: 'Poppins', sans-serif;
     font-size: 16px;
     font-weight: 900;
     line-height: 24px;
@@ -183,34 +185,6 @@ a,
 li {
     text-transform: uppercase;
     font-weight: $font-weight-bold;
-}
-
-/** ACCORDION **/
-.accordion {
-    --bs-accordion-bg: none;
-}
-
-.accordion-item {
-    background-color: #fff;
-    border-radius: 50px !important;
-    margin-bottom: 5px;
-}
-
-.accordion-button:focus {
-    border-radius: 50px !important;
-}
-
-.accordion-button:not(.collapsed) {
-    border-top-right-radius: 30px !important;
-    border-top-left-radius: 30px !important;
-    border-bottom-left-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;
-    background-color: #d5dcff;
-    border-color: #d5dcff;
-}
-
-.accordion-body {
-    padding: 10px 35px 35px 35px;
 }
 
 /** OTHER **/

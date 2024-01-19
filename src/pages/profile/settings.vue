@@ -1,15 +1,13 @@
 <template>
-    <div>
-        <ProfileMenu :activePageIndex="0"/>
-        <hr class="m-1">
-        <ProfileSettingsUserCard />
-        <hr class="m-1">
-        <ProfileSettingsContactInfo />
-        <hr class="m-1">
-        <ProfileSettingsAddresses />
-    </div>
+    <ProfileMenu :activePageIndex="0" />
+    <hr class="m-1" />
+    <ProfileSettingsUserCard />
+    <hr class="m-1" />
+    <ProfileSettingsContactInfo />
+    <hr class="m-1" />
+    <ProfileSettingsAddresses />
 </template>
 
 <script setup>
-definePageMeta({ layout: 'portal' });
+    definePageMeta({ layout: "portal" });
 </script>

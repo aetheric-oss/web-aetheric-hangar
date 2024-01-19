@@ -61,7 +61,7 @@ $body-color: $black;
 $body-color-rgb: $black-rgb;
 $body-bg: $white;
 $body-bg-rgb: $white-rgb;
-$border-radius: 50px;
+$border-radius: 0.5rem;
 
 $spacer: 2rem;
 $spacers: (
@@ -96,3 +96,10 @@ $input-border-width: 0;
 $input-focus-border-color: $blue-800;
 $input-btn-padding-x: map-get($spacers, 1);
 $input-btn-padding-y: map-get($spacers, 1);
+
+// accordions
+$accordion-icon-color: inherit;
+$accordion-icon-active-color: none;
+$accordion-button-icon:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><rect width='256' height='256' fill='#{$accordion-icon-color}'/><polyline points='208 96 128 176 48 96' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'/></svg>");
+$accordion-button-active-icon:  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='#000000' viewBox='0 0 256 256'><path d='M213.66,165.66a8,8,0,0,1-11.32,0L128,91.31,53.66,165.66a8,8,0,0,1-11.32-11.32l80-80a8,8,0,0,1,11.32,0l80,80A8,8,0,0,1,213.66,165.66Z'></path></svg>");
+$accordion-border-radius: 0.5rem;

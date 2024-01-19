@@ -1,44 +1,58 @@
 <template>
-    <div>
-        <Loading />
-        <NuxtLayout :name="layout">
-            <template #default>
-                <slot name="default"></slot>
-            </template>
-        </NuxtLayout>
+    <Loading />
+    <div class="row h-100">
+        <PortalNav class="col-12 col-lg-4 col-xl-3 overflow-y-auto" />
+        <main class="col overflow-y-auto">
+            <slot></slot>
+            <div id="modal-container" class="position-absolute"></div>
+        </main>
     </div>
 </template>
 
-<script setup>
-    import { isMobile } from "mobile-device-detect";
-    import Loading from "../components/loading.vue";
+<style lang="scss">
+    nav {
+        .accordion {
+            --bs-accordion-btn-padding-y: 0.7rem;
+            --bs-border-color: var(--bs-gray-900);
+            --bs-accordion-active-bg: var(--bs-gray-900);
+            --bs-accordion-active-color: var(--bs-white);
+            --bs-accordion-btn-focus-box-shadow: none;
 
-    const layout = isMobile ? 'mobile-portal' : 'desktop-portal'
-</script>
+            .accordion-item {
+                a {
+                    text-decoration: none;
+                    font-weight: 500;
+                }
+            }
 
-<style scoped lang="scss">
-.nav-header {
-    background-color: var(--bs-black);
-    width: 100vw;
-    padding: 5px 12px;
-    margin: 0;
+            .accordion-button {
+                text-transform: uppercase;
+            }
 
-    display: grid;
-    grid-template-rows: 1fr auto auto;
-    grid-template-areas: "navbar-brand-logo notification-bell mobile-nav-close-btn";
-
-    .navbar-brand {
-        grid-area: navbar-brand-logo;
+            // set caret icon color
+            .accordion-button::after {
+                filter: invert(94%) sepia(0%) saturate(0%) hue-rotate(192deg) brightness(106%) contrast(105%);
+            }
+        }
     }
 
-    .notification-bell-container {
-        grid-area: notification-bell;
-        margin: auto 0;
+    @include media-breakpoint-up("lg") {
+        nav {
+            .accordion {
+                .accordion-item {
+                    margin-bottom: 0.5rem;
+                }
+            }
+        }
     }
-
-    .mobile-nav-close-btn {
-        grid-area: mobile-nav-close-btn;
-        margin: auto 0;
+    @include media-breakpoint-down("lg") {
+        nav {
+            .accordion {
+                .accordion-item {
+                    border-radius: 0;
+                    margin-bottom: 0;
+                }
+            }
+        }
     }
-}
 </style>
