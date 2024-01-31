@@ -11,6 +11,7 @@
 
 // 4. Include any default map overrides here
 $all-colors: map-merge-multiple(
+    $grays,
     $blues,
     $indigos,
     $purples,
@@ -22,7 +23,7 @@ $all-colors: map-merge-multiple(
     $teals,
     $cyans
 );
-$theme-colors: map-merge($theme-colors, $colors);
+$theme-colors: map-merge-multiple($theme-colors, $colors);
 
 // 5. Include remainder of required parts
 @import 'bootstrap/scss/maps';

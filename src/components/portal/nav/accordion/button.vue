@@ -7,7 +7,7 @@
         aria-expanded="false"
         :aria-controls="`flush-collapse${id}`"
     >
-        <img class="btn-img pe-2" :src="icon" />
+        <img class="btn-icon pe-2" :src="image" />
         {{ title }}
     </button>
 </template>
@@ -15,7 +15,7 @@
 <script setup>
     const props = defineProps({
         id: Number,
-        icon: String,
+        image: String,
         title: String,
     });
 </script>

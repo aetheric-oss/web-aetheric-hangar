@@ -1,6 +1,6 @@
 <template class="container-fluid">
     <Loading />
-    <main class="row p-2 p-md-3 p-lg-2 p-xl-3 min-h-100 position-relative">
+    <main class="row g-0 p-2 p-md-3 p-lg-2 p-xl-3 min-h-100 position-relative">
         <section class="col-12 col-lg-4 col-xxl-3 z-1 p-2">
             <img
                 src="/img/logo-services.svg"

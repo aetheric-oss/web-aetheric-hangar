@@ -36,7 +36,7 @@
 <script setup lang="ts">
     import { useAuthStore } from "~/store/auth";
 
-    const credentials = useCredentialStore();
+    const credentials = useCredentialStore(); // Temporary store to provide test data
     const router = useRouter();
     const store = useAuthStore();
     const userData = credentials.credentials;

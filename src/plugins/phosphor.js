@@ -4,6 +4,7 @@
 
 import {
     PhUserCircle,
+    PhUserGear,
     PhLock,
     PhEye,
     PhEyeSlash,
@@ -19,11 +20,18 @@ import {
     PhX,
     PhDiscordLogo,
     PhQuestion,
-    PhList
+    PhList,
+    PhShieldCheck,
+    PhSignOut,
+    PhCheck,
+    PhWarning,
+    PhDotOutline,
+    PhCreditCard
   } from '@phosphor-icons/vue';
 
   export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.component("IconUserCircle", PhUserCircle);
+    nuxtApp.vueApp.component("IconUserGear", PhUserGear);
     nuxtApp.vueApp.component("IconLock", PhLock);
     nuxtApp.vueApp.component("IconEye", PhEye);
     nuxtApp.vueApp.component("IconEyeSlash", PhEyeSlash);
@@ -32,7 +40,7 @@ import {
     nuxtApp.vueApp.component("IconCaretLeft", PhCaretLeft);
     nuxtApp.vueApp.component("IconCaretRight", PhCaretRight);
     nuxtApp.vueApp.component("IconArrowsLeftRight", PhArrowsLeftRight);
-    nuxtApp.vueApp.component("IconArrowInSimple", PhArrowsInSimple);
+    nuxtApp.vueApp.component("IconArrowsInSimple", PhArrowsInSimple);
     nuxtApp.vueApp.component("IconArrowLeft", PhArrowLeft);
     nuxtApp.vueApp.component("IconPencil", PhPencil);
     nuxtApp.vueApp.component("IconBell", PhBell);
@@ -40,4 +48,10 @@ import {
     nuxtApp.vueApp.component("IconDiscordLogo", PhDiscordLogo);
     nuxtApp.vueApp.component("IconQuestion", PhQuestion);
     nuxtApp.vueApp.component("IconList", PhList);
+    nuxtApp.vueApp.component("IconShieldCheck", PhShieldCheck);
+    nuxtApp.vueApp.component("IconSignOut", PhSignOut);
+    nuxtApp.vueApp.component("IconCheck", PhCheck);
+    nuxtApp.vueApp.component("IconWarning", PhWarning);
+    nuxtApp.vueApp.component("IconDotOutline", PhDotOutline);
+    nuxtApp.vueApp.component("IconCreditCard", PhCreditCard);
   });

@@ -110,31 +110,6 @@
         };
     });
 
-    const maskedInfo = (value, type) => {
-        if (type === "email") {
-            let maskedEmail = "";
-            const parts = value.split("@");
-            if (parts.length === 2) {
-                const maskedUsername = parts[0];
-                const domain = "***.**";
-                maskedEmail = maskedUsername + "@" + domain;
-            } else {
-                maskedEmail = value;
-            }
-            return maskedEmail;
-        } else if (type === "phone") {
-            let [countryCode, ...rest] = value.split(" ");
-            rest = rest.join(" ");
-            const restLength = rest.length;
-            const maskedRest = rest.replace(/\d/g, "*").replace(/\s/g, " ");
-            const maskedPhoneNumber = `${countryCode} ${maskedRest}${
-                rest[restLength - 1]
-            }`;
-            return maskedPhoneNumber;
-        }
-        return value;
-    };
-
     const toggleMaskedStatus = (index) => {
         formattedContactInfo[index].isMasked =
             !formattedContactInfo[index].isMasked;
@@ -163,4 +138,30 @@
             };
         }
     };
+
+    function maskedInfo(value, type) {
+        if (type === "email") {
+            let maskedEmail = "";
+            const parts = value.split("@");
+            if (parts.length === 2) {
+                const maskedUsername = parts[0];
+                const domain = "***.**";
+                maskedEmail = maskedUsername + "@" + domain;
+            } else {
+                maskedEmail = value;
+            }
+            return maskedEmail;
+        } else if (type === "phone") {
+            let [countryCode, ...rest] = value.split(" ");
+            rest = rest.join(" ");
+            const restLength = rest.length;
+            const maskedRest = rest.replace(/\d/g, "*").replace(/\s/g, " ");
+            const maskedPhoneNumber = `${countryCode} ${maskedRest}${
+                rest[restLength - 1]
+            }`;
+            return maskedPhoneNumber;
+        }
+        return value;
+    }
+
 </script>
