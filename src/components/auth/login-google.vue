@@ -17,12 +17,10 @@
 <script setup lang="ts">
     import { useAuthStore } from "@/store/auth";
     import { useRouter } from "vue-router";
-    import {
-        useTokenClient,
-        type AuthCodeFlowSuccessResponse,
-        type AuthCodeFlowErrorResponse,
-    } from "vue3-google-signin";
-    import { computed } from "vue";
+    import type {
+        AuthCodeFlowSuccessResponse,
+        AuthCodeFlowErrorResponse,
+    } from "~~/node_modules/vue3-google-signin/dist/plugin.d.ts";
 
     const router = useRouter();
 

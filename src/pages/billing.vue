@@ -2,7 +2,7 @@
     <h1>Billing</h1>
 </template>
 
-<script setup>
+<script setup lang="ts">
     definePageMeta({
         layout: "portal",
         category: "Billing",

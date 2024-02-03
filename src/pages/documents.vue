@@ -2,7 +2,7 @@
     <h1>Documents</h1>
 </template>
 
-<script setup>
+<script setup lang="ts">
     definePageMeta({
         layout: "portal",
         category: "Documents",

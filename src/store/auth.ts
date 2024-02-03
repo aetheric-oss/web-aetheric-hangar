@@ -1,10 +1,18 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useAuthStore = defineStore('auth', {
-  state: () => ({
-    isLoggedIn: false,
-    email: "",
-  }),
+export type authState = {
+  isLoggedIn: boolean;
+  email: string;
+};
+
+export const useAuthStore = defineStore({
+  id: "auth-store",
+  state: () => {
+    return {
+      isLoggedIn: false,
+      email: "",
+    } as authState;
+  },
   getters: {
     userAuth: (state) => state.isLoggedIn,
     userEmail: (state) => state.email,
@@ -16,7 +24,7 @@ export const useAuthStore = defineStore('auth', {
     logout() {
       this.isLoggedIn = false;
     },
-    setEmail(email) {
+    setEmail(email: string) {
       this.email = email;
     },
     clearEmail() {

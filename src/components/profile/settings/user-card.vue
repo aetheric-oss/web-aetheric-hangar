@@ -45,7 +45,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     const profileStore = useProfileStore();
     const username = profileStore.getUsername;
     const publicName = profileStore.getPublicName;

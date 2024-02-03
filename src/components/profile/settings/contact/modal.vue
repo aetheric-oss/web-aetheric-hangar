@@ -51,13 +51,13 @@
                                     />
                                     <div
                                         v-show="
-                                            selectedContactType.value &&
+                                            (selectedContactType as HTMLInputElement).value &&
                                             step === 1
                                         "
                                     >
                                         <div
                                             v-if="
-                                                selectedContactType.value ===
+                                                (selectedContactType as HTMLInputElement).value ===
                                                 'email'
                                             "
                                         >
@@ -89,7 +89,7 @@
                                     <div v-show="step === 2">
                                         <div
                                             v-if="
-                                                selectedContactType.value ===
+                                                (selectedContactType as HTMLInputElement).value ===
                                                 'email'
                                             "
                                         >
@@ -123,7 +123,7 @@
                         <button
                             type="button"
                             class="btn btn-primary btn-submit w-100 m-0 mt-auto text-light"
-                            v-show="selectedContactType.value && step === 1"
+                            v-show="(selectedContactType as HTMLInputElement).value && step === 1"
                             @click="addContactSubmit"
                         >
                             Add New Contact
@@ -135,7 +135,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     const props = defineProps({
         contactInfo: {
             type: Array,
@@ -166,7 +166,7 @@
         },
     ]);
     let selectedContactType = ref({});
-    const onContactTypeInput = (selectedItem) => {
+    const onContactTypeInput = (selectedItem: HTMLInputElement) => {
         selectedContactType.value = selectedItem ? selectedItem : {};
         form.value.type = selectedItem ? selectedItem.value : "";
     };

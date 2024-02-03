@@ -17,7 +17,7 @@
     </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
     useHead({
         bodyAttrs: {
             "data-bs-theme": "dark",

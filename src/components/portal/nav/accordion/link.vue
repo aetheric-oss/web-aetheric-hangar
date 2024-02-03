@@ -8,9 +8,12 @@
     </router-link>
 </template>
 
-<script setup>
+<script setup lang="ts">
     const props = defineProps({
         image: String,
-        title: String,
+        title: {
+            required: true,
+            type: String,
+        }
     });
 </script>

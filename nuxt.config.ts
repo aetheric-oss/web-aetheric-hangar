@@ -1,6 +1,10 @@
 export default defineNuxtConfig({
   srcDir: "src/",
 
+  typescript: {
+    typeCheck: true
+  },
+
   app: {
     head: {
       titleTemplate: (chunk) => `FlyArrow.io${chunk && " - " + chunk}`,
@@ -33,11 +37,11 @@ export default defineNuxtConfig({
     dirs: ["store"],
   },
 
-  plugins: [{ src: "~/plugins/google.auth.js", mode: "client" }],
-  build: { transpile: ["GoogleSignInPlugin"] },
-
   runtimeConfig: {
-    public: { GOOGLE_LOGIN_AUTH_API_KEY: process.env.GOOGLE_CLIENTID },
+    public: {
+      GOOGLE_LOGIN_AUTH_API_KEY: process.env.GOOGLE_CLIENTID,
+      smartlookId: '3d8cc3fad36fd64fa8461c440815b246c3b75961'
+    },
   },
 
   nitro: {

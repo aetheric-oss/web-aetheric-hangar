@@ -57,12 +57,12 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import Menu from "@/components/profile/menu.vue";
     definePageMeta({ layout: "portal" });
 
     import { reactive, computed } from "vue";
-    const maskedInfo = (value, type) => {
+    const maskedInfo = (value: string, type: string) => {
         if (type === "Bank Account") {
             let maskedValue = "";
             const digitsOnly = value.replace(/\D/g, "");
@@ -91,13 +91,13 @@
         })
     );
     const valueToDisplay = computed(() => {
-        return (index) => {
+        return (index: number) => {
             return formattedPaymentInfo[index].isMasked
                 ? formattedPaymentInfo[index].maskedValue
                 : formattedPaymentInfo[index].value;
         };
     });
-    const toggleMaskedStatus = (index) => {
+    const toggleMaskedStatus = (index: number) => {
         formattedPaymentInfo[index].isMasked =
             !formattedPaymentInfo[index].isMasked;
     };

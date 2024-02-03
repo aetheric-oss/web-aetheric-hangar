@@ -26,7 +26,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import Settings from "../../pages/profile/settings.vue";
     import PrivacyAndSecurity from "../../pages/profile/privacy-and-security.vue";
     import Payment from "../../pages/profile/payment.vue";

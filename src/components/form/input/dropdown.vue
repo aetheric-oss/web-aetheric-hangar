@@ -40,8 +40,15 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import { computed } from "vue";
+
+    export type DropdownItem = {
+        id?: string,
+        name: string,
+        value: string,
+    };
+
     const props = defineProps({
         darkMode: {
             type: Boolean,
@@ -73,7 +80,7 @@
             required: false,
         },
         items: {
-            type: Array,
+            type: Array<DropdownItem>,
             required: true,
         },
     });
@@ -81,7 +88,7 @@
     let inputValueObj = ref(props.inputValue || {});
     const items = ref(props.items);
     const showDropdown = ref(false);
-    const toggleDropdown = (event) => {
+    const toggleDropdown = (event: any) => {
         event.preventDefault();
         showDropdown.value = !showDropdown.value;
     };
@@ -95,7 +102,7 @@
             ? selectedItem.name
             : props.placeholder || "Select Value from the Dropdown";
     });
-    let selectItem = (index) => {
+    let selectItem = (index: number) => {
         inputValueObj.value = items.value[index];
         emit("dropdownInput", items.value[index]);
         showDropdown.value = false;

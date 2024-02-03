@@ -3,7 +3,7 @@
     <p>Group Management</p>
 </template>
 
-<script setup>
+<script setup lang="ts">
     definePageMeta({
         layout: "portal",
         category: "Manage Assets",

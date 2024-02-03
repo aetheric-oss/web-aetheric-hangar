@@ -13,7 +13,7 @@
             <div class="offcanvas-header">
                 <h5
                     class="offcanvas-title text-center w-100 text-uppercase"
-                    :id="id + 'Label'"
+                    :id="popupId + 'Label'"
                 >
                     <slot name="title"></slot>
                 </h5>
@@ -40,9 +40,9 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     const props = defineProps({
-        id: {
+        popupId: {
             type: String,
             required: true,
         },

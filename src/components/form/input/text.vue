@@ -9,7 +9,7 @@
             :id="id"
             :type="type"
             v-model="modelValue"
-            @input="(input) => $emit('update:modelValue', input.target.value)"
+            @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
             :placeholder="placeholder"
         />
         <div class="btn-icon pe-1">
@@ -19,7 +19,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     const props = defineProps({
         id: {
             type: String,

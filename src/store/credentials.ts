@@ -1,6 +1,10 @@
 import { defineStore } from 'pinia';
 
-export const useCredentialStore = defineStore('credentials', {
+export type credentialState = {
+  credentials: Array<Credential>;
+};
+
+export const useCredentialStore = defineStore({
   id: 'credential-store',
   state: () => {
     return {
@@ -26,6 +30,6 @@ export const useCredentialStore = defineStore('credentials', {
           password: 'qwerty',
         },
       ],
-    };
+    } as credentialState;
   },
 });

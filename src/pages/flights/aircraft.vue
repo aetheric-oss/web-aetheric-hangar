@@ -3,7 +3,7 @@
     <p>Aircraft</p>
 </template>
 
-<script setup>
+<script setup lang="ts">
     definePageMeta({
         layout: "portal",
         category: "Flights",

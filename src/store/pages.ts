@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export const usePagesMenuStore = defineStore("pages-menu", {
+export const usePagesMenuStore = defineStore({
   id: 'pages-store',
   state: () => {
     return {

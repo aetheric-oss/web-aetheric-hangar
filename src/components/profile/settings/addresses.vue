@@ -43,10 +43,11 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import { reactive, computed } from "vue";
     import AddressModal from "./address-modal.vue";
-    const maskAddress = (addr) => {
+
+    const maskAddress = (addr: Address) => {
         return {
             address:
                 addr.address.slice(0, 2) +
@@ -61,7 +62,7 @@
                 "*".repeat(addr.postalCode.length - 2),
         };
     };
-    const addresses = [
+    const addresses: Array<AddressInfo> = [
         {
             type: "residence",
             address: {
@@ -98,7 +99,7 @@
         })
     );
     const valueToDisplay = computed(() => {
-        return (index) => {
+        return (index: number) => {
             let address = formattedAddresses[index].isMasked
                 ? formattedAddresses[index].maskedAddress
                 : formattedAddresses[index].address;
@@ -107,18 +108,18 @@
         ${address.country} ${address.postalCode}`;
         };
     });
-    const toggleMaskedStatus = (index) => {
+    const toggleMaskedStatus = (index: number) => {
         formattedAddresses[index].isMasked =
             !formattedAddresses[index].isMasked;
     };
-    const addAddress = (address) => {
+    const addAddress = (address: AddressInfo) => {
         formattedAddresses.push({
             ...address,
             isMasked: true,
             maskedAddress: maskAddress(address.address),
         });
     };
-    const updateAddress = (address, index) => {
+    const updateAddress = (address: AddressInfo, index: number) => {
         formattedAddresses[index] = {
             ...address,
             isMasked: true,

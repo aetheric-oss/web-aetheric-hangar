@@ -8,6 +8,6 @@
     <ProfileSettingsAddresses />
 </template>
 
-<script setup>
+<script setup lang="ts">
     definePageMeta({ layout: "portal" });
 </script>

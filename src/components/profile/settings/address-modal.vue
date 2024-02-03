@@ -69,35 +69,41 @@
     </GenericModal>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import { computed } from "vue";
+
     const props = defineProps({
         addressInfo: {
             type: Object,
             required: false,
         },
+        contactInfo: {
+            type: Object,
+            required: false
+        }
     });
     const displayTitle = computed(() => {
         return props.contactInfo ? "Edit Address Info" : "Add Address Info";
     });
+    const form = computed(() => {
+        if (props.addressInfo) {
+            return props.addressInfo;
+        } else {
+            return {
+                type: "",
+                name: "",
+                address: {
+                    address: "",
+                    postalCode: "",
+                    town: "",
+                    country: "",
+                    state: "",
+                },
+            }
+        }
+    })
 
     const emit = defineEmits(["add", "update"]);
-
-    // Reactive vars
-    let form = ref({
-        type: "",
-        name: "",
-        address: {
-            address: "",
-            postalCode: "",
-            town: "",
-            country: "",
-            state: "",
-        },
-    });
-    if (props.addressInfo) {
-        form = props.addressInfo;
-    }
 
     const types = ref([
         {
@@ -141,13 +147,13 @@
     });
 
     // functions
-    const onTypeInput = (selectedItem) => {
-        selectedType.value = selectedItem ? selectedItem : {};
-        form.value.type = selectedItem ? selectedItem.value : "";
+    const onTypeInput = (selected: HTMLInputElement) => {
+        selectedType.value = selected.value ? selected : {};
+        form.value.type = selected.value ? selected.value : "";
     };
-    const onCountryInput = (selectedItem) => {
-        selectedCountry.value = selectedItem ? selectedItem : {};
-        form.value.address.country = selectedItem ? selectedItem.value : "";
+    const onCountryInput = (selected: HTMLInputElement) => {
+        selectedCountry.value = selected.value ? selected: {};
+        form.value.address.country = selected.value ? selected.value : "";
     };
     const handleSubmit = () => {
         if (props.addressInfo) {

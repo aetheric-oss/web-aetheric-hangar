@@ -1,20 +1,30 @@
 <template>
-    <main class="p-3 bg-color vh-100">
-        <template v-if="isMobile">
-            <MobileLoginLayout>
-                <h1>Mobile</h1>
-            </MobileLoginLayout>
-        </template>
-        <template v-else>
-            <DesktopLoginLayout>
-                <h1>Desktop</h1>
-            </DesktopLoginLayout>
-        </template>
-    </main>
+    <div class="h-100">
+        <NuxtLayout name="login">
+            <template #content>
+                <AuthForgotPassword @sendMail="handleMail" v-if="!sendMail" />
+                <AuthForgotPasswordSend true v-else />
+            </template>
+
+            <template #image>
+                <img
+                    src="/img/forgot-password-background.jpg"
+                    alt="Login Forgot Password Arrow Background"
+                    loading="lazy"
+                />
+            </template>
+        </NuxtLayout>
+    </div>
 </template>
 
-<script setup>
-import { isMobile } from 'mobile-device-detect';
+<script setup lang="ts">
+    definePageMeta({
+        layout: false,
+    });
 
-definePageMeta({ layout: 'auth/login' });
+    let sendMail = ref(false);
+
+    let handleMail = (mailSend: boolean) => {
+        sendMail.value = mailSend;
+    };
 </script>

@@ -43,14 +43,14 @@
                             <div class="form-check form-switch d-flex px-0">
                                 <label
                                     class="form-check-label mx-0 my-auto w-100"
-                                    :for="idx"
+                                    :for="'privacy-input-' + idx"
                                     >{{ permission.name }}</label
                                 >
                                 <input
                                     class="form-check-input bg-primary"
                                     type="checkbox"
                                     role="switch"
-                                    :id="idx"
+                                    :id="'privacy-input-' + idx"
                                     v-model="permission.checked"
                                 />
                             </div>
@@ -62,7 +62,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import Menu from "@/components/profile/menu.vue";
     import PasswordModal from "@/components/profile/privacy-and-security/password-modal.vue";
     definePageMeta({ layout: "portal" });

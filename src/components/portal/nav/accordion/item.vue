@@ -1,7 +1,7 @@
 <template>
     <div class="accordion-item">
         <PortalNavAccordionButton :id="id" :image="'/icons/' + image + '.svg'" :title="title" v-if="isNested"/>
-        <PortalNavAccordionLink :image="'/icons/' + image + '.svg'" :title="title" v-else/>
+        <PortalNavAccordionLink :image="'/icons/' + image + '.svg'" :title="title ? title : ''" v-else/>
         <div
             :id="`flush-collapse${id}`"
             class="accordion-collapse collapse"
@@ -21,12 +21,19 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+    export type AccordionItem = {
+        path: string,
+        name: string
+    }
     const props = defineProps({
         id: Number,
         image: String,
         title: String,
-        items: Array,
+        items: {
+            required: true,
+            type: Array<AccordionItem>,
+        }
     });
     const isNested = props.items.length !== 0;
 </script>

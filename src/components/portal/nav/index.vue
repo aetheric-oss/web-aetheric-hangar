@@ -75,7 +75,7 @@
     </nav>
 </template>
 
-<script setup>
+<script setup lang="ts">
     const profileStore = useProfileStore();
     const currentBusiness = profileStore.getCurrentBusiness;
 

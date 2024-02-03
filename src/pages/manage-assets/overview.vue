@@ -3,7 +3,7 @@
     <p>Manage your assets here</p>
 </template>
 
-<script setup>
+<script setup lang="ts">
     definePageMeta({
         layout: "portal",
         category: "Manage Assets",

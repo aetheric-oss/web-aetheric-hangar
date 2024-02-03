@@ -9,7 +9,7 @@
             :id="id"
             :type="showPassword ? 'text' : 'password'"
             v-model="modelValue"
-            @input="(input) => $emit('update:modelValue', input.target.value)"
+            @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
             placeholder="Type your password"
         />
         <button type="button" class="btn btn-icon pe-1" @click="toggleEvent">
@@ -24,7 +24,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     const props = defineProps({
         id: {
             type: String,
@@ -56,7 +56,7 @@
         set: (value) => emit("update:errorValue", value),
     });
     const showPassword = ref(false);
-    const toggleEvent = (event) => {
+    const toggleEvent = (event: any) => {
         event.preventDefault();
         showPassword.value = !showPassword.value;
     };

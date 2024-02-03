@@ -32,18 +32,18 @@
             @dropdownInput="onDropdownInput"
             :items="items"
         />
-        <span class="text-light">{{ dropdown.value }}</span>
+        <span class="text-light">{{ dropdown }}</span>
         <FormInputDigits
             id="digits"
             :inputValue="1"
             digitLabel="Digits"
             @input="console.log($event)"
         />
-        <span class="text-light">{{ inputValueObj.value }}</span>
+        <span class="text-light">{{ inputValueObj }}</span>
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
 // Reactive vars
 const firstName = ref('');
@@ -52,29 +52,29 @@ const password = ref('');
 const passwordError = ref('Enter Valid');
 const items = ref([
     {
-        id: 1,
+        id: '1',
         name: 'One',
-        value: 1
+        value: '1'
     },
     {
-        id: 2,
+        id: '2',
         name: 'Two',
-        value: 2
+        value: '2'
     },
     {
-        id: 3,
+        id: '3',
         name: 'Three',
-        value: 3
+        value: '3'
     },
     {
-        id: 4,
+        id: '4',
         name: 'Four',
-        value: 4
+        value: '4'
     },
     {
-        id: 5,
+        id: '5',
         name: 'Five',
-        value: 5
+        value: '5'
     }
 ])
 const inputValueObj = ref(1);
@@ -83,7 +83,7 @@ let dropdown = ref({});
 let dropdownError = ref('Enter Valid');
 
 // Functions
-const onDropdownInput = (selectedItem) => {
+const onDropdownInput = (selectedItem: Object) => {
     dropdown.value = selectedItem ? { ...selectedItem } : {};
 };
 </script>

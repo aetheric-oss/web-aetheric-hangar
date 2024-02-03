@@ -3,6 +3,6 @@
     Arrow DAO starter template for Nuxt 3 webapps here
 </template>
 
-<script setup>
+<script setup lang="ts">
     definePageMeta({ layout: "portal" });
 </script>

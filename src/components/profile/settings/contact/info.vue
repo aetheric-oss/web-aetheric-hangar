@@ -2,7 +2,7 @@
     <div class="m-auto w-100">
         <div class="d-flex pe-2">
             <h5 class="m-0 flex-grow-1 align-self-center">contact</h5>
-            <button class="btn btn-icon text-primary" @click="showModal">
+            <button class="btn btn-icon text-primary">
                 <IconPencil size="30" />
             </button>
         </div>
@@ -47,10 +47,26 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import { reactive, computed } from "vue";
 
-    const contactInfo = [
+    export type Contact = {
+        type: string,
+        value: string,
+        isPrimary: boolean,
+        isMasked: boolean,
+        isVerified: boolean,
+    }
+    export type FormattedContact = {
+        type: string,
+        value: string,
+        isPrimary?: string,
+        isMasked: boolean,
+        isVerified: boolean,
+        maskedValue: string
+    }
+
+    const contactInfo: Array<Contact> = [
         {
             type: "email",
             value: "patricia.hale@gmail.com",
@@ -76,7 +92,7 @@
 
     const formattedContactInfo = reactive(
         contactInfo.map((info) => {
-            let infoDict = {
+            let infoDict: FormattedContact = {
                 ...info,
                 isPrimary: info.isPrimary === true ? "Primary" : "Back Up",
                 maskedValue: maskedInfo(info.value, info.type),
@@ -103,18 +119,18 @@
 
     // Functions
     const valueToDisplay = computed(() => {
-        return (index) => {
+        return (index: number) => {
             return formattedContactInfo[index].isMasked
                 ? formattedContactInfo[index].maskedValue
                 : formattedContactInfo[index].value;
         };
     });
 
-    const toggleMaskedStatus = (index) => {
+    const toggleMaskedStatus = (index: number) => {
         formattedContactInfo[index].isMasked =
             !formattedContactInfo[index].isMasked;
     };
-    const addContact = (contact) => {
+    const addContact = (contact: Contact) => {
         if (contact.type && contact.value) {
             formattedContactInfo.push({
                 type:
@@ -126,7 +142,7 @@
             });
         }
     };
-    const updateContact = (contact, index) => {
+    const updateContact = (contact: Contact, index: number) => {
         if (contact.type && contact.value) {
             formattedContactInfo[index] = {
                 type:
@@ -139,7 +155,7 @@
         }
     };
 
-    function maskedInfo(value, type) {
+    function maskedInfo(value: string, type: string) {
         if (type === "email") {
             let maskedEmail = "";
             const parts = value.split("@");
@@ -153,11 +169,11 @@
             return maskedEmail;
         } else if (type === "phone") {
             let [countryCode, ...rest] = value.split(" ");
-            rest = rest.join(" ");
-            const restLength = rest.length;
-            const maskedRest = rest.replace(/\d/g, "*").replace(/\s/g, " ");
+            let joined = rest.join(" ");
+            const restLength = joined.length;
+            const maskedRest = joined.replace(/\d/g, "*").replace(/\s/g, " ");
             const maskedPhoneNumber = `${countryCode} ${maskedRest}${
-                rest[restLength - 1]
+                joined[restLength - 1]
             }`;
             return maskedPhoneNumber;
         }
