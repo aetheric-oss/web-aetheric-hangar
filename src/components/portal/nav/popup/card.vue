@@ -39,7 +39,6 @@
         },
         textColor: {
             type: String,
-            default: "white",
         },
     });
 </script>

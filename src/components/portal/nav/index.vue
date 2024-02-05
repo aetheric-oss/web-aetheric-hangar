@@ -77,9 +77,13 @@
 
 <script setup lang="ts">
     const profileStore = useProfileStore();
-    const currentBusiness = profileStore.getCurrentBusiness;
+    const currentBusiness = ref(profileStore.getCurrentBusiness);
 
     const menuIcon = ref("IconList");
+
+    const switchAccount = (business: Business) => {
+        currentBusiness.value = business;
+    };
 
     onMounted(() => {
         let collapse = document.getElementById("sidenav")!;

@@ -13,11 +13,11 @@
                     <PortalNavPopupCard
                         v-for="business in letterBusinesses"
                         class="btn btn-gray"
+                        @click="selectAccount(business)"
                         :key="business.uuid"
                         :text="business.name"
-                        :class="
-                            isCurrentBusiness(business.uuid) ? 'active' : ''
-                        "
+                        :text-color="isSelectedBusiness(business.uuid) ? 'secondary' : 'white'"
+                        :class="isCurrentBusiness(business.uuid) ? 'active' : ''"
                     >
                         <template #left v-if="business.imgSrc">
                             <img class="btn-icon pe-2" :src="business.imgSrc" />
@@ -26,7 +26,9 @@
                             #right
                             v-if="isCurrentBusiness(business.uuid)"
                         >
-                            <span class="text-muted small text-capitalize pe-1">Current</span>
+                            <span class="text-muted small text-capitalize pe-1"
+                                >Current</span
+                            >
                         </template>
                     </PortalNavPopupCard>
                 </div>
@@ -34,10 +36,10 @@
         </template>
         <template #footer>
             <PortalNavPopupCard
+                key="currentBusiness"
                 class="mt-auto align-items-center text-uppercase"
                 textHeading="Business"
                 :text="currentBusiness.name"
-                icon="IconArrowsLeftRight"
             >
                 <template #left>
                     <img
@@ -61,6 +63,9 @@
 </template>
 
 <script setup lang="ts">
+    import type { Offcanvas } from "bootstrap";
+    const { $bootstrap } = useNuxtApp();
+
     const profileStore = useProfileStore();
     const businesses = profileStore.getBusinesses;
 
@@ -69,7 +74,42 @@
     const currentBusinessBtnClass = ref("disabled border-0");
     const selectedBusiness = ref(profileStore.getCurrentBusiness);
 
+    // Functions
     const isCurrentBusiness = (uuid: string) => {
-        return uuid === currentBusiness.uuid;
+        return uuid === currentBusiness.value.uuid;
     };
+    const isSelectedBusiness = (uuid: string) => {
+        return uuid === selectedBusiness.value.uuid;
+    };
+
+    const selectAccount = (business: Business) => {
+        if (!isCurrentBusiness(business.uuid)) {
+            selectedBusiness.value = business;
+            currentBusiness.value = {uuid: '', name: business.name, imgSrc: business.imgSrc};
+            console.log(selectedBusiness);
+            currentBusinessBtnClass.value = "btn-primary";
+        }
+    };
+
+    const switchAccount = () => {
+        // update store to switch to our new account
+        profileStore.switchAccount(selectedBusiness.value.uuid);
+
+        // emit switch account event for potential listeners
+        emit("switchAccount", selectedBusiness.value);
+
+        // set current component values to reflect new account selection
+        currentBusiness.value = profileStore.getCurrentBusiness;
+        currentBusinessBtnClass.value = "disabled border-0";
+
+        // close offcanvas
+        let popupAccount = document.getElementById('popupAccount')!;
+        let offcanvas = $bootstrap.Offcanvas.getInstance(popupAccount)!;
+        offcanvas.hide();
+    };
+
+    // Emits
+    const emit = defineEmits<{
+        (e: "switchAccount", value: Business): void;
+    }>();
 </script>
