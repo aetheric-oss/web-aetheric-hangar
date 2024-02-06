@@ -12,7 +12,8 @@
             Resend e-mail
         </button>
         <div class="my-3 text-center">
-            Keep having troubles? <a href="#" class="font-weight-bold">Get Help</a>
+            Keep having troubles?
+            <a href="#" class="font-weight-bold">Get Help</a>
         </div>
         <div class="d-flex">
             <hr class="flex-grow-1 border border-1 border-light" />
@@ -20,10 +21,7 @@
             <hr class="flex-grow-1 border border-1 border-light" />
         </div>
         <div class="my-3 text-center">
-            <nuxt-link
-                to="/login"
-                class="text-decoration-none"
-            >
+            <nuxt-link to="/login" class="text-decoration-none">
                 <IconArrowLeft class="text-white" size="1.5rem" /> Go to login
             </nuxt-link>
         </div>
@@ -35,7 +33,7 @@
     const store = useAuthStore();
 
     // Reactive vars
-    const email = ref(store.email);
+    const email = ref(store.username);
 
     // Functions
     const resendPassword = () => {

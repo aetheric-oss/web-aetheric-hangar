@@ -1,34 +1,30 @@
 import { defineStore } from "pinia";
 
 export type authState = {
-  isLoggedIn: boolean;
-  email: string;
+  _isLoggedIn: boolean;
+  _username: string;
 };
 
 export const useAuthStore = defineStore({
   id: "auth-store",
   state: () => {
     return {
-      isLoggedIn: false,
-      email: "",
+      _isLoggedIn: false,
+      _username: "",
     } as authState;
   },
-  getters: {
-    userAuth: (state) => state.isLoggedIn,
-    userEmail: (state) => state.email,
-  },
   actions: {
-    login() {
-      this.isLoggedIn = true;
+    login(username: string) {
+      this._isLoggedIn = true;
+      this._username = username;
     },
     logout() {
-      this.isLoggedIn = false;
+      this._isLoggedIn = false;
+      this._username = "";
     },
-    setEmail(email: string) {
-      this.email = email;
-    },
-    clearEmail() {
-      this.email = "";
-    },
+  },
+  getters: {
+    isLoggedIn: (state) => state._isLoggedIn,
+    username: (state) => state._username,
   },
 });

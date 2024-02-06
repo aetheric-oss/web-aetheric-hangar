@@ -8,7 +8,9 @@
     >
         <div
             class="d-flex flex-column bg-light-subtle rounded"
-            :class="{ 'flex-grow-1': position === 'start' }"
+            :class="{
+                'flex-grow-1': position === 'start' || position === 'end',
+            }"
         >
             <div class="offcanvas-header">
                 <h5
@@ -52,12 +54,19 @@
         },
     });
 
+    // Functions
     const close = () => {
         // close offcanvas
         let popup = document.getElementById(props.popupId)!;
         let offcanvas = $bootstrap.Offcanvas.getInstance(popup)!;
         offcanvas.hide();
+        emit("close");
     };
+
+    // Emits
+    const emit = defineEmits<{
+        (e: "close"): void;
+    }>();
 
     // Exposed functions
     defineExpose({

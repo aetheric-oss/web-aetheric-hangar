@@ -12,22 +12,21 @@
                 ><IconUserCircle size="1.5rem" class="text-light"
             /></template>
         </FormInputText>
-        <FormInputPassword
-            id="password"
-            v-model="password"
-        >
+        <FormInputPassword id="password" v-model="password">
             <template #icon-left
                 ><IconLock size="1.5rem" class="text-light"
             /></template>
         </FormInputPassword>
         <div class="p-1 mb-2 d-flex justify-content-end">
-            <nuxt-link
-                to="/login/forgot-password"
-                class="font-weight-bold p-0"
+            <nuxt-link to="/login/forgot-password" class="font-weight-bold p-0"
                 >FORGOT PASSWORD?
             </nuxt-link>
         </div>
-        <button class="btn btn-primary w-100 shadow" type="button" @click="customLogin">
+        <button
+            class="btn btn-primary w-100 shadow"
+            type="button"
+            @click="customLogin"
+        >
             Login
         </button>
     </form>
@@ -62,7 +61,7 @@
             error.value =
                 "The password and/or username is wrong. <br>We can't log you into the platform.";
         } else {
-            store.login();
+            store.login(user.username);
             router.push("/dashboard");
         }
     };

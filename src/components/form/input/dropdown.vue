@@ -1,54 +1,44 @@
 <template>
     <div class="mb-2">
-        <div class="inputs input-2-icon d-grid gap-1 align-items-center py-1">
-            <div v-if="label" class="form-label input__label" :for="id">
+        <div class="d-grid gap-1 align-items-center py-1">
+            <div v-if="label" class="form-label" :for="id">
                 {{ label }}
             </div>
             <div
-                class="input__div w-100 d-flex gap-1 rounded-pill align-items-center dropdown"
+                class="form-control d-flex btn gap-1 rounded-pill align-items-center"
+                @click="toggleDropdown"
             >
                 <div class="px-1">
                     <slot name="left-icon"></slot>
                 </div>
                 <div
-                    class="selected-value form-control input__field w-100 text-light border-0 lh-1"
-                >
-                    {{ selectedValue }}
-                </div>
-                <button
-                    type="button"
-                    class="btn btn-icon pe-1"
-                    @click="toggleDropdown"
-                    role="button"
-                >
+                    class="flex-grow-1 text-light"
+                    v-html="selectedValue"
+                ></div>
+                <button type="button" class="btn btn-icon me-1" role="button">
                     <IconCaretDown size="1.5rem" v-show="!showDropdown" />
                     <IconCaretUp size="1.5rem" v-show="showDropdown" />
                 </button>
             </div>
-            <div class="input__dropdown p-1 pt-2" v-show="showDropdown">
+            <div
+                class="form-control d-grid p-1 pt-2 rounded-3 shadow-lg"
+                v-if="showDropdown"
+            >
                 <div
-                    class="input__dropdown__item fs-6"
-                    v-for="(item, index) in items"
-                    :key="index"
-                    @click="selectItem(index)"
+                    class="btn"
+                    v-for="(value, key) in dropdownItems"
+                    :key="key"
+                    @click="updateValue(key as string)"
                 >
-                    {{ item.name }}
+                    {{ value }}
                 </div>
             </div>
         </div>
-        <div class="input__error" v-if="error">{{ error }}</div>
+        <div class="text-error" v-if="errorValue">{{ errorValue }}</div>
     </div>
 </template>
 
 <script setup lang="ts">
-    import { computed } from "vue";
-
-    export type DropdownItem = {
-        id?: string,
-        name: string,
-        value: string,
-    };
-
     const props = defineProps({
         darkMode: {
             type: Boolean,
@@ -62,50 +52,36 @@
             type: String,
             required: true,
         },
-        type: {
-            type: String,
-            required: true,
-        },
-        inputValue: {
-            type: Object,
-            required: true,
-            default: () => ({}),
-        },
         placeholder: {
             type: String,
             required: true,
         },
-        error: {
-            type: String,
-            required: false,
-        },
         items: {
-            type: Array<DropdownItem>,
+            type: Object as PropType<IDropdownValues>,
             required: true,
         },
     });
-    const emit = defineEmits(["dropdownInput"]);
-    let inputValueObj = ref(props.inputValue || {});
-    const items = ref(props.items);
+
+    // Reactive vars
+    const inputValue = defineModel<string>("inputValue");
+    const errorValue = defineModel<string>("errorValue");
     const showDropdown = ref(false);
+    const dropdownItems = ref<IDropdownValues>(props.items);
+    const selectedValue = computed<string>(() => {
+        return inputValue.value
+            ? dropdownItems.value[inputValue.value]
+            : props.placeholder || "Select Value from the Dropdown"
+    }
+    );
+
+    // Functions
+    const updateValue = (key: string) => {
+        inputValue.value = key;
+        showDropdown.value = false;
+    };
     const toggleDropdown = (event: any) => {
         event.preventDefault();
         showDropdown.value = !showDropdown.value;
-    };
-    let selectedValue = computed(() => {
-        if (!inputValueObj.value)
-            return props.placeholder || "Select Value from the Dropdown";
-        const selectedItem = items.value.find(
-            (item) => item.value === inputValueObj.value.value
-        );
-        return selectedItem
-            ? selectedItem.name
-            : props.placeholder || "Select Value from the Dropdown";
-    });
-    let selectItem = (index: number) => {
-        inputValueObj.value = items.value[index];
-        emit("dropdownInput", items.value[index]);
-        showDropdown.value = false;
     };
 </script>
 

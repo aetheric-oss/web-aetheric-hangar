@@ -5,8 +5,7 @@
                 class="input-digit__field"
                 :id="id"
                 type="text"
-                v-model="inputValueObj"
-                @input="$emit('input', ($event.target as HTMLInputElement).value)"
+                v-model.number.lazy="inputValue"
             />
             <div class="input-digit__arrows ms-auto">
                 <btn
@@ -37,34 +36,29 @@
             type: String,
             required: true,
         },
-        inputValue: {
-            type: Number,
-            required: true,
-            default: 1,
-        },
         digitLabel: {
             type: String,
             required: true,
             default: "",
         },
     });
-    const emit = defineEmits(["input"]);
-    const inputValueObj = ref(props.inputValue);
 
-    let incrementValue = () => {
-        if (inputValueObj.value < 10) {
-            inputValueObj.value = inputValueObj.value + 1;
-            emit("input", inputValueObj.value);
+    // Reactive vars
+    const inputValue = defineModel("inputValue", { default: 0 });
+
+    // Functions
+    const incrementValue = () => {
+        if (inputValue.value < 10) {
+            inputValue.value = inputValue.value + 1;
         } else {
-            inputValueObj.value = 10;
+            inputValue.value = 10;
         }
     };
-    let decrementValue = () => {
-        if (inputValueObj.value > 1) {
-            inputValueObj.value = inputValueObj.value - 1;
-            emit("input", inputValueObj.value);
+    const decrementValue = () => {
+        if (inputValue.value > 1) {
+            inputValue.value = inputValue.value - 1;
         } else {
-            inputValueObj.value = 1;
+            inputValue.value = 1;
         }
     };
 </script>

@@ -8,8 +8,7 @@
             class="form-control flex-grow-1"
             :id="id"
             :type="type"
-            v-model="modelValue"
-            @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+            v-model.trim.lazy="inputValue"
             :placeholder="placeholder"
         />
         <div class="btn-icon pe-1">
@@ -33,29 +32,13 @@
             type: String,
             required: true,
         },
-        modelValue: {
-            type: String,
-            required: true,
-            default: "",
-        },
         placeholder: {
             type: String,
             required: true,
         },
-        errorValue: {
-            type: String,
-            required: false,
-        },
     });
-    const emit = defineEmits(["update:modelValue", "update:errorValue"]);
 
-    // Computed vars
-    const modelValue = computed({
-        get: () => props.modelValue,
-        set: (value) => emit("update:modelValue", value),
-    });
-    const errorValue = computed({
-        get: () => props.errorValue,
-        set: (value) => emit("update:errorValue", value),
-    });
+    // Reactive vars
+    const inputValue = defineModel("inputValue", { default: "" });
+    const errorValue = defineModel("errorValue");
 </script>

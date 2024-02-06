@@ -25,3 +25,4 @@ CLIENTID
 darkmode
 nuxi
 polyline
+composables

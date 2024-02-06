@@ -6,7 +6,7 @@
 
         <div class="d-flex flex-column px-2 p-xxl-3 w-100">
             <div
-                class="nav-header d-flex align-items-center pb-3 sticky-top bg-body"
+                class="nav-header d-flex align-items-center pt-2 pb-3 sticky-top bg-body"
             >
                 <router-link
                     :to="'/dashboard'"
@@ -55,19 +55,20 @@
                     </div>
 
                     <PortalNavFooterButton
+                        v-if="currentCompany"
                         class="bg-body-tertiary"
-                        titleHeading="Business"
-                        :title="currentBusiness.name"
-                        :image="currentBusiness.imgSrc"
+                        titleHeading="Company"
+                        :title="currentCompany.name"
+                        :image="currentCompany.imgSrc"
                         icon="IconArrowsLeftRight"
                         target="popupAccount"
                     />
                     <PortalNavFooterButton
                         class="bg-body-secondary"
                         title="My Profile"
-                        image="/img/demo/my-profile.png"
                         icon="IconCaretDown"
                         target="popupProfile"
+                        :image="profilePicture"
                     />
                 </div>
             </div>
@@ -77,12 +78,12 @@
 
 <script setup lang="ts">
     const profileStore = useProfileStore();
-    const currentBusiness = ref(profileStore.getCurrentBusiness);
-
+    const profilePicture = ref(profileStore.user.profilePicture);
+    const currentCompany = ref(profileStore.getCurrentCompany());
     const menuIcon = ref("IconList");
 
-    const switchAccount = (business: Business) => {
-        currentBusiness.value = business;
+    const switchAccount = (company: ICompany) => {
+        currentCompany.value = company;
     };
 
     onMounted(() => {

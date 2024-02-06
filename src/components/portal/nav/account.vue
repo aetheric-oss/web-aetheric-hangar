@@ -3,7 +3,7 @@
         <template #title> Select an Account </template>
         <template #content>
             <template
-                v-for="(letterBusinesses, letter) in businesses"
+                v-for="(letterCompanies, letter) in companies"
                 :key="letter"
             >
                 <div class="py-2 mb-1 border-bottom border-dark">
@@ -11,21 +11,22 @@
                 </div>
                 <div class="d-grid gap-1">
                     <PortalNavPopupCard
-                        v-for="business in letterBusinesses"
+                        v-for="company in letterCompanies"
                         class="btn btn-gray"
-                        @click="selectAccount(business)"
-                        :key="business.uuid"
-                        :text="business.name"
-                        :text-color="isSelectedBusiness(business.uuid) ? 'secondary' : 'white'"
-                        :class="isCurrentBusiness(business.uuid) ? 'active' : ''"
+                        @click="selectAccount(company)"
+                        :key="company.uuid"
+                        :text="company.name"
+                        :text-color="
+                            isSelectedCompany(company.uuid)
+                                ? 'secondary'
+                                : 'white'
+                        "
+                        :class="isCurrentCompany(company.uuid) ? 'active' : ''"
                     >
-                        <template #left v-if="business.imgSrc">
-                            <img class="btn-icon pe-2" :src="business.imgSrc" />
+                        <template #left v-if="company.imgSrc">
+                            <img class="btn-icon pe-2" :src="company.imgSrc" />
                         </template>
-                        <template
-                            #right
-                            v-if="isCurrentBusiness(business.uuid)"
-                        >
+                        <template #right v-if="isCurrentCompany(company.uuid)">
                             <span class="text-muted small text-capitalize pe-1"
                                 >Current</span
                             >
@@ -36,22 +37,22 @@
         </template>
         <template #footer>
             <PortalNavPopupCard
-                key="currentBusiness"
+                key="currentCompany"
                 class="mt-auto align-items-center text-uppercase"
-                textHeading="Business"
-                :text="currentBusiness.name"
+                textHeading="Company"
+                :text="currentCompany.name"
             >
                 <template #left>
                     <img
                         class="btn-icon pe-2"
-                        :src="currentBusiness.imgSrc"
-                        alt="Business Image"
+                        :src="currentCompany.imgSrc"
+                        alt="Company Image"
                     />
                 </template>
                 <template #right>
                     <div
                         class="btn"
-                        :class="currentBusinessBtnClass"
+                        :class="currentCompanyBtnClass"
                         @click="switchAccount"
                     >
                         <IconArrowsLeftRight size="1.5rem" />
@@ -63,53 +64,78 @@
 </template>
 
 <script setup lang="ts">
-    import type { Offcanvas } from "bootstrap";
     const { $bootstrap } = useNuxtApp();
 
     const profileStore = useProfileStore();
-    const businesses = profileStore.getBusinesses;
+    const companies = profileStore.getSortedCompanies();
+    const profile = ref(profileStore.user);
 
     // Reactive vars
-    const currentBusiness = ref(profileStore.getCurrentBusiness);
-    const currentBusinessBtnClass = ref("disabled border-0");
-    const selectedBusiness = ref(profileStore.getCurrentBusiness);
+    const currentCompanyBtnClass = ref("disabled border-0");
+    const selectedCompany: Ref<ICompany | undefined> = ref(
+        profileStore.getCurrentCompany()
+    );
+    const currentCompany: Ref<ICompany> = computed(() => {
+        let company = profileStore.getCurrentCompany();
+        if (company !== undefined) {
+            return company;
+        } else {
+            return {
+                uuid: "",
+                name: "",
+                imgSrc: "",
+            } as ICompany;
+        }
+    });
 
     // Functions
-    const isCurrentBusiness = (uuid: string) => {
-        return uuid === currentBusiness.value.uuid;
+    const isCurrentCompany = (uuid: string) => {
+        if (currentCompany.value) {
+            return uuid === currentCompany.value.uuid;
+        }
+        return false;
     };
-    const isSelectedBusiness = (uuid: string) => {
-        return uuid === selectedBusiness.value.uuid;
+    const isSelectedCompany = (uuid: string) => {
+        if (selectedCompany.value) {
+            return uuid === selectedCompany.value.uuid;
+        }
+        false;
     };
 
-    const selectAccount = (business: Business) => {
-        if (!isCurrentBusiness(business.uuid)) {
-            selectedBusiness.value = business;
-            currentBusiness.value = {uuid: '', name: business.name, imgSrc: business.imgSrc};
-            console.log(selectedBusiness);
-            currentBusinessBtnClass.value = "btn-primary";
+    const selectAccount = (company: ICompany) => {
+        if (!isCurrentCompany(company.uuid)) {
+            selectedCompany.value = company;
+            currentCompany.value = {
+                uuid: "",
+                name: company.name,
+                imgSrc: company.imgSrc,
+            };
+            console.log(selectedCompany);
+            currentCompanyBtnClass.value = "btn-primary";
         }
     };
 
-    const switchAccount = () => {
-        // update store to switch to our new account
-        profileStore.switchAccount(selectedBusiness.value.uuid);
+    const switchAccount = async () => {
+        if (selectedCompany.value) {
+            // update store to switch to our new account
+            profileStore.switchAccount(selectedCompany.value.uuid);
 
-        // emit switch account event for potential listeners
-        emit("switchAccount", selectedBusiness.value);
+            // emit switch account event for potential listeners
+            emit("switchAccount", selectedCompany.value);
 
-        // set current component values to reflect new account selection
-        currentBusiness.value = profileStore.getCurrentBusiness;
-        currentBusinessBtnClass.value = "disabled border-0";
+            // set current component values to reflect new account selection
+            currentCompany.value = selectedCompany.value;
+            currentCompanyBtnClass.value = "disabled border-0";
 
-        // close offcanvas
-        let popupAccount = document.getElementById('popupAccount')!;
-        let offcanvas = $bootstrap.Offcanvas.getInstance(popupAccount)!;
-        offcanvas.hide();
+            // close offcanvas
+            let popupAccount = document.getElementById("popupAccount")!;
+            let offcanvas = $bootstrap.Offcanvas.getInstance(popupAccount)!;
+            offcanvas.hide();
+        }
     };
 
     // Emits
     const emit = defineEmits<{
-        (e: "switchAccount", value: Business): void;
+        (e: "switchAccount", value: ICompany): void;
     }>();
 </script>

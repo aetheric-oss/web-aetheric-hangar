@@ -111,3 +111,9 @@ $accordion-button-padding-y: map-get($spacers, 2);
 // offcanvas
 $offcanvas-bg-color: transparent;
 $offcanvas-border-width: 0;
+$offcanvas-horizontal-width: 500px;
+
+// shadows
+$arrow-drop-shadow: drop-shadow(1px 5px 10px rgba(255, 178, 162, 0.2))
+    drop-shadow(-6px 0px 10px rgba(52, 60, 194, 0.2));
+$box-shadow-lg: filter(var(--arrow-drop-shadow));

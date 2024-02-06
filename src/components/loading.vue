@@ -1,8 +1,5 @@
 <template>
-    <div
-        class="loading-background vw-100 vh-100 position-absolute"
-        v-if="loading"
-    >
+    <div v-if="loading" class="bg-dark vw-100 vh-100 position-absolute">
         <div
             class="loading-spinner position-absolute top-50 start-50 translate-middle"
         ></div>
@@ -10,7 +7,6 @@
 </template>
 
 <script setup lang="ts">
-    import { ref } from "vue";
     const nuxtApp = useNuxtApp();
     const loading = ref(true);
 
@@ -23,10 +19,6 @@
 </script>
 
 <style scoped lang="scss">
-    .loading-background {
-        background-color: var(--bs-dark);
-        z-index: 1000;
-    }
     .loading-spinner {
         border: 4px solid #f3f3f3;
         border-top: 4px solid var(--bs-primary);

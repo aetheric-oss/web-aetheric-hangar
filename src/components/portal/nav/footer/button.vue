@@ -3,10 +3,13 @@
         class="btn d-flex align-items-center text-uppercase"
         data-bs-toggle="offcanvas"
         :data-bs-target="'#' + target"
-        :aria-controls="target">
-        <img class="pe-2" :src="image" />
+        :aria-controls="target"
+    >
+        <img class="btn-icon rounded-pill me-2" :src="image" />
         <div class="flex-grow-1 text-start">
-            <div class="text-muted fw-semibold" v-if="titleHeading">{{ titleHeading }}</div>
+            <div class="text-muted fw-semibold" v-if="titleHeading">
+                {{ titleHeading }}
+            </div>
             {{ title }}
         </div>
         <component :is="icon" size="1.5rem"></component>
@@ -28,6 +31,6 @@
             type: String,
             required: true,
         },
-        target: String
+        target: String,
     });
 </script>

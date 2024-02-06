@@ -25,7 +25,7 @@
         transparent 25%
     );
 
-    --arrow-drop-shadow: drop-shadow(6px 6px 15px #FFB2A250) drop-shadow(-6px 0px 10px #343CC250);
+    --arrow-drop-shadow: #{$arrow-drop-shadow};
 
     --logo: url(/img/logo-services.svg);
 
