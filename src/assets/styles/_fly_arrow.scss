@@ -3,6 +3,9 @@ html, body, body > div {
     height: 100%;
     width: 100%;
 }
+div, a, button, input {
+    letter-spacing: 1px;
+}
 
 .min-h-100 {
     min-height: 100%;
@@ -16,11 +19,19 @@ html, body, body > div {
     filter: var(--arrow-drop-shadow);
 }
 
+@include color-mode(dark) {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+
+    // lighten up our warning color for dark mode
+    --bs-warning: #f7397a;
+    --bs-warning-rgb: 247, 57, 122;
+}
+
 /** FONTS **/
 
 /** Display Text **/
 .dt-1 {
-    font-family: 'Poppins', sans-serif;
     font-size: 16px;
     font-weight: 900;
     line-height: 24px;
@@ -30,11 +41,6 @@ html, body, body > div {
 
 .lh-0 {
     line-height: 0;
-}
-
-.dark-bg {
-    background-color: var(--bs-dark);
-    color: var(--bs-white);
 }
 
 .font-rubik {
@@ -122,6 +128,9 @@ html, body, body > div {
     --bs-btn-bg: var(--bs-dark-bg-subtle);
 }
 
+.btn-gray {
+    --bs-btn-active-bg: var(--bs-gray-800);
+}
 
 .btn-submit {
     border: 1em solid var(--bs-gray-600);
@@ -185,38 +194,7 @@ li {
     font-weight: $font-weight-bold;
 }
 
-/** ACCORDION **/
-.accordion {
-    --bs-accordion-bg: none;
-}
-
-.accordion-item {
-    background-color: #fff;
-    border-radius: 50px !important;
-    margin-bottom: 5px;
-}
-
-.accordion-button:focus {
-    border-radius: 50px !important;
-}
-
-.accordion-button:not(.collapsed) {
-    border-top-right-radius: 30px !important;
-    border-top-left-radius: 30px !important;
-    border-bottom-left-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;
-    background-color: #d5dcff;
-    border-color: #d5dcff;
-}
-
-.accordion-body {
-    padding: 10px 35px 35px 35px;
-}
-
 /** OTHER **/
-nav {
-    background-color: var(--bs-black);
-}
 
 header p {
     margin-top: 0 !important;
@@ -250,26 +228,6 @@ header p {
     font-size: var(--bs-body-font-size);
     text-transform: uppercase;
     font-weight: 700;
-}
-
-.sidenav-text {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 30px;
-    letter-spacing: 0.1em;
-    text-decoration: none !important;
-    text-transform: uppercase;
-    color: var(--bs-white);
-}
-.sidenav-links {
-    text-decoration: none;
-}
-.sidenav-profile-icon {
-    width: 37px;
-    height: 37px;
-    border-radius: 50%;
-    border: 1px solid var(--bs-white);
 }
 
 .manage-assets-header {

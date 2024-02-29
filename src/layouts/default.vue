@@ -30,12 +30,12 @@
             <div
                 class="d-flex flex-grow-1 order-1 order-lg-2 justify-content-center justify-content-md-end"
             >
-            <nuxt-link class="btn btn-info me-2" to="/login">
-                        Login
-            </nuxt-link>
-            <button type="button" class="btn btn-info">
-                Request a meeting
-            </button>
+                <a href="/login" class="btn btn-info me-2">
+                    Login
+                </a>
+                <button type="button" class="btn btn-info">
+                    Request a meeting
+                </button>
             </div>
         </div>
     </nav>

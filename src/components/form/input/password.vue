@@ -8,8 +8,7 @@
             class="form-control flex-grow-1"
             :id="id"
             :type="showPassword ? 'text' : 'password'"
-            v-model="modelValue"
-            @input="(input) => $emit('update:modelValue', input.target.value)"
+            v-model.lazy="inputValue"
             placeholder="Type your password"
         />
         <button type="button" class="btn btn-icon pe-1" @click="toggleEvent">
@@ -24,7 +23,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     const props = defineProps({
         id: {
             type: String,
@@ -35,28 +34,15 @@
             required: false,
             default: "Password",
         },
-        modelValue: {
-            type: String,
-            required: true,
-            default: "",
-        },
-        errorValue: {
-            type: String,
-            required: false,
-        },
     });
 
-    const emit = defineEmits(["update:modelValue", "update:errorValue"]);
-    const modelValue = computed({
-        get: () => props.modelValue,
-        set: (value) => emit("update:modelValue", value),
-    });
-    const errorValue = computed({
-        get: () => props.errorValue,
-        set: (value) => emit("update:errorValue", value),
-    });
+    // Reactive vars
+    const inputValue = defineModel("inputValue", { default: "" });
+    const errorValue = defineModel("errorValue");
     const showPassword = ref(false);
-    const toggleEvent = (event) => {
+
+    // Functions
+    const toggleEvent = (event: any) => {
         event.preventDefault();
         showPassword.value = !showPassword.value;
     };

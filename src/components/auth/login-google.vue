@@ -2,44 +2,67 @@
     <button
         class="btn btn-outline-light btn-dark rounded-pill w-100 justify-content-center"
         style="cursor: pointer"
-        :disabled="!isReady"
+        :disabled="!gsiLoaded"
         @click="login"
     >
-        <img
-            class="google"
-            src="~/assets/icons/login/google.svg"
-            alt="Google"
-        />
+        <img class="google" src="/icons/login/google.svg" alt="Google" />
         Login with Google
     </button>
 </template>
 
 <script setup lang="ts">
-    import { useAuthStore } from "@/store/auth";
+    /// <reference types='gsi' />
     import { useRouter } from "vue-router";
-    import {
-        useTokenClient,
-        type AuthCodeFlowSuccessResponse,
-        type AuthCodeFlowErrorResponse,
-    } from "vue3-google-signin";
-    import { computed } from "vue";
+    import handleGoogleLogin from "~/composables/googleLogin";
 
+    useHead({
+        script: [
+            {
+                hid: "google-gsi",
+                src: "https://accounts.google.com/gsi/client",
+            },
+        ],
+    });
+
+    const nuxtApp = useNuxtApp();
     const router = useRouter();
+    const runtimeConfig = useRuntimeConfig();
+    const gsiLoaded: Ref<boolean> = ref(false);
 
-    const handleOnSuccess = (response: AuthCodeFlowSuccessResponse) => {
-        const authStore = useAuthStore();
-        authStore.login();
-
-        router.push("/dashboard/");
+    const login = () => {
+        google?.accounts.id.prompt((notification) => {
+            if (
+                notification.isNotDisplayed() ||
+                notification.isSkippedMoment()
+            ) {
+                // continue with another identity provider.
+            }
+        });
     };
 
-    const handleOnError = (errorResponse: AuthCodeFlowErrorResponse) => {
-        console.log("Error: ", errorResponse);
+    const handleOnSuccess = async (response: CredentialResponse) => {
+        if (await handleGoogleLogin(response)) {
+            router.push("/dashboard/");
+        }
     };
 
-    const { isReady, login } = useTokenClient({
-        onSuccess: handleOnSuccess,
-        onError: handleOnError,
+    function initializeGoogleSignIn() {
+        let client_id = runtimeConfig.public.GOOGLE_CLIENTID;
+        if (client_id && client_id !== "") {
+            google.accounts.id.initialize({
+                client_id: client_id,
+                callback: handleOnSuccess, //method to run after user clicks the Google sign in button
+                context: "signin",
+            });
+        }
+    }
+
+    nuxtApp.hook("page:finish", () => {
+        console.log("page:finish");
+        if (google) {
+            gsiLoaded.value = true;
+            initializeGoogleSignIn();
+        }
     });
 </script>
 

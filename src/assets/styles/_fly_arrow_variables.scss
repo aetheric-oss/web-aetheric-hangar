@@ -1,9 +1,11 @@
 // grays
 $gray-100: #f9f9fd;
+$gray-200: #a7a7ba;
 $gray-400: #424752;
 $gray-500: #484d62;
 $gray-600: #4b505b;
-$gray-700: #373b46;
+$gray-700: #3d414c;
+$gray-800: #373b46;
 $gray-900: #222732;
 
 // blues
@@ -41,17 +43,17 @@ $magenta: #ab6397;
 $dark: $blue-900;
 $light: $blue-100;
 $light-rgb: 241, 244, 255;
-$gray-dark: #3d414c;
+$gray-dark: $gray-700;
 $gray-dark-rgb: 61, 65, 76;
 $primary: $orange;
 $primary-rgb: 255, 93, 70;
-$secondary: $orange-400;
-$secondary-rgb: 255, 138, 120;
+$secondary: $teal;
+$secondary-rgb: 42, 187, 148;
 $info: $secondary;
 $info-rgb: $secondary-rgb;
 $success: #28bb94;
 $success-rgb: 40, 187, 148;
-$warning: #ae1349;
+$warning: #ca0a4f;
 $warning-rgb: 243, 27, 101;
 
 $link-color: $white;
@@ -61,9 +63,12 @@ $body-color: $black;
 $body-color-rgb: $black-rgb;
 $body-bg: $white;
 $body-bg-rgb: $white-rgb;
-$border-radius: 50px;
+$border-radius: 0.5rem;
 
-$spacer: 2rem;
+$dark-bg-subtle: $gray-400;
+$light-bg-subtle: $gray-400;
+
+$spacer: 1.25rem;
 $spacers: (
     0: 0,
     1: $spacer * 0.3,
@@ -73,7 +78,7 @@ $spacers: (
     5: $spacer * 2.5,
 );
 
-$font-size-base: 0.75rem;
+$font-size-base: 0.8rem;
 $font-family-sans-serif: 'Poppins', sans-serif;
 $headings-font-family: 'Poppins', sans-serif;
 
@@ -87,12 +92,28 @@ $card-height: 100%;
 // dark mode
 $enable-dark-mode: true;
 
-$body-color-dark: $white;
-$body-bg-dark: $dark;
-
 $input-bg: $blue-800;
 $input-color: $light;
 $input-border-width: 0;
 $input-focus-border-color: $blue-800;
-$input-btn-padding-x: map-get($spacers, 1);
+$input-btn-padding-x: map-get($spacers, 2);
 $input-btn-padding-y: map-get($spacers, 1);
+
+// accordions
+$accordion-icon-color: inherit;
+$accordion-icon-active-color: none;
+$accordion-button-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><rect width='256' height='256' fill='#{$accordion-icon-color}'/><polyline points='208 96 128 176 48 96' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'/></svg>");
+$accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><rect width='256' height='256' fill='none'/><polyline points='208 96 128 176 48 96' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'/></svg>");
+$accordion-border-radius: 0.5rem;
+$accordion-border-color: var(--bs-secondary-bg);
+$accordion-button-padding-y: map-get($spacers, 2);
+
+// offcanvas
+$offcanvas-bg-color: transparent;
+$offcanvas-border-width: 0;
+$offcanvas-horizontal-width: 500px;
+
+// shadows
+$arrow-drop-shadow: drop-shadow(1px 5px 10px rgba(255, 178, 162, 0.2))
+    drop-shadow(-6px 0px 10px rgba(52, 60, 194, 0.2));
+$box-shadow-lg: filter(var(--arrow-drop-shadow));

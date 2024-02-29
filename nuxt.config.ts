@@ -1,5 +1,11 @@
+import { nodePolyfills } from "vite-plugin-node-polyfills";
+
 export default defineNuxtConfig({
   srcDir: "src/",
+
+  typescript: {
+    typeCheck: true,
+  },
 
   app: {
     head: {
@@ -27,17 +33,17 @@ export default defineNuxtConfig({
 
   css: ["~/assets/styles/main.scss"],
 
-  modules: ["@nuxt/devtools", "@pinia/nuxt", "nuxt-vue3-google-signin"],
+  modules: ["@nuxt/devtools", "@pinia/nuxt"],
 
   imports: {
     dirs: ["store"],
   },
 
-  plugins: [{ src: "~/plugins/google.auth.js", mode: "client" }],
-  build: { transpile: ["GoogleSignInPlugin"] },
-
   runtimeConfig: {
-    public: { GOOGLE_LOGIN_AUTH_API_KEY: process.env.GOOGLE_CLIENTID },
+    public: {
+      GOOGLE_CLIENTID: process.env.GOOGLE_CLIENTID,
+      smartlookId: "3d8cc3fad36fd64fa8461c440815b246c3b75961",
+    },
   },
 
   nitro: {
@@ -50,10 +56,15 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "@/assets/styles/global.scss" as *;'
+          additionalData: '@use "@/assets/styles/global.scss" as *;',
         },
       },
     },
+    plugins: [
+      nodePolyfills({
+        protocolImports: true,
+      }),
+    ],
   },
 
   // Plugin settings
@@ -67,9 +78,5 @@ export default defineNuxtConfig({
     timeline: {
       enabled: true,
     },
-  },
-
-  googleSignIn: {
-    clientId: process.env.GOOGLE_CLIENTID,
   },
 });

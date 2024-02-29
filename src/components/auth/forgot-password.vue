@@ -12,7 +12,7 @@
                 label="E-mail address"
                 type="email"
                 placeholder="Type your e-mail address"
-                modelValue="form.email"
+                inputValue="form.email"
             >
                 <template #icon-left
                     ><IconUserCircle size="1.5rem" class="text-light"
@@ -41,10 +41,6 @@
     import { useAuthStore } from "@/store/auth";
 
     const store = useAuthStore();
-    const emit = defineEmits<{
-        (e: "sendMail", value: boolean): void;
-    }>();
-
     // Reactive vars
     const error = ref("");
     const email = ref("");
@@ -53,7 +49,12 @@
     const resetPassword = () => {
         // TODO: Replace with actual login logic using Axios
         console.log(email.value);
-        store.setEmail(email.value);
-        emit('sendMail', true);
+        store.login(email.value);
+        emit("sendMail", true);
     };
+
+    // Emits
+    const emit = defineEmits<{
+        (e: "sendMail", value: boolean): void;
+    }>();
 </script>

@@ -46,7 +46,7 @@
     </client-only>
 </template>
 
-<script setup>
+<script setup lang="ts">
     const props = defineProps({
         modalId: {
             type: String,
@@ -78,9 +78,10 @@
     const closeModal = () => {
         open.value = false;
     };
-    const handleSubmit = props.handleSubmit;
     const submit = () => {
-        handleSubmit();
+        if (props.handleSubmit) {
+            props.handleSubmit();
+        }
         closeModal();
     };
     const submitDetails = ref(

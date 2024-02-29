@@ -32,58 +32,37 @@
             @dropdownInput="onDropdownInput"
             :items="items"
         />
-        <span class="text-light">{{ dropdown.value }}</span>
+        <span class="text-light">{{ dropdown }}</span>
         <FormInputDigits
             id="digits"
             :inputValue="1"
             digitLabel="Digits"
             @input="console.log($event)"
         />
-        <span class="text-light">{{ inputValueObj.value }}</span>
+        <span class="text-light">{{ inputValueObj }}</span>
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+    // Reactive vars
+    const firstName = ref("");
+    const firstNameError = ref("Enter Valid");
+    const password = ref("");
+    const passwordError = ref("Enter Valid");
+    const items = ref({
+        "1": "One",
+        "2": "Two",
+        "3": "Three",
+        "4": "Four",
+        "5": "Five",
+    });
+    const inputValueObj = ref(1);
 
-// Reactive vars
-const firstName = ref('');
-const firstNameError = ref('Enter Valid');
-const password = ref('');
-const passwordError = ref('Enter Valid');
-const items = ref([
-    {
-        id: 1,
-        name: 'One',
-        value: 1
-    },
-    {
-        id: 2,
-        name: 'Two',
-        value: 2
-    },
-    {
-        id: 3,
-        name: 'Three',
-        value: 3
-    },
-    {
-        id: 4,
-        name: 'Four',
-        value: 4
-    },
-    {
-        id: 5,
-        name: 'Five',
-        value: 5
-    }
-])
-const inputValueObj = ref(1);
+    let dropdown = ref("");
+    let dropdownError = ref("Enter Valid");
 
-let dropdown = ref({});
-let dropdownError = ref('Enter Valid');
-
-// Functions
-const onDropdownInput = (selectedItem) => {
-    dropdown.value = selectedItem ? { ...selectedItem } : {};
-};
+    // Functions
+    const onDropdownInput = (selectedItem: string) => {
+        dropdown.value = selectedItem;
+    };
 </script>
