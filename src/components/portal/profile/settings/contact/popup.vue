@@ -20,7 +20,7 @@
                     placeholder="Select a Contact Type"
                     :items="contactTypes"
                 />
-                <div v-show="step === 1 && form.type === 'email'">
+                <div v-if="step === 1 && form.type === EnumContact.EMAIL">
                     <h3 class="mt-3">Add new email address</h3>
                     <div>
                         Enter a new email address and we will send you
@@ -38,7 +38,7 @@
                         </template>
                     </FormInputText>
                 </div>
-                <div v-show="form.type === 'phone'">
+                <div v-if="form.type === EnumContact.PHONE">
                     <h3 class="mt-3">Add new phone number</h3>
                     <FormInputText
                         id="phone"
@@ -52,7 +52,7 @@
                         </template>
                     </FormInputText>
                 </div>
-                <div v-show="step === 2 && form.type === 'email'">
+                <div v-if="step === 2 && form.type === EnumContact.EMAIL">
                     <h3 class="mt-3">Verify your e-mail</h3>
                     <div>
                         We have sent you an e-mail with instructions to verify
@@ -87,9 +87,10 @@
 
 <script setup lang="ts">
     import type { PortalPopup } from "#build/components";
+    import type { IContact, IContactCreate } from "~/modules/aetheric-api";
+    import { useDropdownValuesStore } from "~/store/dropdown_values";
 
     const dropdownValues = useDropdownValuesStore();
-    const { $bootstrap } = useNuxtApp();
 
     const props = defineProps({
         popupId: {
@@ -111,17 +112,15 @@
     const displayTitle = computed(() => {
         return props.contactInfo ? "Edit Contact Info" : "Add Contact Info";
     });
-    const form = computed(() => {
-        return reactive(
-            props.contactInfo
-                ? props.contactInfo
-                : ({
-                    type: "",
-                    value: "",
-                    isPrimary: false,
-                    isVerified: false,
-                } as IContactCreate)
-        );
+    const form: ComputedRef<IContact | IContactCreate> = computed(() => {
+        return props.contactInfo
+            ? reactive({ ...props.contactInfo }) as IContact
+            : (reactive({
+                type: undefined,
+                value: "",
+                isPrimary: false,
+                isVerified: false,
+            } as IContactCreate))
     });
 
     // Functions
@@ -157,14 +156,14 @@
 
     function addContact() {
         emit("add", form.value as IContactCreate);
-        if (form.value.type === "email") {
+        if (form.value.type === EnumContact.EMAIL) {
             step.value = 2;
         } else {
             close();
         }
     }
     function updateContact() {
-        const contact: IContact = props.contactInfo as IContact;
+        const contact: IContact = form.value as IContact;
         if (contact && contact.uuid) {
             emit("update", contact);
             close();

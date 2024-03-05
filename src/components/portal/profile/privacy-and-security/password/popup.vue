@@ -1,5 +1,5 @@
 <template>
-    <LazyPortalPopup :popupId="popupId" position="end" ref="passwordPopup">
+    <PortalPopup :popupId="popupId" position="end" ref="passwordPopup">
         <template #title> Change password </template>
         <template #content>
             <form class="container">
@@ -74,7 +74,7 @@
                 Save new password
             </button>
         </template>
-    </LazyPortalPopup>
+    </PortalPopup>
 </template>
 
 <script setup lang="ts">

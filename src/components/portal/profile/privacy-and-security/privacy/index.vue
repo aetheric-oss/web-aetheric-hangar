@@ -43,6 +43,9 @@
 </template>
 
 <script setup lang="ts">
+    import { useDropdownValuesStore } from "~/store/dropdown_values";
+    import type { IPrivacySettings } from "~/modules/aetheric-api";
+
     const dropdownValues = useDropdownValuesStore();
 
     const props = defineProps({

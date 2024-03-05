@@ -43,10 +43,11 @@
 
 <script setup lang="ts">
     import type { PortalProfileMaskToggle } from "#build/components";
+    import type { IContact } from "~/modules/aetheric-api";
 
     const props = defineProps({
         contacts: {
-            type: Array as PropType<IContact[]>,
+            type: Array as PropType<IContact[] | null>,
             required: true,
         },
     });

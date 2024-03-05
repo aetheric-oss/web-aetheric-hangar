@@ -60,7 +60,9 @@
 </template>
 
 <script setup lang="ts">
+    import { useDropdownValuesStore } from "~/store/dropdown_values";
     import type { PortalPopup } from "#build/components";
+    import type { IPaymentMethod, IPaymentMethodCreate } from "~/modules/aetheric-api";
 
     const dropdownValues = useDropdownValuesStore();
     const { $bootstrap } = useNuxtApp();

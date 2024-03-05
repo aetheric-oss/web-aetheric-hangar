@@ -1,4 +1,9 @@
 export function useMask(value: string, type?: string) {
+  if(value === undefined || value === "") {
+    // nothing to do, just return
+    return value
+  }
+
   const maskStr = "*";
   let masked = maskStr.repeat(value.length);
 

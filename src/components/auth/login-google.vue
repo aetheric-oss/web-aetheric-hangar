@@ -1,4 +1,5 @@
 <template>
+    <p v-show="error" class="text-warning text-center" v-html="error"></p>
     <button
         class="btn btn-outline-light btn-dark rounded-pill w-100 justify-content-center"
         style="cursor: pointer"
@@ -18,16 +19,20 @@
     useHead({
         script: [
             {
+                defer: true,
                 hid: "google-gsi",
                 src: "https://accounts.google.com/gsi/client",
+                onload: () => {
+                    initializeGoogleSignIn();
+                }
             },
         ],
     });
 
-    const nuxtApp = useNuxtApp();
     const router = useRouter();
     const runtimeConfig = useRuntimeConfig();
-    const gsiLoaded: Ref<boolean> = ref(false);
+    const gsiLoaded = ref<boolean>(false);
+    const error = ref<string | undefined>(undefined);
 
     const login = () => {
         google?.accounts.id.prompt((notification) => {
@@ -49,21 +54,19 @@
     function initializeGoogleSignIn() {
         let client_id = runtimeConfig.public.GOOGLE_CLIENTID;
         if (client_id && client_id !== "") {
+            try {
             google.accounts.id.initialize({
                 client_id: client_id,
                 callback: handleOnSuccess, //method to run after user clicks the Google sign in button
                 context: "signin",
             });
+            gsiLoaded.value = true;
+            } catch(e) {
+                error.value = "Could not load Google plugin"
+            }
         }
     }
-
-    nuxtApp.hook("page:finish", () => {
-        console.log("page:finish");
-        if (google) {
-            gsiLoaded.value = true;
-            initializeGoogleSignIn();
-        }
-    });
+    const nuxtApp = useNuxtApp();
 </script>
 
 <style lang="scss">

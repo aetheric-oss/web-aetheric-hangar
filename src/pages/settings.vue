@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+    useHead({title: "settings"})
     definePageMeta({
         layout: "portal",
         category: "Settings",
