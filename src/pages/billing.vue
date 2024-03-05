@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+    useHead({title: "billing"})
     definePageMeta({
         layout: "portal",
         category: "Billing",

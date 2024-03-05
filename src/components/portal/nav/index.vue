@@ -1,7 +1,11 @@
 <template>
     <nav id="portal-nav" class="nav d-flex position-relative">
         <PortalNavNotifications position="top" />
-        <PortalNavAccount position="start" @switch-account="switchAccount" />
+        <PortalNavAccount
+            position="start"
+            v-model:user="user"
+            v-model:currentCompany="currentCompany"
+        />
         <PortalNavProfile position="bottom" />
 
         <div class="d-flex flex-column px-2 p-xxl-3 w-100">
@@ -60,6 +64,7 @@
                         titleHeading="Company"
                         :title="currentCompany.name"
                         :image="currentCompany.imgSrc"
+                        :key="currentCompany.uuid"
                         icon="IconArrowsLeftRight"
                         target="popupAccount"
                     />
@@ -68,7 +73,8 @@
                         title="My Profile"
                         icon="IconCaretDown"
                         target="popupProfile"
-                        :image="profilePicture"
+                        :image="user.profilePicture"
+                        :key="user.uuid"
                     />
                 </div>
             </div>
@@ -77,14 +83,55 @@
 </template>
 
 <script setup lang="ts">
-    const profileStore = useProfileStore();
-    const profilePicture = ref(profileStore.user.profilePicture);
-    const currentCompany = ref(profileStore.getCurrentCompany());
-    const menuIcon = ref("IconList");
+    import type { ICompany, IUser } from "~/modules/aetheric-api";
+    import { useProfileStore } from "~/store/profile";
 
-    const switchAccount = (company: ICompany) => {
-        currentCompany.value = company;
-    };
+    const profileStore = useProfileStore();
+    const user = ref(await profileStore.getUser());
+    const menuIcon = ref("IconList");
+    const $api = useAethericApi();
+
+    // Reactive vars
+    const { data: currentCompany } = await useAsyncData(
+        "currentCompany",
+        async () => {
+            const currentCompany = useCurrentCompany();
+            if (currentCompany.value === "") {
+                let success = false;
+                const currentUser = useCurrentUsername();
+                let user: IUser | undefined;
+                [user, success] = await $api.users.getByUsername({
+                    username: currentUser.value,
+                });
+                if (user) {
+                    let result;
+                    [result, success] = await $api.users.getCompanies({
+                        uuid: user.uuid,
+                    });
+                    if (success && result) {
+                        if (result.length > 0) {
+                            currentCompany.value = result[0].uuid;
+                        }
+                    }
+                }
+            }
+
+            if (currentCompany.value) {
+                const [company, success]: [ICompany | undefined, boolean] = await $api.companies.get({ uuid: currentCompany.value });
+                if(success) {
+                    return company;
+                }
+            }
+
+            return { uuid: "", name: "", imgSrc: "" };
+        },
+        {
+            default: () => {
+                return { uuid: "", name: "", imgSrc: "" };
+            },
+            watch: [user.value],
+        }
+    );
 
     onMounted(() => {
         let collapse = document.getElementById("sidenav")!;

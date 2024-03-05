@@ -4,5 +4,6 @@
 </template>
 
 <script setup lang="ts">
+    useHead({title: "dashboard"})
     definePageMeta({ layout: "portal" });
 </script>

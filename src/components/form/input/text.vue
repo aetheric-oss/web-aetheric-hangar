@@ -1,20 +1,22 @@
 <template>
-    <label class="form-label" :for="id">{{ label }}</label>
-    <div class="input-box d-flex mb-2">
-        <div class="btn-icon ps-1">
-            <slot name="icon-left"></slot>
+    <div>
+        <label class="form-label" :for="id">{{ label }}</label>
+        <div class="input-box d-flex mb-2">
+            <div class="btn-icon ps-1">
+                <slot name="icon-left"></slot>
+            </div>
+            <input
+                class="form-control flex-grow-1"
+                :id="id"
+                :type="type"
+                v-model.trim.lazy="inputValue"
+                :placeholder="placeholder"
+            />
+            <div class="btn-icon pe-1">
+                <slot name="icon-right"></slot>
+            </div>
+            <div class="text-error" v-if="errorValue">{{ errorValue }}</div>
         </div>
-        <input
-            class="form-control flex-grow-1"
-            :id="id"
-            :type="type"
-            v-model.trim.lazy="inputValue"
-            :placeholder="placeholder"
-        />
-        <div class="btn-icon pe-1">
-            <slot name="icon-right"></slot>
-        </div>
-        <div class="text-error" v-if="errorValue">{{ errorValue }}</div>
     </div>
 </template>
 

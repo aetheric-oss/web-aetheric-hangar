@@ -1,5 +1,5 @@
 <template>
-    <div data-bs-theme="dark" class="h-100 px-2 p-xxl-3">
+    <div data-bs-theme="dark" class="h-100 px-2 p-lg-2 p-xxl-3">
         <PortalProfileMenu
             :menu-items="profileMenu"
             @menu-clicked="changePage"
@@ -9,6 +9,7 @@
 </template>
 
 <script setup lang="ts">
+    useHead({title: "profile"})
     definePageMeta({ layout: "portal" });
     const route = useRoute();
     const profileMenu = [

@@ -62,8 +62,10 @@
 
 <script setup lang="ts">
     import type { LazyPortalNavPopup } from "#build/components";
+    import { useProfileStore } from "~/store/profile";
+
     const profileStore = useProfileStore();
-    const user = ref(profileStore.user);
+    const user = ref(await profileStore.getUser());
     const portalNavPopup = ref<typeof LazyPortalNavPopup>();
 
     const close = () => {
