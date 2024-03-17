@@ -15,14 +15,37 @@
 </template>
 
 <script setup lang="ts">
+    import { useProfileStore } from "~/store/profile";
+    import type { IPrivacySettings } from "~/modules/aetheric-api";
+
     const profileStore = useProfileStore();
+    const $api = useAethericApi();
 
     // Reactive vars
-    const privacySettings = ref<IPrivacySettings>(profileStore.privacySettings);
+    const user = ref(await profileStore.getUser());
+    const { data: privacySettings } = await useAsyncData(
+        "privacySettings",
+        async () => {
+            let [data, success] = await $api.users.getPrivacySettings({
+                uuid: user.value.uuid,
+            });
+            if (success) {
+                return data;
+            } else {
+                return {} as IPrivacySettings;
+            }
+        },
+        {
+            default: () => {
+                return {}
+            },
+        }
+    );
 
     // Functions
-    const updatePrivacySettings = (settings: IPrivacySettings) => {
-        privacySettings.value = settings;
+    const updatePrivacySettings = async (privacySettings: IPrivacySettings) => {
+        await $api.users.updatePrivacySettings({ uuid: user.value.uuid, privacySettings });
+        refreshNuxtData("privacySettings");
     };
 </script>
 

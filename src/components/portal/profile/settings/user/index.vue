@@ -5,9 +5,9 @@
                 class="btn-icon rounded-pill border border-white"
                 alt="Profile image"
                 style="height: 3rem;"
-                :src="profilePicture"
+                :src="user.profilePicture"
             />
-            <h5 class="text-light m-0">{{ username }}</h5>
+            <h5 class="text-light m-0">{{ user.username }}</h5>
             <IconCheck
                 class="text-success"
                 size="1.5rem"
@@ -24,7 +24,7 @@
         <div>
             <h5 class="text-muted mb-0">Public Name</h5>
             <div class="d-flex">
-                <div class="fs-4 flex-grow-1">{{ publicName }}</div>
+                <div class="fs-4 flex-grow-1">{{ user.publicName }}</div>
                 <button class="btn btn-icon text-primary">
                     <IconPencil size="1.5rem" />
                 </button>
@@ -34,7 +34,7 @@
             <h5 class="text-muted mb-0">Arrow Balance</h5>
             <div class="d-flex">
                 <div class="fs-4 flex-grow-1 fw-bold">
-                    {{ arrowBalance }} ARROW
+                    {{ user.arrowBalance }} ARROW
                 </div>
                 <button class="btn btn-icon text-primary">
                     <IconCaretRight size="1.5rem" />
@@ -45,10 +45,11 @@
 </template>
 
 <script setup lang="ts">
+    import { useProfileStore } from "~/store/profile";
+    import type {IUser} from "~/modules/aetheric-api";
+
     const profileStore = useProfileStore();
-    const username = profileStore.username;
-    const publicName = profileStore.publicName;
-    const profilePicture = profileStore.profilePicture;
-    const arrowBalance = profileStore.arrowBalance;
+    const user = ref<IUser>(await profileStore.getUser());
+    // TODO: assume true for now, needs to be checked properly
     const isUserVerified = ref(true);
 </script>

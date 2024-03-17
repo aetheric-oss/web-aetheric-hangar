@@ -54,27 +54,41 @@
 </template>
 
 <script setup lang="ts">
+    import { useProfileStore } from "~/store/profile";
     import type { PortalProfileMaskToggle } from "#build/components";
+    import type { IPaymentMethod, IPaymentMethodCreate } from "~/modules/aetheric-api";
 
     const profileStore = useProfileStore();
-    const dropdownValues = useDropdownValuesStore();
-
-    const paymentTypes = dropdownValues.paymentTypes;
+    const $api = useAethericApi();
 
     // Reactive vars
-    const paymentMethods = ref<IPaymentMethod[]>(
-        profileStore.getPaymentMethods()
-    );
-    const selectedPaymentMethodIndex = ref(-1);
-    const selectedPaymentMethod: Ref<IPaymentMethod | undefined> = computed(
-        () => {
-            if (selectedPaymentMethodIndex.value >= 0) {
-                return paymentMethods.value[selectedPaymentMethodIndex.value];
+    const user = ref(await profileStore.getUser());
+    const maskToggle = ref<Array<typeof PortalProfileMaskToggle>>([]);
+    const { data: paymentMethods } = await useAsyncData(
+        "paymentMethods",
+        async () => {
+            let [data, success] = await $api.users.getPaymentMethods({
+                uuid: user.value.uuid,
+            });
+            if (success) {
+                return data;
+            } else {
+                return [] as IPaymentMethod[];
             }
-            return undefined;
+        },
+        {
+            default: () => {
+                return [];
+            },
         }
     );
-    const maskToggle = ref<Array<typeof PortalProfileMaskToggle>>([]);
+    const selectedPaymentMethodIndex = ref(-1);
+    const selectedPaymentMethod = computed(() => {
+        if (selectedPaymentMethodIndex.value >= 0) {
+            return paymentMethods.value[selectedPaymentMethodIndex.value];
+        }
+        return undefined;
+    });
 
     // Compute display based on maskToggle state for the given index
     const valueToDisplay = computed(() => {
@@ -100,10 +114,12 @@
     const selectPaymentMethod = (index: number) => {
         selectedPaymentMethodIndex.value = index;
     };
-    const updatePaymentMethod = (method: IPaymentMethod) => {
-        profileStore.updatePaymentMethod(method);
+    const addPaymentMethod = async (method: IPaymentMethodCreate) => {
+        await $api.users.addPaymentMethod({ uuid: user.value.uuid, method });
+        refreshNuxtData("paymentMethods");
     };
-    const addPaymentMethod = (method: IPaymentMethodCreate) => {
-        profileStore.addPaymentMethod(method);
+    const updatePaymentMethod = async (method: IPaymentMethod) => {
+        await $api.users.updatePaymentMethod({ uuid: user.value.uuid, method });
+        refreshNuxtData("paymentMethods");
     };
 </script>

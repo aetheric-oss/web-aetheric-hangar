@@ -17,41 +17,56 @@
                     placeholder="Enter Name"
                     v-model:input-value="form.name"
                 />
-                <FormInputText
-                    id="address"
-                    label="Address Line"
-                    type="text"
-                    placeholder="Enter Address"
-                    v-model:input-value="form.address.address"
+                <FormInputDropdown
+                    id="country"
+                    label="Country"
+                    placeholder="Enter Country"
+                    v-model:input-value="form.country_code"
+                    :items="countries"
                 />
+                <FormInputText
+                    v-show="form.country_code == 'US'"
+                    id="state"
+                    label="State"
+                    type="text"
+                    placeholder="Enter State"
+                    v-model:input-value="form.state"
+                />
+                <FormInputText
+                    v-show="form.postalCode !== ''"
+                    id="street"
+                    label="Street"
+                    type="text"
+                    placeholder="Enter Street name"
+                    v-model:input-value="form.street"
+                />
+                <FormInputText
+                    id="street_number"
+                    label="Street number"
+                    type="text"
+                    placeholder="Enter Street number"
+                    v-model:input-value="form.street_number"
+                />
+
                 <FormInputText
                     id="postalCode"
                     label="Postal Code"
                     type="text"
                     placeholder="Enter Postal Code"
-                    v-model:input-value="form.address.postalCode"
+                    v-model:input-value="form.postalCode"
                 />
                 <FormInputText
-                    id="town"
-                    label="Town"
+                    v-show="form.postalCode !== ''"
+                    id="city"
+                    label="City"
                     type="text"
-                    placeholder="Enter Town"
-                    v-model:input-value="form.address.town"
+                    placeholder="Enter City name"
+                    v-model:input-value="form.city"
                 />
-                <FormInputDropdown
-                    id="country"
-                    label="Country"
-                    placeholder="Enter Country"
-                    v-model:input-value="form.address.country"
-                    :items="countries"
-                />
-                <FormInputText
-                    id="state"
-                    label="State"
-                    type="text"
-                    placeholder="Enter State"
-                    v-model:input-value="form.address.state"
-                />
+                <div class="my-2" v-show="form.postalCode == ''">
+                    We'll try to get your address data with the provided details
+                    above..
+                </div>
             </form>
         </template>
         <template #footer>
@@ -68,6 +83,8 @@
 
 <script setup lang="ts">
     import type { PortalPopup } from "#build/components";
+    import type { IAddress, IAddressCreate } from "~/modules/aetheric-api";
+    import { useDropdownValuesStore } from "~/store/dropdown_values";
 
     const dropdownValues = useDropdownValuesStore();
     const { $bootstrap } = useNuxtApp();
@@ -77,8 +94,8 @@
             type: String,
             default: "popupProfileSettingsAddresses",
         },
-        addressInfo: {
-            type: Object as PropType<IAddressInfo>,
+        address: {
+            type: Object as PropType<IAddress>,
             required: false,
         },
     });
@@ -89,29 +106,25 @@
     // Reactive vars
     const addressPopup = ref<typeof PortalPopup>();
     const displayTitle = computed(() => {
-        return props.addressInfo ? "Edit Address Info" : "Add Address Info";
+        return props.address ? "Edit Address Info" : "Add Address Info";
     });
-    const form: Ref<IAddressInfo | IAddressInfoCreate> = computed(() => {
-        return reactive(
-            props.addressInfo
-                ? props.addressInfo
-                : ({
-                    type: "",
-                    name: "",
-                    address: {
-                        address: "",
-                        town: "",
-                        postalCode: "",
-                        state: "",
-                        country: "",
-                    },
-                } as IAddressInfoCreate)
-        );
+    const form: ComputedRef<IAddress | IAddressCreate> = computed(() => {
+        return props.address
+            ? reactive({ ...props.address })
+            : reactive({
+                type: undefined,
+                name: undefined,
+                city: "",
+                street: "",
+                street_number: "",
+                postalCode: "",
+                country_code: "",
+            } as IAddressCreate);
     });
 
     // Functions
     const handleSubmit = () => {
-        if (props.addressInfo) {
+        if (props.address) {
             updateAddress();
         } else {
             addAddress();
@@ -126,12 +139,10 @@
     };
 
     function addAddress() {
-        if (form.value) {
-            emit("add", form.value);
-        }
+        emit("add", form.value);
     }
     function updateAddress() {
-        const address: IAddressInfo = form.value as IAddressInfo;
+        const address: IAddress = form.value as IAddress;
         if (address && address.uuid) {
             emit("update", address);
         }
@@ -139,8 +150,8 @@
 
     // Emits
     const emit = defineEmits<{
-        (e: "add", value: IAddressInfoCreate): void;
-        (e: "update", value: IAddressInfo): void;
+        (e: "add", value: IAddressCreate): void;
+        (e: "update", value: IAddress): void;
     }>();
 
     // Exposed functions

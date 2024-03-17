@@ -13,13 +13,13 @@ export const useDropdownValuesStore = defineStore({
   state: () => {
     return {
       addressTypes: {
-        "shipping": "Shipping Address",
-        "billing": "Billing Address",
-        "residence": "Residence Address",
+        "SHIPPING": "Shipping Address",
+        "BILLING": "Billing Address",
+        "RESIDENCE": "Residence Address",
       },
       contactTypes: {
-        "email": "Email Address",
-        "phone": "Phone Number",
+        "EMAIL": "Email Address",
+        "PHONE": "Phone Number",
       },
       countries: {
         "CA": "Canada",

@@ -1,4 +1,5 @@
 <template>
+    <Loading />
     <nav
         class="navbar navbar-expand-lg navbar-dark bg-dark px-2 px-sm-3 px-xxl-5"
     >

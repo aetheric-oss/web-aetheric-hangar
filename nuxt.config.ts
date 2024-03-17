@@ -1,10 +1,13 @@
-import { nodePolyfills } from "vite-plugin-node-polyfills";
-
 export default defineNuxtConfig({
-  srcDir: "src/",
+  ssr: false,
 
+  srcDir: "src/",
+  ignore: [
+    "aetheric-api/"
+  ],
   typescript: {
     typeCheck: true,
+    strict: true
   },
 
   app: {
@@ -33,23 +36,23 @@ export default defineNuxtConfig({
 
   css: ["~/assets/styles/main.scss"],
 
-  modules: ["@nuxt/devtools", "@pinia/nuxt"],
-
-  imports: {
-    dirs: ["store"],
-  },
+  modules: ["@nuxt/devtools", "@pinia/nuxt", "~/modules/aetheric-api/index"],
 
   runtimeConfig: {
     public: {
       GOOGLE_CLIENTID: process.env.GOOGLE_CLIENTID,
       smartlookId: "3d8cc3fad36fd64fa8461c440815b246c3b75961",
+      apiUrl: "https://api.dev.flyarrow.io",
+      api: {
+        useMock: true
+      }
     },
   },
 
   nitro: {
     prerender: {
-      concurrency: 1,
-      failOnError: false,
+      crawlLinks: true,
+      failOnError: true,
     },
   },
   vite: {
@@ -60,13 +63,7 @@ export default defineNuxtConfig({
         },
       },
     },
-    plugins: [
-      nodePolyfills({
-        protocolImports: true,
-      }),
-    ],
   },
-
   // Plugin settings
   devtools: {
     enabled: false,

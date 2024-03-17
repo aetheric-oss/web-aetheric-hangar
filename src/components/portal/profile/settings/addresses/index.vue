@@ -9,8 +9,8 @@
                     <PortalProfileMaskToggle
                         ref="maskToggle"
                         :key="index"
-                        :maskedValue="maskedAddress(addr.address)"
-                        :clearValue="addr.address"
+                        :maskedValue="maskedAddress(addr)"
+                        :clearValue="addr"
                     />
                     <PortalPopupIcon
                         class="ms-auto text-primary"
@@ -34,13 +34,15 @@
 </template>
 
 <script setup lang="ts">
+    import { useDropdownValuesStore } from "~/store/dropdown_values";
     import type { PortalProfileMaskToggle } from "#build/components";
+    import type { IAddress} from "~/modules/aetheric-api";
 
     const dropdownValues = useDropdownValuesStore();
 
     const props = defineProps({
         addresses: {
-            type: Array as PropType<IAddressInfo[]>,
+            type: Array as PropType<IAddress[] | null>,
             required: true,
         },
     });
@@ -58,12 +60,12 @@
                 const toggle = maskToggle.value[index];
                 let address: IAddress = toggle.getDisplayValue();
                 let country = toggle.isMasked
-                    ? address.country
-                    : countries[address.country];
+                    ? address.country_code
+                    : countries[address.country_code];
 
-                return `${address.address} <br>
-                    ${address.town}, ${address.state} <br>
-                    ${country} ${address.postalCode}`;
+                return `${address.street} ${address.street_number}<br/>
+                    ${address.postalCode} ${address.city} <br/>
+                    ${country} ${address.state ? address.state : ''}`;
             } else {
                 return "Loading...";
             }
@@ -72,11 +74,14 @@
     const maskedAddress = computed(() => {
         return (addr: IAddress) => {
             return {
-                address: useMask(addr.address),
-                town: useMask(addr.town),
-                state: useMask(addr.state),
-                country: useMask(countries[addr.country]),
+                uuid: addr.uuid,
+                name: addr.name,
+                city: useMask(addr.city),
+                street: useMask(addr.street),
+                street_number: useMask(addr.street_number),
                 postalCode: useMask(addr.postalCode),
+                state: useMask(addr.state ? addr.state : ''),
+                country_code: useMask(countries[addr.country_code]),
             };
         };
     });

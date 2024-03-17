@@ -31,5 +31,6 @@
 <script setup lang="ts">
     definePageMeta({
         layout: false,
+        name: "login"
     });
 </script>
