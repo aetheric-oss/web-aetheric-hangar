@@ -49,7 +49,7 @@
 
     const profileStore = useProfileStore();
     const user = ref(await profileStore.getUser());
-    const $api = useAethericApi();
+    const $api = useAethericApi(useCurrentCompany());
 
     // Reactive vars
     const { data: addresses } = await useAsyncData<IAddress[]>(

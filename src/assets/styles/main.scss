@@ -39,6 +39,7 @@ $theme-colors: map-merge-multiple($theme-colors, $colors);
 @import 'bootstrap/scss/grid';
 @import 'bootstrap/scss/helpers';
 @import 'bootstrap/scss/buttons';
+@import 'bootstrap/scss/dropdown';
 @import 'bootstrap/scss/accordion';
 @import 'bootstrap/scss/card';
 @import 'bootstrap/scss/nav';

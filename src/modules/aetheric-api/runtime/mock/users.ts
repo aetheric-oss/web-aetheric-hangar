@@ -1,7 +1,7 @@
 import { ComparisonOperator, PredicateOperator } from "../types";
 import { useAethericApi } from "../composables/useAethericApi";
 import ApiFactory from "..";
-
+import { modules as mockModules } from "../mock/modules";
 import type {
   IUsersModule,
   IUserGetByUsername,
@@ -23,12 +23,12 @@ import type {
   IFilterOption,
   IGetForIdRequest,
 } from "../types";
-import type { IProfile } from "../composables/useMock";
+import type { IUserProfile } from "../composables/useMock";
 
 import {
   privacySettingsDefaults,
   useCompanies,
-  useProfiles,
+  useUserProfiles,
   useUsers,
   useContacts,
   useAddresses,
@@ -52,15 +52,15 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
       })
     );
 
-    useState<{ [key: string]: IProfile }>("profiles", () =>
+    useState<{ [key: string]: IUserProfile }>("userProfiles", () =>
       computed(() => {
-        const profiles: { [key: string]: IProfile } = {};
+        const profiles: { [key: string]: IUserProfile } = {};
         const storeCompanies = useCompanies();
         const storeAddresses = useAddresses();
         const storeContacts = useContacts();
         const storePaymentMethods = usePaymentMethods();
         const storeUsers = useUsers();
-        for (const [id, profile] of Object.entries(useProfiles().value)) {
+        for (const [id, profile] of Object.entries(useUserProfiles().value)) {
           const companies: ICompany[] = reactive([]);
           profile.companies.forEach((id) =>
             companies.push(storeCompanies.value[id])
@@ -86,7 +86,7 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
             contactInfo,
             paymentMethods,
             privacySettings: reactive(profile.privacySettings),
-          } as IProfile);
+          } as IUserProfile);
         }
         return profiles;
       })
@@ -142,7 +142,7 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
   // ----------------------- create new user --------------------- //
   create = async (request: IUserCreate): Promise<string | undefined> => {
     const uuid: string = crypto.randomUUID();
-    const $api = useAethericApi();
+    const $api = mockModules({ baseURL: "" }, ref(""));
 
     const user = request as IUser;
     user.uuid = uuid;
@@ -160,7 +160,7 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
     if (!success) {
       return undefined;
     }
-    useProfiles().value[uuid] = reactive({
+    useUserProfiles().value[uuid] = reactive({
       user: user.uuid as string,
       currentCompany: companyUuid as string,
       companies: [companyUuid as string],
@@ -174,11 +174,11 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
   };
 
   addCompany = async (request: IUserCompany): Promise<boolean> => {
-    const $api = useAethericApi();
+    const $api = mockModules({ baseURL: "" }, ref(""));
     const uuid = await $api.companies.create(request.company);
 
     if (uuid) {
-      useProfiles().value[request.uuid].companies.push(uuid);
+      useUserProfiles().value[request.uuid].companies.push(uuid);
       return true;
     }
 
@@ -186,21 +186,38 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
   };
   updateCompany = async (request: IUserCompany): Promise<boolean> => {
     const company = request.company as ICompany;
-    if (useProfiles().value[request.uuid].companies.includes(company.uuid)) {
-      const $api = useAethericApi();
+    if (
+      useUserProfiles().value[request.uuid].companies.includes(company.uuid)
+    ) {
+      const $api = mockModules({ baseURL: "" }, ref(""));
       return await $api.companies.update(request.company as ICompany);
     }
 
     this.error = "Can't find the provided company for the current user.";
     return false;
   };
+  getCompanies = async (
+    request: IGetForIdRequest
+  ): Promise<[ICompany[], boolean]> => {
+    // clear this.error before we do anything
+    this.error = undefined;
+    if (useUserProfiles().value[request.uuid]) {
+      return [
+        useState<{ [key: string]: IUserProfile }>("userProfiles").value[
+          request.uuid
+        ].companies,
+        true,
+      ];
+    }
+    return [[], true];
+  };
 
   addContact = async (request: IUserContact): Promise<boolean> => {
-    const $api = useAethericApi();
+    const $api = mockModules({ baseURL: "" }, ref(""));
     const uuid = await $api.contacts.create(request.contact);
 
     if (uuid) {
-      useProfiles().value[request.uuid].contactInfo.push(uuid);
+      useUserProfiles().value[request.uuid].contactInfo.push(uuid);
       return true;
     }
 
@@ -208,21 +225,38 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
   };
   updateContact = async (request: IUserContact): Promise<boolean> => {
     const contact = request.contact as IContact;
-    if (useProfiles().value[request.uuid].contactInfo.includes(contact.uuid)) {
-      const $api = useAethericApi();
+    if (
+      useUserProfiles().value[request.uuid].contactInfo.includes(contact.uuid)
+    ) {
+      const $api = mockModules({ baseURL: "" }, ref(""));
       return await $api.contacts.update(request.contact as IContact);
     }
 
     this.error = "Can't find the provided contact info for the current user.";
     return false;
   };
+  getContacts = async (
+    request: IGetForIdRequest
+  ): Promise<[IContact[], boolean]> => {
+    // clear this.error before we do anything
+    this.error = undefined;
+    if (useUserProfiles().value[request.uuid]) {
+      return [
+        useState<{ [key: string]: IUserProfile }>("userProfiles").value[
+          request.uuid
+        ].contactInfo,
+        true,
+      ];
+    }
+    return [[], true];
+  };
 
   addAddress = async (request: IUserAddress): Promise<boolean> => {
-    const $api = useAethericApi();
+    const $api = mockModules({ baseURL: "" }, ref(""));
     const uuid = await $api.addresses.create(request.address);
 
     if (uuid) {
-      useProfiles().value[request.uuid].addresses.push(uuid);
+      useUserProfiles().value[request.uuid].addresses.push(uuid);
       return true;
     }
 
@@ -230,13 +264,30 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
   };
   updateAddress = async (request: IUserAddress): Promise<boolean> => {
     const address = request.address as IAddress;
-    if (useProfiles().value[request.uuid].addresses.includes(address.uuid)) {
-      const $api = useAethericApi();
+    if (
+      useUserProfiles().value[request.uuid].addresses.includes(address.uuid)
+    ) {
+      const $api = mockModules({ baseURL: "" }, ref(""));
       return await $api.addresses.update(request.address as IAddress);
     }
 
     this.error = "Can't find the provided address for the current user.";
     return false;
+  };
+  getAddresses = async (
+    request: IGetForIdRequest
+  ): Promise<[IAddress[], boolean]> => {
+    // clear this.error before we do anything
+    this.error = undefined;
+    if (useUserProfiles().value[request.uuid]) {
+      return [
+        useState<{ [key: string]: IUserProfile }>("userProfiles").value[
+          request.uuid
+        ].addresses,
+        true,
+      ];
+    }
+    return [[], true];
   };
 
   addPaymentMethod = async (request: IUserPaymentMethod): Promise<boolean> => {
@@ -244,7 +295,7 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
     const method = request.method as IPaymentMethod;
     method.uuid = uuid;
     usePaymentMethods().value[uuid] = method;
-    useProfiles().value[request.uuid].paymentMethods.push(uuid);
+    useUserProfiles().value[request.uuid].paymentMethods.push(uuid);
     return true;
   };
   updatePaymentMethod = async (
@@ -252,84 +303,43 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
   ): Promise<boolean> => {
     const method = request.method as IPaymentMethod;
     usePaymentMethods().value[method.uuid] = method;
-    useProfiles().value[request.uuid].paymentMethods.push(method.uuid);
+    useUserProfiles().value[request.uuid].paymentMethods.push(method.uuid);
     return true;
-  };
-
-  updatePrivacySettings = async (
-    request: IUserPrivacySettings
-  ): Promise<boolean> => {
-    const settings = request.privacySettings as IPrivacySettings;
-    useProfiles().value[request.uuid].privacySettings = settings;
-
-    return true;
-  };
-
-  getCompanies = async (
-    request: IGetForIdRequest
-  ): Promise<[ICompany[], boolean]> => {
-    // clear this.error before we do anything
-    this.error = undefined;
-    if (useProfiles().value[request.uuid]) {
-      return [
-        useState<{ [key: string]: IProfile }>("profiles").value[request.uuid]
-          .companies,
-        true,
-      ];
-    }
-    return [[], true];
-  };
-  getContacts = async (
-    request: IGetForIdRequest
-  ): Promise<[IContact[], boolean]> => {
-    // clear this.error before we do anything
-    this.error = undefined;
-    if (useProfiles().value[request.uuid]) {
-      return [
-        useState<{ [key: string]: IProfile }>("profiles").value[request.uuid]
-          .contactInfo,
-        true,
-      ];
-    }
-    return [[], true];
-  };
-  getAddresses = async (
-    request: IGetForIdRequest
-  ): Promise<[IAddress[], boolean]> => {
-    // clear this.error before we do anything
-    this.error = undefined;
-    if (useProfiles().value[request.uuid]) {
-      return [
-        useState<{ [key: string]: IProfile }>("profiles").value[request.uuid]
-          .addresses,
-        true,
-      ];
-    }
-    return [[], true];
   };
   getPaymentMethods = async (
     request: IGetForIdRequest
   ): Promise<[IPaymentMethod[], boolean]> => {
     // clear this.error before we do anything
     this.error = undefined;
-    if (useProfiles().value[request.uuid]) {
+    if (useUserProfiles().value[request.uuid]) {
       return [
-        useState<{ [key: string]: IProfile }>("profiles").value[request.uuid]
-          .paymentMethods,
+        useState<{ [key: string]: IUserProfile }>("userProfiles").value[
+          request.uuid
+        ].paymentMethods,
         true,
       ];
     }
     return [[], true];
+  };
+
+  updatePrivacySettings = async (
+    request: IUserPrivacySettings
+  ): Promise<boolean> => {
+    const settings = request.privacySettings as IPrivacySettings;
+    useUserProfiles().value[request.uuid].privacySettings = settings;
+
+    return true;
   };
   getPrivacySettings = async (
     request: IGetForIdRequest
   ): Promise<[IPrivacySettings, boolean]> => {
     // clear this.error before we do anything
     this.error = undefined;
-    if (useProfiles().value[request.uuid]) {
+    if (useUserProfiles().value[request.uuid]) {
       return [
-        useState<{ [key: string]: IProfile }>("profiles").value[request.uuid]
-          .privacySettings,
+        useState<{ [key: string]: IUserProfile }>("userProfiles").value[
+          request.uuid
+        ].privacySettings,
         true,
       ];
     }

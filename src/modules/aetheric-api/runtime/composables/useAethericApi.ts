@@ -12,7 +12,7 @@ const modules: Ref<Modules | undefined> = ref(undefined);
 type EnumAddressType = typeof EnumAddress;
 type EnumContactType = typeof EnumContact;
 
-export const useAethericApi = () => {
+export const useAethericApi = (currentCompany: Ref<string>) => {
   const nuxtApp = useNuxtApp();
   if(modules.value === undefined) {
     const options: ModuleOptions = nuxtApp.$config.public.api as ModuleOptions;
@@ -21,9 +21,9 @@ export const useAethericApi = () => {
     };
 
     if (options.useMock) {
-      modules.value = mockModules(fetchOptions);
+      modules.value = mockModules(fetchOptions, currentCompany);
     } else {
-      modules.value = apiModules(fetchOptions);
+      modules.value = apiModules(fetchOptions, currentCompany);
     }
   }
 
