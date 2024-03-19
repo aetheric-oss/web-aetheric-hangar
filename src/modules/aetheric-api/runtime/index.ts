@@ -93,7 +93,7 @@ abstract class ApiFactory<T> implements IApiFactory<T> {
   async filter(
     request: IAdvancedSearchFilter
   ): Promise<[T[] | undefined, boolean]> {
-    const result = await this.call<T[]>("POST", `${this.resource}`, request);
+    const result = await this.call<T[]>("GET", `${this.resource}?filter=${JSON.stringify(request)}`);
 
     if (result.status.value === "error") {
       this._error = result.error.value?.message;

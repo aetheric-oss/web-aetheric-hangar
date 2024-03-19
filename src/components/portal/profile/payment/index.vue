@@ -59,7 +59,7 @@
     import type { IPaymentMethod, IPaymentMethodCreate } from "~/modules/aetheric-api";
 
     const profileStore = useProfileStore();
-    const $api = useAethericApi();
+    const $api = useAethericApi(useCurrentCompany());
 
     // Reactive vars
     const user = ref(await profileStore.getUser());

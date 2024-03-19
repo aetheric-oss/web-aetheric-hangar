@@ -5,17 +5,20 @@ import type { ICredentials } from "../types/auth";
 import type { IAddress } from "../types/addresses";
 import type { ICompany } from "../types/companies";
 import type { IContact } from "../types/contacts";
-import { EnumAddress, EnumContact } from "../types/enums";
+import type { IAircraft } from "../types/aircraft";
+import { EnumAddress, EnumContact, EnumVehicleState } from "../types/enums";
 
+export const useAircraft = () => storeAircraft;
 export const useCompanies = () => storeCompanies;
 export const useContacts = () => storeContacts;
 export const useAddresses = () => storeAddresses;
 export const useUsers = () => storeUsers;
-export const useProfiles = () => storeProfiles;
+export const useUserProfiles = () => storeUserProfiles;
+export const useCompanyProfiles = () => storeCompanyProfiles;
 export const usePaymentMethods = () => storePaymentMethods;
 export const useCredentials = () => useState("credentials", () => credentials);
 
-export interface IProfile {
+export interface IUserProfile {
   user: IUser;
   currentCompany: string;
   companies: ICompany[];
@@ -24,6 +27,46 @@ export interface IProfile {
   paymentMethods: IPaymentMethod[];
   privacySettings: IPrivacySettings;
 }
+export interface ICompanyProfile {
+  company: ICompany;
+  aircraft: IAircraft[];
+  contactInfo: IContact[];
+  addresses: IAddress[];
+}
+
+const storeAircraft: RemovableRef<{ [key: string]: IAircraft }> =
+  useLocalStorage("mock/store/aircraft", {
+    "1": {
+      uuid: "1",
+      name: "Flying Bird",
+      imgSrc: "/img/demo/drone-c.png",
+      status: EnumVehicleState.NEEDS_MAINTENANCE
+    } as ICompany,
+    "2": {
+      uuid: "2",
+      name: "Little Swan",
+      imgSrc: "/img/demo/drone-b.png",
+      status: EnumVehicleState.IN_FLIGHT
+    } as ICompany,
+    "3": {
+      uuid: "3",
+      name: "Teh Chopper",
+      imgSrc: "/img/demo/drone-a.png",
+      status: EnumVehicleState.HOME_BASE
+    } as ICompany,
+    "4": {
+      uuid: "4",
+      name: "Angel",
+      imgSrc: "/img/demo/drone-b.png",
+      status: EnumVehicleState.HOME_BASE
+    } as ICompany,
+    "5": {
+      uuid: "5",
+      name: "Big Wing",
+      imgSrc: "/img/demo/drone-a.png",
+      status: EnumVehicleState.LANDING
+    } as ICompany,
+  });
 
 const storeCompanies: RemovableRef<{ [key: string]: ICompany }> =
   useLocalStorage("mock/store/companies", {
@@ -128,7 +171,7 @@ const storePaymentMethods: RemovableRef<{ [key: string]: IPaymentMethod }> =
     } as IPaymentMethod,
   });
 
-const storeProfiles: RemovableRef<{
+const storeUserProfiles: RemovableRef<{
   [key: string]: {
     user: string;
     currentCompany: string;
@@ -138,7 +181,7 @@ const storeProfiles: RemovableRef<{
     paymentMethods: string[];
     privacySettings: IPrivacySettings;
   };
-}> = useLocalStorage("mock/store/profiles", {
+}> = useLocalStorage("mock/store/user_profiles", {
   "1": {
     user: "1",
     currentCompany: "1",
@@ -167,6 +210,22 @@ const storeProfiles: RemovableRef<{
         },
       ],
     } as IPrivacySettings,
+  },
+});
+
+const storeCompanyProfiles: RemovableRef<{
+  [key: string]: {
+    company: string;
+    aircraft: string[];
+    addresses: string[];
+    contactInfo: string[];
+  };
+}> = useLocalStorage("mock/store/company_profiles", {
+  "1": {
+    company: "1",
+    aircraft: ["1", "2", "3", "4", "5"],
+    addresses: ["1", "2"],
+    contactInfo: ["1", "2", "3"],
   },
 });
 
