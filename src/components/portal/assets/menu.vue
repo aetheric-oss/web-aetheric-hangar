@@ -1,6 +1,20 @@
 <template>
     <header class="px-3">
-        <h3>My Profile</h3>
+        <div class="hstack mb-3 gap-2 py-1">
+            <div>
+                <span>Manage assets </span>
+            </div>
+            <IconCaretRight size="1.5rem" />
+            <div>
+                <span>My assets </span>
+            </div>
+            <IconCaretRight size="1.5rem" />
+            <div>
+                <span>
+                    {{ menuItems[activePageIndex].name }}
+                </span>
+            </div>
+        </div>
         <div class="hstack gap-2 justify-content-center py-1">
             <button
                 v-for="(item, index) in menuItems"
@@ -16,9 +30,6 @@
             </button>
         </div>
     </header>
-    <!-------------------------->
-    <hr class="my-2 my-md-3" />
-    <!-------------------------->
 </template>
 
 <script setup lang="ts">

@@ -3,6 +3,7 @@ import type { ICompaniesModule } from "./companies";
 import type { IContactsModule } from "./contacts";
 import type { IUsersModule } from "./users";
 import type { IAddressesModule } from "./addresses";
+import type { IAircraftModule } from "./aircraft";
 
 export interface IApiFactory<T> {
   get error(): string | undefined;
@@ -19,6 +20,7 @@ export interface Modules {
   companies: ICompaniesModule;
   contacts: IContactsModule;
   addresses: IAddressesModule;
+  aircraft: IAircraftModule;
 }
 
 export interface FetchOptions {

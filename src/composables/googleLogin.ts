@@ -5,7 +5,7 @@ import { useProfileStore } from "@/store/profile";
 import type { IGoogleJwtResponse, IUser } from "~/modules/aetheric-api";
 
 const handleGoogleLogin = async (response: CredentialResponse) => {
-  const $api = useAethericApi();
+  const $api = useAethericApi(useCurrentCompany());
   const { $decodeJwt } = useNuxtApp();
   const decoded = $decodeJwt(response.credential);
 

@@ -85,6 +85,24 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
 
     return true;
   }
+  // ----------------------- get companies for user --------------------- //
+  async getCompanies(
+    this: UsersModule,
+    request: IGetForIdRequest
+  ): Promise<[ICompany[], boolean]> {
+    const result = await super.call<ICompany[]>(
+      "GET",
+      `${this.resource}/companies/${request.uuid}`
+    );
+
+    if (result.status.value === "error") {
+      this.error = result.error.value?.message;
+      return [[], false];
+    }
+
+    return [result.data.value, true];
+  }
+
   // ----------------------- add new contact info for user --------------------- //
   async addContact(this: UsersModule, request: IUserContact): Promise<boolean> {
     const result = await super.call<IContactCreate>(
@@ -116,6 +134,23 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
     }
 
     return true;
+  }
+  // ----------------------- get contacts for user --------------------- //
+  async getContacts(
+    this: UsersModule,
+    request: IGetForIdRequest
+  ): Promise<[IContact[], boolean]> {
+    const result = await super.call<IContact[]>(
+      "GET",
+      `${this.resource}/contacts/${request.uuid}`
+    );
+
+    if (result.status.value === "error") {
+      this.error = result.error.value?.message;
+      return [[], false];
+    }
+
+    return [result.data.value, true];
   }
 
   // ----------------------- add new address info for user --------------------- //
@@ -149,6 +184,23 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
     }
 
     return true;
+  }
+  // ----------------------- get addresses for user --------------------- //
+  async getAddresses(
+    this: UsersModule,
+    request: IGetForIdRequest
+  ): Promise<[IAddress[], boolean]> {
+    const result = await super.call<IAddress[]>(
+      "GET",
+      `${this.resource}/addresses/${request.uuid}`
+    );
+
+    if (result.status.value === "error") {
+      this.error = result.error.value?.message;
+      return [[], false];
+    }
+
+    return [result.data.value, true];
   }
 
   // ----------------------- add new payment method for user --------------------- //
@@ -186,6 +238,23 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
 
     return true;
   }
+  // ----------------------- get payment methods for user --------------------- //
+  async getPaymentMethods(
+    this: UsersModule,
+    request: IGetForIdRequest
+  ): Promise<[IPaymentMethod[], boolean]> {
+    const result = await super.call<IPaymentMethod[]>(
+      "GET",
+      `${this.resource}/payment/${request.uuid}`
+    );
+
+    if (result.status.value === "error") {
+      this.error = result.error.value?.message;
+      return [[], false];
+    }
+
+    return [result.data.value, true];
+  }
 
   // ----------------------- update user's privacy settings --------------------- //
   async updatePrivacySettings(
@@ -205,77 +274,6 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
 
     return true;
   }
-
-  // ----------------------- get companies for user --------------------- //
-  async getCompanies(
-    this: UsersModule,
-    request: IGetForIdRequest
-  ): Promise<[ICompany[], boolean]> {
-    const result = await super.call<ICompany[]>(
-      "GET",
-      `${this.resource}/companies/${request.uuid}`
-    );
-
-    if (result.status.value === "error") {
-      this.error = result.error.value?.message;
-      return [[], false];
-    }
-
-    return [result.data.value, true];
-  }
-  // ----------------------- get contacts for user --------------------- //
-  async getContacts(
-    this: UsersModule,
-    request: IGetForIdRequest
-  ): Promise<[IContact[], boolean]> {
-    const result = await super.call<IContact[]>(
-      "GET",
-      `${this.resource}/contacts/${request.uuid}`
-    );
-
-    if (result.status.value === "error") {
-      this.error = result.error.value?.message;
-      return [[], false];
-    }
-
-    return [result.data.value, true];
-  }
-  // ----------------------- get addresses for user --------------------- //
-  async getAddresses(
-    this: UsersModule,
-    request: IGetForIdRequest
-  ): Promise<[IAddress[], boolean]> {
-    const result = await super.call<IAddress[]>(
-      "GET",
-      `${this.resource}/addresses/${request.uuid}`
-    );
-
-    if (result.status.value === "error") {
-      this.error = result.error.value?.message;
-      return [[], false];
-    }
-
-    return [result.data.value, true];
-  }
-
-  // ----------------------- get payment methods for user --------------------- //
-  async getPaymentMethods(
-    this: UsersModule,
-    request: IGetForIdRequest
-  ): Promise<[IPaymentMethod[], boolean]> {
-    const result = await super.call<IPaymentMethod[]>(
-      "GET",
-      `${this.resource}/payment/${request.uuid}`
-    );
-
-    if (result.status.value === "error") {
-      this.error = result.error.value?.message;
-      return [[], false];
-    }
-
-    return [result.data.value, true];
-  }
-
   // ----------------------- get privacy settings for user --------------------- //
   async getPrivacySettings(
     this: UsersModule,
