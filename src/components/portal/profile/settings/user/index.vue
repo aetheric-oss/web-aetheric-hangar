@@ -7,7 +7,7 @@
                 style="height: 3rem;"
                 :src="user.profilePicture"
             />
-            <h5 class="text-light m-0">{{ user.username }}</h5>
+            <h5 class="m-0">{{ user.username }}</h5>
             <IconCheck
                 class="text-success"
                 size="1.5rem"

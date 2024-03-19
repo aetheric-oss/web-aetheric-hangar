@@ -25,7 +25,7 @@ export const useProfileStore = defineStore({
     async getUser(): Promise<IUser> {
       const username = useLocalStorage("aetheric/auth/username", "");
       if (this._user === undefined && username.value !== "") {
-        const $api = useAethericApi();
+        const $api = useAethericApi(useCurrentCompany());
         const [user, success] = await $api.users.getByUsername({
           username: username.value,
         });

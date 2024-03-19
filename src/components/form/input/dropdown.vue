@@ -4,34 +4,28 @@
             <div v-if="label" class="form-label" :for="id">
                 {{ label }}
             </div>
-            <div
-                class="form-control d-flex btn gap-1 rounded-pill align-items-center"
-                @click="toggleDropdown"
-            >
-                <div class="px-1">
-                    <slot name="left-icon"></slot>
-                </div>
-                <div
-                    class="flex-grow-1 text-light"
-                    v-html="selectedValue"
-                ></div>
-                <button type="button" class="btn btn-icon me-1" role="button">
-                    <IconCaretDown size="1.5rem" v-show="!showDropdown" />
-                    <IconCaretUp size="1.5rem" v-show="showDropdown" />
-                </button>
-            </div>
-            <div
-                class="form-control d-grid p-1 pt-2 rounded-3 shadow-lg"
-                v-if="showDropdown"
-            >
-                <div
-                    class="btn"
-                    v-for="(value, key) in dropdownItems"
-                    :key="key"
-                    @click="updateValue(key as string)"
+            <div class="dropdown">
+                <button
+                    class="btn btn-gray w-100 dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
                 >
-                    {{ value }}
-                </div>
+                    <slot name="left-icon"></slot>
+                    <span
+                        class="text-light"
+                        v-html="selectedValue"
+                    ></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark w-100">
+                    <li
+                        v-for="(value, key) in dropdownItems"
+                        :key="key"
+                        @click="updateValue(key as string)"
+                    >
+                        <a class="dropdown-item text-center" href="#">{{ value }}</a>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="text-error" v-if="errorValue">{{ errorValue }}</div>
@@ -70,9 +64,8 @@
     const selectedValue = computed<string>(() => {
         return inputValue.value
             ? dropdownItems.value[inputValue.value]
-            : props.placeholder || "Select Value from the Dropdown"
-    }
-    );
+            : props.placeholder || "Select Value from the Dropdown";
+    });
 
     // Functions
     const updateValue = (key: string) => {
