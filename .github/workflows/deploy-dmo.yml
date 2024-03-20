@@ -17,3 +17,14 @@ jobs:
     permissions:
       id-token: write
       contents: read
+
+  invalidate-cloudfront:
+    uses: ./.github/workflows/invalidate-cloudfront.yml
+    needs: [build-and-deploy]
+    with:
+      paths: "/*"
+      environment: demo
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: read
