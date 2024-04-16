@@ -1,8 +1,9 @@
 <template>
     <div data-bs-theme="default" class="h-100 px-2 p-lg-2 p-xxl-3">
-        <PortalAssetsMenu
+        <PortalSubMenu
+            parent="assets"
             :menu-items="assetsMenu"
-            @menu-clicked="changePage"
+            :active-page="activePage"
         />
         <Component :is="activePage" />
     </div>
@@ -30,14 +31,11 @@
         },
     ];
 
-    const activePage = shallowRef(assetsMenu[0].component);
-    for (const item of assetsMenu) {
-        if (item.path === route.params.page) {
-            activePage.value = item.component;
+    const activePage = computed(() => {
+        for (const item of assetsMenu) {
+            if (item.path === route.params.page) {
+                return item ;
+            }
         }
-    }
-
-    const changePage = (index: number) => {
-        activePage.value = assetsMenu[index].component;
-    };
+    });
 </script>

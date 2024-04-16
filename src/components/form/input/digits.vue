@@ -1,5 +1,5 @@
 <template>
-    <div class="input-digit__component d-grid gap-1 w-100 mb-2">
+    <div class="input-digit__component d-grid gap-1 w-100">
         <div class="input-digit d-grid w-auto gap-1 rounded-pill">
             <input
                 class="input-digit__field"

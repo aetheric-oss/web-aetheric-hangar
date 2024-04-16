@@ -1,32 +1,29 @@
 <template>
-    <div class="mb-2">
-        <div class="d-grid gap-1 align-items-center py-1">
-            <div v-if="label" class="form-label" :for="id">
-                {{ label }}
-            </div>
-            <div class="dropdown">
-                <button
-                    class="btn btn-gray w-100 dropdown-toggle"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
+    <div class="d-grid gap-1 align-items-center py-1">
+        <div v-if="label" class="form-label" :for="id">
+            {{ label }}
+        </div>
+        <div class="dropdown">
+            <button
+                class="btn btn-light w-100 dropdown-toggle d-flex"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+            >
+                <slot name="left-icon"></slot>
+                <span class="flex-grow-1 text-start" v-html="selectedValue"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li
+                    v-for="(value, key) in dropdownItems"
+                    :key="key"
+                    @click="updateValue(key as string)"
                 >
-                    <slot name="left-icon"></slot>
-                    <span
-                        class="text-light"
-                        v-html="selectedValue"
-                    ></span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-dark w-100">
-                    <li
-                        v-for="(value, key) in dropdownItems"
-                        :key="key"
-                        @click="updateValue(key as string)"
-                    >
-                        <a class="dropdown-item text-center" href="#">{{ value }}</a>
-                    </li>
-                </ul>
-            </div>
+                    <a class="dropdown-item text-center" href="#">{{
+                        value
+                    }}</a>
+                </li>
+            </ul>
         </div>
         <div class="text-error" v-if="errorValue">{{ errorValue }}</div>
     </div>
@@ -44,7 +41,7 @@
         },
         label: {
             type: String,
-            required: true,
+            required: false,
         },
         placeholder: {
             type: String,

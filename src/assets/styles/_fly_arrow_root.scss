@@ -27,8 +27,6 @@
 
     --arrow-drop-shadow: #{$arrow-drop-shadow};
 
-    --logo: url(/img/logo-services.svg);
-
     @each $color, $value in $blues {
         --#{$prefix}#{$color}: #{$value};
     }

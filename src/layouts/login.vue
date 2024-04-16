@@ -2,11 +2,11 @@
     <Loading />
     <main class="row g-0 p-2 p-md-3 p-lg-2 p-xl-3 min-h-100 position-relative">
         <section class="col-12 col-lg-4 col-xxl-3 z-1 p-2">
-            <img
-                src="/img/logo-services.svg"
-                alt="Desktop Login Arrow Menu"
-                class="w-50 mb-3"
-            />
+            <h1
+                class="logo w-50 mb-3 d-flex flex-grow-1 text-start align-items-center"
+            >
+                aetheric
+        </h1>
             <slot name="content"></slot>
         </section>
         <section

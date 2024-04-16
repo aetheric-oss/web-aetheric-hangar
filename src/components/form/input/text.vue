@@ -1,7 +1,9 @@
 <template>
     <div>
-        <label class="form-label" :for="id">{{ label }}</label>
-        <div class="input-box d-flex mb-2">
+        <div v-if="label" class="form-label" :for="id">
+            {{ label }}
+        </div>
+        <div class="input-box d-flex">
             <div class="btn-icon ps-1">
                 <slot name="icon-left"></slot>
             </div>

@@ -6,6 +6,7 @@ $body-bg-dark: $dark;
 $body-secondary-bg-dark: $gray-900;
 $body-secondary-color-dark: $gray-200;
 $body-tertiary-bg-dark: $gray-700;
+$body-tertiary-bg-dark-rgb: $gray-700-rgb;
 $body-tertiary-color-dark: $gray-100;
 
 $link-color-dark: $white;
@@ -29,6 +30,7 @@ $accordion-bg: var(--bs-secondary-bg);
 $accordion-button-icon-dark:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><rect width='256' height='256' fill='#{$accordion-icon-color-dark}'/><polyline points='208 96 128 176 48 96' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'/></svg>");
 $accordion-button-active-icon-dark:  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><rect width='256' height='256' fill='none'/><polyline points='208 96 128 176 48 96' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'/></svg>");
 $accordion-link-active-icon-dark:    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><rect width='256' height='256' fill='none'/><polyline points='96 48 176 128 96 208' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'/></svg>");
+
 
 // Available variables Dark Mode
 //---------------------------------------------------------------------------

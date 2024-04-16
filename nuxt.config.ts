@@ -37,14 +37,22 @@ export default defineNuxtConfig({
   css: ["~/assets/styles/main.scss"],
 
   modules: ["@nuxt/devtools", "@pinia/nuxt", "~/modules/aetheric-api/index"],
-
   runtimeConfig: {
     public: {
       GOOGLE_CLIENTID: process.env.GOOGLE_CLIENTID,
       smartlookId: "3d8cc3fad36fd64fa8461c440815b246c3b75961",
-      apiUrl: "https://api.dev.flyarrow.io",
       api: {
-        useMock: true
+        useMock: true,
+        backends: {
+          cargo: "http://localhost:8002",
+          assets: "http://localhost:8001",
+          contact: "http://localhost:8003",
+          users: "https://tst1.api.flyarrow.io",
+          auth: "https://tst1.api.flyarrow.io",
+          address: "https://tst1.api.flyarrow.io",
+          aircraft: "https://tst1.api.flyarrow.io",
+          companies: "https://tst1.api.flyarrow.io"
+        }
       }
     },
   },

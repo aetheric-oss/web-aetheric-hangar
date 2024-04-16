@@ -141,8 +141,8 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
 
   // ----------------------- create new user --------------------- //
   create = async (request: IUserCreate): Promise<string | undefined> => {
-    const uuid: string = crypto.randomUUID();
-    const $api = mockModules({ baseURL: "" }, ref(""));
+    const uuid: string = request.uuid ? request.uuid : crypto.randomUUID();
+    const $api = mockModules(undefined, ref(""));
 
     const user = request as IUser;
     user.uuid = uuid;
@@ -174,7 +174,7 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
   };
 
   addCompany = async (request: IUserCompany): Promise<boolean> => {
-    const $api = mockModules({ baseURL: "" }, ref(""));
+    const $api = mockModules(undefined, ref(""));
     const uuid = await $api.companies.create(request.company);
 
     if (uuid) {
@@ -189,7 +189,7 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
     if (
       useUserProfiles().value[request.uuid].companies.includes(company.uuid)
     ) {
-      const $api = mockModules({ baseURL: "" }, ref(""));
+      const $api = mockModules(undefined, ref(""));
       return await $api.companies.update(request.company as ICompany);
     }
 
@@ -213,7 +213,7 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
   };
 
   addContact = async (request: IUserContact): Promise<boolean> => {
-    const $api = mockModules({ baseURL: "" }, ref(""));
+    const $api = mockModules(undefined, ref(""));
     const uuid = await $api.contacts.create(request.contact);
 
     if (uuid) {
@@ -228,7 +228,7 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
     if (
       useUserProfiles().value[request.uuid].contactInfo.includes(contact.uuid)
     ) {
-      const $api = mockModules({ baseURL: "" }, ref(""));
+      const $api = mockModules(undefined, ref(""));
       return await $api.contacts.update(request.contact as IContact);
     }
 
@@ -252,7 +252,7 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
   };
 
   addAddress = async (request: IUserAddress): Promise<boolean> => {
-    const $api = mockModules({ baseURL: "" }, ref(""));
+    const $api = mockModules(undefined, ref(""));
     const uuid = await $api.addresses.create(request.address);
 
     if (uuid) {
@@ -267,7 +267,7 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
     if (
       useUserProfiles().value[request.uuid].addresses.includes(address.uuid)
     ) {
-      const $api = mockModules({ baseURL: "" }, ref(""));
+      const $api = mockModules(undefined, ref(""));
       return await $api.addresses.update(request.address as IAddress);
     }
 

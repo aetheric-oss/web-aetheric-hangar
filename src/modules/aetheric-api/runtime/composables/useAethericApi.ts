@@ -16,14 +16,11 @@ export const useAethericApi = (currentCompany: Ref<string>) => {
   const nuxtApp = useNuxtApp();
   if(modules.value === undefined) {
     const options: ModuleOptions = nuxtApp.$config.public.api as ModuleOptions;
-    const fetchOptions = {
-      baseURL: options.apiUrl,
-    };
 
     if (options.useMock) {
-      modules.value = mockModules(fetchOptions, currentCompany);
+      modules.value = mockModules(options.backends, currentCompany);
     } else {
-      modules.value = apiModules(fetchOptions, currentCompany);
+      modules.value = apiModules(options.backends, currentCompany);
     }
   }
 

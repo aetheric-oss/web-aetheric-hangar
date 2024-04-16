@@ -60,6 +60,7 @@ export interface IUser extends IUserCreate {
   uuid: string;
 }
 export interface IUserCreate {
+  uuid?: string;
   username: string;
   name: string;
   publicName: string;

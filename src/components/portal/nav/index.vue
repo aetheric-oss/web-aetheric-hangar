@@ -1,5 +1,5 @@
 <template>
-    <nav id="portal-nav" class="nav d-flex position-relative">
+    <nav id="portal-nav" class="nav d-flex position-relative align-items-stretch">
         <PortalNavNotifications position="top" />
         <PortalNavAccount
             position="start"
@@ -14,13 +14,9 @@
             >
                 <router-link
                     :to="'/dashboard'"
-                    class="h-100 d-flex flex-grow-1 text-start align-items-center"
+                    class="btn logo h-100 d-flex flex-grow-1 text-start align-items-center"
                 >
-                    <img
-                        class="h-100 mw-100"
-                        src="/img/logo-services.svg"
-                        alt="Arrow Logo"
-                    />
+                    aetheric
                 </router-link>
                 <button
                     class="btn"

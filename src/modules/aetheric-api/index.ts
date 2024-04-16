@@ -1,11 +1,13 @@
 import { defu } from "defu";
 import { defineNuxtModule, createResolver, addImportsSources } from "@nuxt/kit";
+import type { Backends } from "./runtime/types";
 
 export * from "./types";
 export type {
   EnumContactType,
   EnumAddressType,
 } from "./runtime/composables/useAethericApi";
+
 
 export interface ModuleOptions {
   /**
@@ -17,10 +19,15 @@ export interface ModuleOptions {
 
   /**
    * API Module Default api Url endpoint
-   * @default 'http://localhost:3000'
+   * @default
+   * {
+   *    cargo: 'http://localhost:8080'
+   *    assets: 'http://localhost:8080'
+   *    contact: 'http://localhost:8080'
+   * }
    * @type string
    */
-  apiUrl: string;
+  backends: Backends;
 
   /**
    * Should the API Module mock data be used (will not call any API endpoints)
@@ -40,7 +47,16 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     enabled: true,
-    apiUrl: "http://localhost:3000",
+    backends: {
+       cargo: 'http://localhost:8080',
+       assets: 'http://localhost:8080',
+       contact: 'http://localhost:8080',
+       users: 'http://localhost:8080',
+       auth: 'http://localhost:8080',
+       address: 'http://localhost:8080',
+       aircraft: 'http://localhost:8080',
+       companies: 'http://localhost:8080'
+    },
     useMock: false,
   },
   setup(options, nuxt) {
@@ -53,7 +69,7 @@ export default defineNuxtModule<ModuleOptions>({
         {
           api: {
             enabled: options.enabled,
-            apiUrl: options.apiUrl,
+            backends: options.backends,
             useMock: options.useMock,
           },
         }

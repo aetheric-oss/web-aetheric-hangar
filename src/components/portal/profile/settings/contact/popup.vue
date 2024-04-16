@@ -10,7 +10,7 @@
             <div v-if="error" class="text-warning text-center">
                 {{ error }}
             </div>
-            <form class="container">
+            <form class="vstack gap-2">
                 <FormInputDropdown
                     v-show="step === 1"
                     id="contactType"

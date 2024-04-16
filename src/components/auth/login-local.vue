@@ -1,6 +1,6 @@
 <template>
     <ClientOnly>
-        <form>
+        <form class="vstack gap-2">
             <p
                 v-show="error"
                 class="text-warning text-center"
