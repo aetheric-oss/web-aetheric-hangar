@@ -1,5 +1,6 @@
 <template>
-    <div class="container-fluid overflow-auto p-3">
+    <PortalContentBlock>
+        <PortalConfigBar />
         <div
             class="row row-cols-2 row-cols-sm-3 lg-2 xl-3 row-cols-xxl-4 g-2 g-xl-3 g-xxl-2"
         >
@@ -11,7 +12,11 @@
                 />
             </div>
         </div>
-    </div>
+    </PortalContentBlock>
+    <footer
+        data-bs-theme="dark"
+        class="d-flex align-self-bottom px-2 rounded-top"
+    ></footer>
 </template>
 
 <script setup lang="ts">

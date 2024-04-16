@@ -2,9 +2,7 @@ export default defineNuxtConfig({
   ssr: false,
 
   srcDir: "src/",
-  ignore: [
-    "aetheric-api/"
-  ],
+
   typescript: {
     typeCheck: true,
     strict: true
@@ -12,12 +10,12 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      titleTemplate: (chunk) => `FlyArrow.io${chunk && " - " + chunk}`,
+      titleTemplate: (chunk) => `Aetheric B.V.${chunk && " - " + chunk}`,
       meta: [
         {
           hid: "description",
           name: "description",
-          content: "FlyArrow.io - Part of Arrow DAO",
+          content: "Aetheric B.V. (est. 2024)",
         },
       ],
       link: [
@@ -37,14 +35,22 @@ export default defineNuxtConfig({
   css: ["~/assets/styles/main.scss"],
 
   modules: ["@nuxt/devtools", "@pinia/nuxt", "~/modules/aetheric-api/index"],
-
   runtimeConfig: {
     public: {
       GOOGLE_CLIENTID: process.env.GOOGLE_CLIENTID,
       smartlookId: "3d8cc3fad36fd64fa8461c440815b246c3b75961",
-      apiUrl: "https://api.dev.flyarrow.io",
       api: {
-        useMock: true
+        useMock: true,
+        backends: {
+          cargo: process.env.CARGO_API,
+          assets: process.env.ASSETS_API,
+          contact: process.env.CONTACT_API,
+          users: process.env.USERS_API,
+          auth: process.env.AUTH_API,
+          address: process.env.ADDRESS_API,
+          aircraft: process.env.AIRCRAFT_API,
+          companies: process.env.COMPANIES_API
+        }
       }
     },
   },

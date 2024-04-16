@@ -1,8 +1,8 @@
 ![Arrow Banner](https://github.com/Arrow-air/tf-github/raw/main/src/templates/doc-banner-services.png)
 
-# Services Hangar Front-end
+# Aetheric Hangar Front-end
 
-![Sanity Checks](https://github.com/arrow-air/web-services-hangar/actions/workflows/sanity_checks.yml/badge.svg?branch=main)
+![Sanity Checks](https://github.com/aetheric-oss/web-aetheric-hangar/actions/workflows/sanity_checks.yml/badge.svg?branch=main)
 ![Arrow DAO Discord](https://img.shields.io/discord/853833144037277726?style=plastic)
 
 ## Setup

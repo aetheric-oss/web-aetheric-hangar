@@ -1,13 +1,6 @@
 <template>
-    <section class="container">
-        <div class="row mx-auto mt-2">
-            <div class="col">
-                <IconSlidersHorizontal size="1.5rem" class="fill-orange" />
-            </div>
-            <div class="col d-flex justify-content-end">
-                <IconSquaresFour size="1.5rem" class="text-success" />
-            </div>
-        </div>
-    </section>
+    <div class="hstack my-2">
+        <IconSlidersHorizontal size="1.5rem" class="text-orange" />
+        <IconSquaresFour size="1.5rem" class="ms-auto text-success" />
+    </div>
 </template>
-

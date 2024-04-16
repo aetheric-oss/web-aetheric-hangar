@@ -6,8 +6,8 @@
         @update="updatePaymentMethod"
         @add="addPaymentMethod"
     />
-
-    <div class="m-auto w-100">
+    <!--End Page popups-->
+    <PortalContentBlock title="">
         <div class="vstack mb-2">
             <h5 class="text-muted">Payment Methods</h5>
             <div
@@ -50,7 +50,7 @@
                 @click="selectPaymentMethod(-1)"
             />
         </div>
-    </div>
+    </PortalContentBlock>
 </template>
 
 <script setup lang="ts">

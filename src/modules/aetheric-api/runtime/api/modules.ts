@@ -4,17 +4,17 @@ import ContactsModule from "./contacts";
 import UsersModule from "./users";
 import AddressesModule from "./addresses";
 import AircraftModule from "./aircraft";
-import type { FetchOptions, Modules } from "../types";
+import type { Backends, Modules } from "../types";
 
 /** an object containing all repositories we need to expose */
-const modules = (fetchOptions: FetchOptions, currentCompany: string): Modules => {
+const modules = (backends: Backends, currentCompany: string): Modules => {
   return {
-    auth: new AuthModule(fetchOptions),
-    users: new UsersModule(fetchOptions),
-    companies: new CompaniesModule(fetchOptions),
-    contacts: new ContactsModule(fetchOptions),
-    addresses: new AddressesModule(fetchOptions),
-    aircraft: new AircraftModule(fetchOptions, currentCompany),
+    auth: new AuthModule({baseUrl: backends.auth}),
+    users: new UsersModule({baseUrl: backends.users}),
+    companies: new CompaniesModule({baseUrl: backends.companies}),
+    contacts: new ContactsModule({baseUrl: backends.contact}),
+    addresses: new AddressesModule({baseUrl: backends.address}),
+    aircraft: new AircraftModule({baseUrl: backends.aircraft}, currentCompany),
   };
 };
 

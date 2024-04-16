@@ -106,7 +106,7 @@
     }
 
     .battery {
-        background-color: var(--bs-blue-150);
+        background-color: var(--bs-blue-200);
         height: 8px;
     }
 

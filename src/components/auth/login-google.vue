@@ -66,7 +66,6 @@
             }
         }
     }
-    const nuxtApp = useNuxtApp();
 </script>
 
 <style lang="scss">

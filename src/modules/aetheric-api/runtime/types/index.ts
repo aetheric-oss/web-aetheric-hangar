@@ -25,6 +25,17 @@ export interface Modules {
   aircraft: IAircraftModule;
 }
 
+export interface Backends {
+  cargo: string;
+  assets: string;
+  address: string;
+  contact: string;
+  auth: string;
+  companies: string;
+  users: string;
+  aircraft: string;
+}
+
 export interface FetchOptions {
   baseURL: string;
 }

@@ -13,28 +13,29 @@
         @add="addContact"
     />
     <!--End Page popups-->
+    <PortalContentBlock title="">
+        <PortalProfileSettingsUser class="px-3" />
 
-    <PortalProfileSettingsUser class="px-3" />
+        <!-------------------------->
+        <hr class="my-2 my-md-3" />
+        <!-------------------------->
 
-    <!-------------------------->
-    <hr class="my-2 my-md-3" />
-    <!-------------------------->
+        <PortalProfileSettingsContact
+            :contacts="contacts"
+            @selectContact="selectContact"
+            class="px-3"
+        />
 
-    <PortalProfileSettingsContact
-        :contacts="contacts"
-        @selectContact="selectContact"
-        class="px-3"
-    />
+        <!-------------------------->
+        <hr class="my-2 my-md-3" />
+        <!-------------------------->
 
-    <!-------------------------->
-    <hr class="my-2 my-md-3" />
-    <!-------------------------->
-
-    <PortalProfileSettingsAddresses
-        :addresses="addresses"
-        @selectAddress="selectAddress"
-        class="px-3"
-    />
+        <PortalProfileSettingsAddresses
+            :addresses="addresses"
+            @selectAddress="selectAddress"
+            class="px-3"
+        />
+    </PortalContentBlock>
 </template>
 
 <script setup lang="ts">
