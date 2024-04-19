@@ -1,5 +1,6 @@
 // grays
 $gray-100: #f9f9fd;
+$gray-150: #ecefee;
 $gray-200: #a7a7ba;
 $gray-400: #424752;
 $gray-500: #484d62;
@@ -10,6 +11,8 @@ $gray-900: #222732;
 
 // blues
 $blue-100: #ecedfe;
+$blue-150: #cccde0;
+$blue-200: #ecedfecc;
 $blue-300: #636f8b;
 $blue-800: #252b40;
 $blue-900: #1b202c;
@@ -25,11 +28,14 @@ $purple-800: #3f3569;
 $purple: $purple-500;
 
 // oranges
+$orange-300: #e08d48;
 $orange-400: #ff8a78;
 $orange-500: #ff5e45;
 $orange: $orange-500;
 
 $black: #181c27;
+$arrow-dark: #090F29;
+$arrow-light: #ffffff;
 $black-rgb: 24, 28, 39;
 $white: #fff;
 $white-rgb: 100, 100, 100;
@@ -39,6 +45,7 @@ $pink: #dc7b9a;
 $yellow: #d9b16d;
 $salmon: #ffb2a2;
 $magenta: #ab6397;
+$battery-green: #16d378;
 
 $dark: $blue-900;
 $light: $blue-100;
