@@ -350,7 +350,7 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
   // TODO: This doesn't filter properly yet, never goes back to the "filter_later" part
   filter = async (
     request: IAdvancedSearchFilter
-  ): Promise<[IUser[], boolean]> => {
+  ): Promise<[IUser[] | undefined, boolean]> => {
     const data: IUser[] = [];
     const filter_later: IFilterOption[] = [];
     for (const [userId, user] of Object.entries<IUser>(

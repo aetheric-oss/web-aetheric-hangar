@@ -1,17 +1,16 @@
 <template>
-    <div data-bs-theme="default" class="h-100 bg-muted-blue">
+    <div data-bs-theme="default" class="h-100 px-2 p-lg-2 p-xxl-3">
         <PortalAssetsMenu
             :menu-items="assetsMenu"
             @menu-clicked="changePage"
         />
-        <Component :is="activePage" class="bg-main"/>
+        <Component :is="activePage" />
         <PortalProfileConfigBar />
         <ProductProducts />
     </div>
 </template>
 
 <script setup lang="ts">
-
     useHead({title: "My Assets"})
     definePageMeta({ layout: "portal" });
     const route = useRoute();

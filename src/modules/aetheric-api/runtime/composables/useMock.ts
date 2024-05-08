@@ -38,81 +38,76 @@ const storeAircraft: RemovableRef<{ [key: string]: IAircraft }> =
   useLocalStorage("mock/store/aircraft", {
     "1": {
       uuid: "1",
-      owner: "1",
       name: "Flying Bird",
-      imgSrc: "/img/demo/drone-a.png",
-      status: EnumVehicleState.PENDING
-    } as IAircraft,
+      imgSrc: "/img/demo/drone-c.png",
+      status: EnumVehicleState.NEEDS_MAINTENANCE
+    } as ICompany,
     "2": {
       uuid: "2",
-      owner: "1",
       name: "Little Swan",
       imgSrc: "/img/demo/drone-b.png",
-      status: EnumVehicleState.REJECTED
-    } as IAircraft,
+      status: EnumVehicleState.IN_FLIGHT
+    } as ICompany,
     "3": {
       uuid: "3",
-      owner: "1",
       name: "Teh Chopper",
       imgSrc: "/img/demo/drone-a.png",
-      status: EnumVehicleState.IN_MAINTENANCE
-    } as IAircraft,
+      status: EnumVehicleState.HOME_BASE
+    } as ICompany,
     "4": {
       uuid: "4",
-      owner: "1",
       name: "Angel",
-      imgSrc: "/img/demo/drone-a.png",
+      imgSrc: "/img/demo/drone-b.png",
       status: EnumVehicleState.HOME_BASE
-    } as IAircraft,
+    } as ICompany,
     "5": {
       uuid: "5",
-      owner: "1",
       name: "Big Wing",
-      imgSrc: "/img/demo/drone-c.png",
+      imgSrc: "/img/demo/drone-a.png",
       status: EnumVehicleState.LANDING
-    } as IAircraft,
+    } as ICompany,
     "6": {
       uuid: "6",
       name: "Small Wing",
       imgSrc: "/img/demo/drone-b.png",
       status: EnumVehicleState.NEEDS_MAINTENANCE
-    } as IAircraft,
+    } as ICompany,
     "7": {
       uuid: "7",
       name: "Swift Falcon",
       imgSrc: "/img/demo/drone-b.png",
       status: EnumVehicleState.CHARGING
-    } as IAircraft,
+    } as ICompany,
     "8": {
       uuid: "8",
       name: "Sky Rider",
       imgSrc: "/img/demo/drone-a.png",
       status: EnumVehicleState.TAKE_OFF
-    } as IAircraft,
+    } as ICompany,
     "9": {
       uuid: "9",
       name: "Sky Rider",
       imgSrc: "/img/demo/drone-a.png",
       status: EnumVehicleState.IN_FLIGHT
-    } as IAircraft,
+    } as ICompany,
     "10": {
       uuid: "10",
       name: "Sky Rider",
       imgSrc: "/img/demo/drone-c.png",
       status: EnumVehicleState.PARKED
-    } as IAircraft,
+    } as ICompany,
     "11": {
       uuid: "11",
       name: "Sky Rider",
       imgSrc: "/img/demo/drone-a.png",
       status: EnumVehicleState.ARCHIVED
-    } as IAircraft,
+    } as ICompany,
     "12": {
       uuid: "12",
       name: "Sky Rider",
       imgSrc: "/img/demo/drone-c.png",
       status: EnumVehicleState.ARCHIVED
-    } as IAircraft,
+    } as ICompany,
   });
 
 const storeCompanies: RemovableRef<{ [key: string]: ICompany }> =

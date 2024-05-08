@@ -1,4 +1,4 @@
-import { type EnumContact } from "./enums";
+import { type EnumContact} from "./enums";
 import type {
   IGetForIdRequest,
   IAdvancedSearchFilter,
@@ -6,12 +6,16 @@ import type {
 } from "../types";
 
 export interface IContactsModule extends IApiFactory<IContact> {
-  get: (request: IGetForIdRequest) => Promise<[IContact | undefined, boolean]>;
+  get: (
+    request: IGetForIdRequest
+  ) => Promise<[IContact | undefined, boolean]>;
 
   create(request: IContactCreate): Promise<string | undefined>;
   update(request: IContact): Promise<boolean>;
 
-  filter(request: IAdvancedSearchFilter): Promise<[IContact[], boolean]>;
+  filter(
+    request: IAdvancedSearchFilter
+  ): Promise<[IContact[] | undefined, boolean]>;
 }
 
 export interface IContactUpdateRequest {

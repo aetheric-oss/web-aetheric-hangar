@@ -1,5 +1,5 @@
 <template>
-    <header class="p-3 manage-assets-header">
+    <header class="px-3">
         <div class="hstack mb-3 gap-2 py-1">
             <div>
                 <span>Manage assets </span>

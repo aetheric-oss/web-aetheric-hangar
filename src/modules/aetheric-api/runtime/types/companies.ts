@@ -5,12 +5,16 @@ import type {
 } from "../types";
 
 export interface ICompaniesModule extends IApiFactory<ICompany> {
-  get: (request: IGetForIdRequest) => Promise<[ICompany | undefined, boolean]>;
+  get: (
+    request: IGetForIdRequest
+  ) => Promise<[ICompany | undefined, boolean]>;
 
   create(request: ICompanyCreate): Promise<string | undefined>;
   update(request: ICompany): Promise<boolean>;
 
-  filter(request: IAdvancedSearchFilter): Promise<[ICompany[], boolean]>;
+  filter(
+    request: IAdvancedSearchFilter
+  ): Promise<[ICompany[] | undefined, boolean]>;
 }
 
 export interface ICompanyUpdateRequest {

@@ -31,7 +31,7 @@ class AircraftModule extends ApiFactory<IAircraft> implements IAircraftModule {
   async filter(
     this: AircraftModule,
     request: IAdvancedSearchFilter
-  ): Promise<[IAircraft[], boolean]> {
+  ): Promise<[IAircraft[] | undefined, boolean]> {
     return await super.filter(request);
   }
 }

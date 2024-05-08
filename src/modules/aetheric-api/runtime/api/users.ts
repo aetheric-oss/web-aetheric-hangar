@@ -296,7 +296,7 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
   async filter(
     this: UsersModule,
     request: IAdvancedSearchFilter
-  ): Promise<[IUser[], boolean]> {
+  ): Promise<[IUser[] | undefined, boolean]> {
     return await super.filter(request);
   }
 }

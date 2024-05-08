@@ -8,7 +8,9 @@ import type {
 } from "../types";
 
 export interface IUsersModule extends IApiFactory<IUser> {
-  get: (request: IGetForIdRequest) => Promise<[IUser | undefined, boolean]>;
+  get: (
+    request: IGetForIdRequest
+  ) => Promise<[IUser | undefined, boolean]>;
 
   getByUsername: (
     request: IUserGetByUsername
@@ -26,9 +28,15 @@ export interface IUsersModule extends IApiFactory<IUser> {
 
   updatePrivacySettings: (request: IUserPrivacySettings) => Promise<boolean>;
 
-  getCompanies: (request: IGetForIdRequest) => Promise<[ICompany[], boolean]>;
-  getContacts: (request: IGetForIdRequest) => Promise<[IContact[], boolean]>;
-  getAddresses: (request: IGetForIdRequest) => Promise<[IAddress[], boolean]>;
+  getCompanies: (
+    request: IGetForIdRequest
+  ) => Promise<[ICompany[], boolean]>;
+  getContacts: (
+    request: IGetForIdRequest
+  ) => Promise<[IContact[], boolean]>;
+  getAddresses: (
+    request: IGetForIdRequest
+  ) => Promise<[IAddress[], boolean]>;
   getPaymentMethods: (
     request: IGetForIdRequest
   ) => Promise<[IPaymentMethod[], boolean]>;
@@ -36,7 +44,9 @@ export interface IUsersModule extends IApiFactory<IUser> {
     request: IGetForIdRequest
   ) => Promise<[IPrivacySettings, boolean]>;
 
-  filter: (request: IAdvancedSearchFilter) => Promise<[IUser[], boolean]>;
+  filter: (
+    request: IAdvancedSearchFilter
+  ) => Promise<[IUser[] | undefined, boolean]>;
 }
 
 export interface IUserGetByUsername {

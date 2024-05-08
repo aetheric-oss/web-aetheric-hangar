@@ -25,7 +25,7 @@ class CompaniesModule extends ApiFactory<ICompany> implements ICompaniesModule {
   async filter(
     this: CompaniesModule,
     request: IAdvancedSearchFilter
-  ): Promise<[ICompany[], boolean]> {
+  ): Promise<[ICompany[] | undefined, boolean]> {
     return await super.filter(request);
   }
 }

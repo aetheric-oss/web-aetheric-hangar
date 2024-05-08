@@ -21,7 +21,7 @@ class AddressesModule extends ApiFactory<IAddress> implements IAddressesModule {
   async filter(
     this: AddressesModule,
     request: IAdvancedSearchFilter
-  ): Promise<[IAddress[], boolean]> {
+  ): Promise<[IAddress[] | undefined, boolean]> {
     return await super.filter(request);
   }
 }

@@ -73,7 +73,7 @@ class ContactsModule extends ApiFactory<IContact> implements IContactsModule {
   async filter(
     this: ContactsModule,
     request: IAdvancedSearchFilter
-  ): Promise<[IContact[], boolean]> {
+  ): Promise<[IContact[] | undefined, boolean]> {
     // clear this.error before we do anything
     this.error = undefined;
 

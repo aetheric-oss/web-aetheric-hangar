@@ -1,5 +1,5 @@
 <template>
-    <div data-bs-theme="default" class="h-100">
+    <div data-bs-theme="default" class="h-100 px-2 p-lg-2 p-xxl-3">
         <PortalProfileMenu
             :menu-items="profileMenu"
             @menu-clicked="changePage"

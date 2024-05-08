@@ -13,20 +13,25 @@ import type {
 import { ComparisonOperator, PredicateOperator } from "../types";
 import { useAddresses } from "../composables/useMock";
 
-class AddressesModule extends ApiFactory<IAddress> implements IAddressesModule {
+class AddressesModule
+  extends ApiFactory<IAddress>
+  implements IAddressesModule
+{
   resource = "/addresses";
 
   private addresses: Ref<{ [key: string]: IAddress }>;
   constructor(fetchOptions: any) {
     super(fetchOptions);
-    this.addresses = useState<{ [key: string]: IAddress }>("addresses", () =>
-      computed(() => {
-        const addresses: { [key: string]: IAddress } = {};
-        for (const [id, address] of Object.entries(useAddresses().value)) {
-          addresses[id] = reactive(address);
-        }
-        return addresses;
-      })
+    this.addresses = useState<{ [key: string]: IAddress }>(
+      "addresses",
+      () =>
+        computed(() => {
+          const addresses: { [key: string]: IAddress } = {};
+          for (const [id, address] of Object.entries(useAddresses().value)) {
+            addresses[id] = reactive(address);
+          }
+          return addresses;
+        })
     );
   }
 
@@ -76,7 +81,7 @@ class AddressesModule extends ApiFactory<IAddress> implements IAddressesModule {
   async filter(
     this: AddressesModule,
     request: IAdvancedSearchFilter
-  ): Promise<[IAddress[], boolean]> {
+  ): Promise<[IAddress[] | undefined, boolean]> {
     // clear this.error before we do anything
     this.error = undefined;
 
