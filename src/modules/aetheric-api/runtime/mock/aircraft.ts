@@ -82,7 +82,7 @@ class AircraftModule extends ApiFactory<IAircraft> implements IAircraftModule {
   async filter(
     this: AircraftModule,
     request: IAdvancedSearchFilter
-  ): Promise<[IAircraft[] | undefined, boolean]> {
+  ): Promise<[IAircraft[], boolean]> {
     // clear this.error before we do anything
     this.error = undefined;
 
@@ -120,6 +120,12 @@ class AircraftModule extends ApiFactory<IAircraft> implements IAircraftModule {
             ) {
               data.push(aircraft);
             }
+            if (
+              filter.search_field === "owner" &&
+              aircraft.owner === compare_str
+            ) {
+              data.push(aircraft);
+            }
           }
           if (
             filter.predicate_operator === PredicateOperator.ILIKE ||
@@ -132,6 +138,9 @@ class AircraftModule extends ApiFactory<IAircraft> implements IAircraftModule {
             }
             if (filter.search_field === "name") {
               compare_str = aircraft.name;
+            }
+            if (filter.search_field === "owner") {
+              compare_str = aircraft.owner;
             }
             if (PredicateOperator.ILIKE) {
               find_str = find_str.toLowerCase();

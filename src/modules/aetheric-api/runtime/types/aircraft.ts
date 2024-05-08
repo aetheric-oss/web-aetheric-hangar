@@ -3,18 +3,15 @@ import type {
   IAdvancedSearchFilter,
   IApiFactory,
 } from "../types";
+import type { EnumVehicleState } from "./enums";
 
 export interface IAircraftModule extends IApiFactory<IAircraft> {
-  get: (
-    request: IGetForIdRequest
-  ) => Promise<[IAircraft | undefined, boolean]>;
+  get: (request: IGetForIdRequest) => Promise<[IAircraft | undefined, boolean]>;
 
   create(request: IAircraftCreate): Promise<string | undefined>;
   update(request: IAircraft): Promise<boolean>;
 
-  filter(
-    request: IAdvancedSearchFilter
-  ): Promise<[IAircraft[] | undefined, boolean]>;
+  filter(request: IAdvancedSearchFilter): Promise<[IAircraft[], boolean]>;
 }
 
 export interface IAircraftUpdateRequest {
@@ -27,4 +24,6 @@ export interface IAircraft extends IAircraftCreate {
 export interface IAircraftCreate {
   name: string;
   imgSrc: string;
+  status: EnumVehicleState;
+  owner: string;
 }
