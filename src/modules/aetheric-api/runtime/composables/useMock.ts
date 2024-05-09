@@ -40,36 +40,78 @@ const storeAircraft: RemovableRef<{ [key: string]: IAircraft }> =
       uuid: "1",
       owner: "1",
       name: "Flying Bird",
-      imgSrc: "/img/demo/drone-c.png",
-      status: EnumVehicleState.NEEDS_MAINTENANCE
+      imgSrc: "/img/demo/drone-a.png",
+      status: EnumVehicleState.PENDING
     } as IAircraft,
     "2": {
       uuid: "2",
       owner: "1",
       name: "Little Swan",
       imgSrc: "/img/demo/drone-b.png",
-      status: EnumVehicleState.IN_FLIGHT
+      status: EnumVehicleState.REJECTED
     } as IAircraft,
     "3": {
       uuid: "3",
       owner: "1",
       name: "Teh Chopper",
       imgSrc: "/img/demo/drone-a.png",
-      status: EnumVehicleState.HOME_BASE
+      status: EnumVehicleState.IN_MAINTENANCE
     } as IAircraft,
     "4": {
       uuid: "4",
       owner: "1",
       name: "Angel",
-      imgSrc: "/img/demo/drone-b.png",
+      imgSrc: "/img/demo/drone-a.png",
       status: EnumVehicleState.HOME_BASE
     } as IAircraft,
     "5": {
       uuid: "5",
       owner: "1",
       name: "Big Wing",
-      imgSrc: "/img/demo/drone-a.png",
+      imgSrc: "/img/demo/drone-c.png",
       status: EnumVehicleState.LANDING
+    } as IAircraft,
+    "6": {
+      uuid: "6",
+      name: "Small Wing",
+      imgSrc: "/img/demo/drone-b.png",
+      status: EnumVehicleState.NEEDS_MAINTENANCE
+    } as IAircraft,
+    "7": {
+      uuid: "7",
+      name: "Swift Falcon",
+      imgSrc: "/img/demo/drone-b.png",
+      status: EnumVehicleState.CHARGING
+    } as IAircraft,
+    "8": {
+      uuid: "8",
+      name: "Sky Rider",
+      imgSrc: "/img/demo/drone-a.png",
+      status: EnumVehicleState.TAKE_OFF
+    } as IAircraft,
+    "9": {
+      uuid: "9",
+      name: "Sky Rider",
+      imgSrc: "/img/demo/drone-a.png",
+      status: EnumVehicleState.IN_FLIGHT
+    } as IAircraft,
+    "10": {
+      uuid: "10",
+      name: "Sky Rider",
+      imgSrc: "/img/demo/drone-c.png",
+      status: EnumVehicleState.PARKED
+    } as IAircraft,
+    "11": {
+      uuid: "11",
+      name: "Sky Rider",
+      imgSrc: "/img/demo/drone-a.png",
+      status: EnumVehicleState.ARCHIVED
+    } as IAircraft,
+    "12": {
+      uuid: "12",
+      name: "Sky Rider",
+      imgSrc: "/img/demo/drone-c.png",
+      status: EnumVehicleState.ARCHIVED
     } as IAircraft,
   });
 

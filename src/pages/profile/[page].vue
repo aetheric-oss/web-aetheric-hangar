@@ -1,5 +1,5 @@
 <template>
-    <div data-bs-theme="default" class="h-100 px-2 p-lg-2 p-xxl-3">
+    <div data-bs-theme="default" class="h-100">
         <PortalProfileMenu
             :menu-items="profileMenu"
             @menu-clicked="changePage"
@@ -27,6 +27,16 @@
             name: "Payment",
             path: "payment",
             component: resolveComponent("portal-profile-payment"),
+        },
+        {
+            name: "Hangar",
+            path: "hangar",
+            component: resolveComponent("portal-assets-hangar"),
+        },
+        {
+            name: "Rechargers",
+            path: "rechargers",
+            component: resolveComponent("portal-assets-rechargers"),
         },
     ];
 
