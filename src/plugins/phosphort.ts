@@ -30,6 +30,9 @@ import {
   PhAt,
   PhPhone,
   PhBank,
+  PhSquaresFour,
+  PhSlidersHorizontal,
+  PhDotsThreeOutline,
 } from "@phosphor-icons/vue";
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -60,4 +63,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component("IconAt", PhAt);
   nuxtApp.vueApp.component("IconPhone", PhPhone);
   nuxtApp.vueApp.component("IconBank", PhBank);
+  nuxtApp.vueApp.component("IconSquaresFour", PhSquaresFour);
+  nuxtApp.vueApp.component("IconSlidersHorizontal", PhSlidersHorizontal);
+  nuxtApp.vueApp.component("IconDotsThreeOutline", PhDotsThreeOutline);
 });

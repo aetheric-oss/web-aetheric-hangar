@@ -4,11 +4,13 @@
             :menu-items="assetsMenu"
             @menu-clicked="changePage"
         />
+        <PortalConfigBar />
         <Component :is="activePage" />
     </div>
 </template>
 
 <script setup lang="ts">
+
     useHead({title: "My Assets"})
     definePageMeta({ layout: "portal" });
     const route = useRoute();
@@ -27,6 +29,16 @@
             name: "Pilots",
             path: "pilots",
             component: resolveComponent("portal-assets-pilots"),
+        },
+        {
+            name: "Hangar",
+            path: "hangar",
+            component: resolveComponent("portal-assets-hangar"),
+        },
+        {
+            name: "Rechargers",
+            path: "rechargers",
+            component: resolveComponent("portal-assets-hangar"),
         },
     ];
 

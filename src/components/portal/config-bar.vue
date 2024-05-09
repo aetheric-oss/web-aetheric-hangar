@@ -1,20 +1,13 @@
 <template>
-    <section class="container-fluid">
+    <section class="container">
         <div class="row mx-auto mt-2">
             <div class="col">
-                <img
-                class="float-start"
-                src="/icons/config-vector.svg"
-                alt="Config Vector"
-                />
+                <SlidersHorizontal size="1.5rem" class="fill-orange" />
             </div>
-            <div class="col">
-                <img
-                    class="float-end"
-                    src="/icons/config-grid.svg"
-                    alt="Config Grid"
-                />
+            <div class="col d-flex justify-content-end">
+                <SquaresFour size="1.5rem" class="text-success" />
             </div>
         </div>
     </section>
 </template>
+
