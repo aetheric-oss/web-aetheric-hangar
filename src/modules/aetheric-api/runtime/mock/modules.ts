@@ -7,7 +7,7 @@ import AircraftModule from "./aircraft";
 import type { FetchOptions, Modules } from "../types";
 
 /** an object containing all repositories we need to expose */
-const modules = (fetchOptions: FetchOptions, currentCompany: Ref<string>): Modules => {
+const modules = (fetchOptions: FetchOptions, currentCompany: string): Modules => {
   return {
     auth: new AuthModule(fetchOptions),
     users: new UsersModule(fetchOptions),

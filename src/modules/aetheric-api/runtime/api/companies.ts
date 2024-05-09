@@ -17,7 +17,10 @@ class CompaniesModule extends ApiFactory<ICompany> implements ICompaniesModule {
   };
 
   // ----------------------- create new company --------------------- //
-  async create(request: ICompanyCreate): Promise<string | undefined> {
+  async create(
+    this: CompaniesModule,
+    request: ICompanyCreate
+  ): Promise<string | undefined> {
     return await super.create(request);
   }
 

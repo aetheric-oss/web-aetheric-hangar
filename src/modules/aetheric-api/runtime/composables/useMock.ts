@@ -73,42 +73,49 @@ const storeAircraft: RemovableRef<{ [key: string]: IAircraft }> =
     } as IAircraft,
     "6": {
       uuid: "6",
+      owner: "1",
       name: "Small Wing",
       imgSrc: "/img/demo/drone-b.png",
       status: EnumVehicleState.NEEDS_MAINTENANCE
     } as IAircraft,
     "7": {
       uuid: "7",
+      owner: "1",
       name: "Swift Falcon",
       imgSrc: "/img/demo/drone-b.png",
       status: EnumVehicleState.CHARGING
     } as IAircraft,
     "8": {
       uuid: "8",
+      owner: "1",
       name: "Sky Rider",
       imgSrc: "/img/demo/drone-a.png",
       status: EnumVehicleState.TAKE_OFF
     } as IAircraft,
     "9": {
       uuid: "9",
+      owner: "1",
       name: "Sky Rider",
       imgSrc: "/img/demo/drone-a.png",
       status: EnumVehicleState.IN_FLIGHT
     } as IAircraft,
     "10": {
       uuid: "10",
+      owner: "1",
       name: "Sky Rider",
       imgSrc: "/img/demo/drone-c.png",
       status: EnumVehicleState.PARKED
     } as IAircraft,
     "11": {
       uuid: "11",
+      owner: "1",
       name: "Sky Rider",
       imgSrc: "/img/demo/drone-a.png",
       status: EnumVehicleState.ARCHIVED
     } as IAircraft,
     "12": {
       uuid: "12",
+      owner: "1",
       name: "Sky Rider",
       imgSrc: "/img/demo/drone-c.png",
       status: EnumVehicleState.ARCHIVED
@@ -270,7 +277,7 @@ const storeCompanyProfiles: RemovableRef<{
 }> = useLocalStorage("mock/store/company_profiles", {
   "1": {
     company: "1",
-    aircraft: ["1", "2", "3", "4", "5"],
+    aircraft: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
     addresses: ["1", "2"],
     contactInfo: ["1", "2", "3"],
   },

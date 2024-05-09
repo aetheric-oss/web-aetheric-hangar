@@ -12,15 +12,14 @@ import type {
 } from "../types";
 import { ComparisonOperator, PredicateOperator } from "../types";
 import { useAircraft, useCompanyProfiles } from "../composables/useMock";
-import { useLocalStorage } from "@vueuse/core";
 
 class AircraftModule extends ApiFactory<IAircraft> implements IAircraftModule {
-  resource: string;
+  resource: string = "";
 
-  constructor(fetchOptions: any, currentCompany: Ref<string>) {
+  constructor(fetchOptions: any, currentCompany: string) {
     super(fetchOptions);
 
-    this.resource = currentCompany.value;
+    this.resource = currentCompany;
 
     // load state
     useState<{ [key: string]: IAircraft }>("aircraft", () =>
@@ -88,70 +87,76 @@ class AircraftModule extends ApiFactory<IAircraft> implements IAircraftModule {
 
     const data: IAircraft[] = [];
     const filter_later: IFilterOption[] = [];
+    const companyProfiles = useCompanyProfiles();
 
-    // get aircraft ids for current company
-    const aircraftIds: string[] =
-      useCompanyProfiles().value[this.resource].aircraft;
+    if (this.resource && this.resource !== "") {
+      // get aircraft ids for current company
+      const aircraftIds: string[] =
+        companyProfiles.value[this.resource].aircraft;
+      console.log(aircraftIds);
 
-    for (const [aircraftId, aircraft] of Object.entries<IAircraft>(
-      useState<{ [key: string]: IAircraft }>("aircraft").value
-    )) {
-      if (aircraftIds.find((id) => id == aircraftId)) {
-        for (const filter of request.filters) {
-          if (
-            filter.comparison_operator &&
-            filter.comparison_operator === ComparisonOperator.AND
-          ) {
-            filter_later.push(filter);
-            break;
-          }
+      for (const [aircraftId, aircraft] of Object.entries<IAircraft>(
+        useState<{ [key: string]: IAircraft }>("aircraft").value
+      )) {
+        if (aircraftIds.find((id) => id == aircraftId)) {
+          for (const filter of request.filters) {
+            if (
+              filter.comparison_operator &&
+              filter.comparison_operator === ComparisonOperator.AND
+            ) {
+              filter_later.push(filter);
+              break;
+            }
 
-          if (filter.predicate_operator === PredicateOperator.EQUALS) {
-            const compare_str = filter.search_value[0];
-            if (
-              filter.search_field === "uuid" &&
-              aircraft.uuid === compare_str
-            ) {
-              data.push(aircraft);
+            if (filter.predicate_operator === PredicateOperator.EQUALS) {
+              const compare_str = filter.search_value[0];
+              if (
+                filter.search_field === "uuid" &&
+                aircraft.uuid === compare_str
+              ) {
+                data.push(aircraft);
+              }
+              if (
+                filter.search_field === "name" &&
+                aircraft.name === compare_str
+              ) {
+                data.push(aircraft);
+              }
+              if (
+                filter.search_field === "owner" &&
+                aircraft.owner === compare_str
+              ) {
+                data.push(aircraft);
+              }
             }
             if (
-              filter.search_field === "name" &&
-              aircraft.name === compare_str
+              filter.predicate_operator === PredicateOperator.ILIKE ||
+              filter.predicate_operator === PredicateOperator.LIKE
             ) {
-              data.push(aircraft);
-            }
-            if (
-              filter.search_field === "owner" &&
-              aircraft.owner === compare_str
-            ) {
-              data.push(aircraft);
-            }
-          }
-          if (
-            filter.predicate_operator === PredicateOperator.ILIKE ||
-            filter.predicate_operator === PredicateOperator.LIKE
-          ) {
-            let find_str: string = filter.search_value[0];
-            let compare_str: string = "";
-            if (filter.search_field === "uuid") {
-              compare_str = aircraft.uuid;
-            }
-            if (filter.search_field === "name") {
-              compare_str = aircraft.name;
-            }
-            if (filter.search_field === "owner") {
-              compare_str = aircraft.owner;
-            }
-            if (PredicateOperator.ILIKE) {
-              find_str = find_str.toLowerCase();
-              compare_str = compare_str.toLowerCase();
-            }
-            if (compare_str.includes(find_str)) {
-              data.push(aircraft);
+              let find_str: string = filter.search_value[0];
+              let compare_str: string = "";
+              if (filter.search_field === "uuid") {
+                compare_str = aircraft.uuid;
+              }
+              if (filter.search_field === "name") {
+                compare_str = aircraft.name;
+              }
+              if (filter.search_field === "owner") {
+                compare_str = aircraft.owner;
+              }
+              if (PredicateOperator.ILIKE) {
+                find_str = find_str.toLowerCase();
+                compare_str = compare_str.toLowerCase();
+              }
+              if (compare_str.includes(find_str)) {
+                data.push(aircraft);
+              }
             }
           }
         }
       }
+    } else {
+      console.log("No resource id found.");
     }
     return [data as IAircraft[], true];
   }

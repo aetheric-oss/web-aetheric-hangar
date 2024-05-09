@@ -6,6 +6,8 @@ import type { IAddressesModule } from "./addresses";
 import type { IAircraftModule } from "./aircraft";
 
 export interface IApiFactory<T> {
+  resource: string;
+
   get error(): string | undefined;
   set error(error: string | undefined);
 

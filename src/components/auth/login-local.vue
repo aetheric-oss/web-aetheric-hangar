@@ -47,7 +47,7 @@
     import { useProfileStore } from "~/store/profile";
 
     const router = useRouter();
-    const $api = useAethericApi(useCurrentCompany());
+    const $api = useAethericApi(useCurrentCompany().value);
     const authStore = useAuthStore();
 
     // Reactive vars

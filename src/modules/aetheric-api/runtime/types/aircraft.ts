@@ -6,12 +6,21 @@ import type {
 import type { EnumVehicleState } from "./enums";
 
 export interface IAircraftModule extends IApiFactory<IAircraft> {
-  get: (request: IGetForIdRequest) => Promise<[IAircraft | undefined, boolean]>;
+  get: (
+    this: IAircraftModule,
+    request: IGetForIdRequest
+  ) => Promise<[IAircraft | undefined, boolean]>;
 
-  create(request: IAircraftCreate): Promise<string | undefined>;
-  update(request: IAircraft): Promise<boolean>;
+  create(
+    this: IAircraftModule,
+    request: IAircraftCreate
+  ): Promise<string | undefined>;
+  update(this: IAircraftModule, request: IAircraft): Promise<boolean>;
 
-  filter(request: IAdvancedSearchFilter): Promise<[IAircraft[], boolean]>;
+  filter(
+    this: IAircraftModule,
+    request: IAdvancedSearchFilter
+  ): Promise<[IAircraft[], boolean]>;
 }
 
 export interface IAircraftUpdateRequest {

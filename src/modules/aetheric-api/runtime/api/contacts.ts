@@ -17,7 +17,10 @@ class ContactsModule extends ApiFactory<IContact> implements IContactsModule {
   };
 
   // ----------------------- create new contact --------------------- //
-  async create(request: IContactCreate): Promise<string | undefined> {
+  async create(
+    this: ContactsModule,
+    request: IContactCreate
+  ): Promise<string | undefined> {
     return await super.create(request);
   }
 

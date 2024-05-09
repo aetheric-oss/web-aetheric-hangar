@@ -68,7 +68,7 @@
     import type { ICompany, IUser } from "~/modules/aetheric-api";
 
     const { $bootstrap } = useNuxtApp();
-    const $api = useAethericApi(useCurrentCompany());
+    const $api = useAethericApi(useCurrentCompany().value);
 
     const user = defineModel<IUser>("user", {
         default: {},

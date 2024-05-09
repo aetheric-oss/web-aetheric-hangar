@@ -19,7 +19,7 @@
     import type { IPrivacySettings } from "~/modules/aetheric-api";
 
     const profileStore = useProfileStore();
-    const $api = useAethericApi(useCurrentCompany());
+    const $api = useAethericApi(useCurrentCompany().value);
 
     // Reactive vars
     const user = ref(await profileStore.getUser());
