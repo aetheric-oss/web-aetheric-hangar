@@ -1,7 +1,7 @@
 // grays
 $gray-100: #f9f9fd;
-$gray-150: #ecefee;
-$gray-200: #a7a7ba;
+$gray-200: #ecefee;
+$gray-300: #a7a7ba;
 $gray-400: #424752;
 $gray-500: #484d62;
 $gray-600: #4b505b;
@@ -12,7 +12,6 @@ $gray-900: #222732;
 // blues
 $blue-100: #ecedfe;
 $blue-150: #cccde0;
-$blue-200: #ecedfecc;
 $blue-300: #636f8b;
 $blue-800: #252b40;
 $blue-900: #1b202c;
@@ -29,6 +28,7 @@ $purple: $purple-500;
 
 // oranges
 $orange-300: #e08d48;
+$orange-300-rgb: 224, 141, 72;
 $orange-400: #ff8a78;
 $orange-500: #ff5e45;
 $orange: $orange-500;
@@ -45,7 +45,6 @@ $pink: #dc7b9a;
 $yellow: #d9b16d;
 $salmon: #ffb2a2;
 $magenta: #ab6397;
-$battery-green: #16d378;
 
 $dark: $blue-900;
 $light: $blue-100;
@@ -60,8 +59,10 @@ $info: $secondary;
 $info-rgb: $secondary-rgb;
 $success: #28bb94;
 $success-rgb: 40, 187, 148;
-$warning: #ca0a4f;
-$warning-rgb: 243, 27, 101;
+$warning: $orange-300;
+$warning-rgb: $orange-300-rgb;
+$danger: #ca0a4f;
+$danger-rgb: 202, 10, 79;
 
 $link-color: $white;
 $link-color-rgb: $white-rgb;
@@ -127,3 +128,7 @@ $offcanvas-horizontal-width: 500px;
 $arrow-drop-shadow: drop-shadow(1px 5px 10px rgba(255, 178, 162, 0.2))
     drop-shadow(-6px 0px 10px rgba(52, 60, 194, 0.2));
 $box-shadow-lg: filter(var(--arrow-drop-shadow));
+
+// badge
+$badge-font-weight: 'normal';
+$badge-font-size: 0.7rem;

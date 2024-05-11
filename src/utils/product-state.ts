@@ -2,7 +2,7 @@ interface ProductStatus {
     backgroundColor: string;
 }
 
-export const getCardColor = (status: string): string => {
+export const getCardState = (status: string): string => {
     if (status == 'Pending' || status == 'Rejected' ||
         status == 'Archived' ||status == 'Disabled') {
         return 'inactive'
@@ -11,47 +11,19 @@ export const getCardColor = (status: string): string => {
     return 'active'
 }
 
-export const getStatusColor = (status: string):  ProductStatus => {
+export const getBadgeColor = (status: string):  string => {
     switch (status) {
         case 'Pending':
         case 'In Maintenance':
         case 'Charging':
-            return {
-                backgroundColor:  '#E08D48'
-            }
+            return "text-bg-warning";
         case 'Rejected':
         case 'Needs Maintenance':
-            return {
-                backgroundColor:  '#CA0A4F'
-            }
+            return "text-bg-danger"
         case 'Archived':
         case 'Disabled':
-            return {
-                backgroundColor:  'var(--bs-gray-200)'
-            }
+            return "text-bg-300"
         default:
-            return {
-                backgroundColor:  '#ECEFEE'
-            }
+            return "text-bg-200"
     }
-}
-
-export const getTextColor = (status: string): string => {
-    if (status == 'Home Base' || status == 'Landing' ||
-        status == 'Take Off' ||status == 'In Flight' ||
-        status == 'Parked'){
-        return 'text-dark'
-
-    }
-    return 'text-white'
-}
-
-export const getMenuTextColor = (status: string): string => {
-    if (status == 'Home Base' || status == 'Landing' ||
-        status == 'Take Off' ||status == 'In Flight' ||
-        status == 'Parked'){
-        return 'text-dark'
-
-    }
-    return 'text-white'
 }

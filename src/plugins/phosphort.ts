@@ -63,7 +63,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component("IconAt", PhAt);
   nuxtApp.vueApp.component("IconPhone", PhPhone);
   nuxtApp.vueApp.component("IconBank", PhBank);
-  nuxtApp.vueApp.component("SquaresFour", PhSquaresFour);
-  nuxtApp.vueApp.component("SlidersHorizontal", PhSlidersHorizontal);
-  nuxtApp.vueApp.component("DotsThreeOutline", PhDotsThreeOutline);
+  nuxtApp.vueApp.component("IconSquaresFour", PhSquaresFour);
+  nuxtApp.vueApp.component("IconSlidersHorizontal", PhSlidersHorizontal);
+  nuxtApp.vueApp.component("IconDotsThreeOutline", PhDotsThreeOutline);
 });
