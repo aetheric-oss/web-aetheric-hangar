@@ -7,7 +7,6 @@
         />
         <main class="min-vh-100 col-lg overflow-x-auto">
             <slot></slot>
-            <div id="modal-container" class="position-absolute"></div>
         </main>
     </div>
 </template>
