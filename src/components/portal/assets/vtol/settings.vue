@@ -1,5 +1,5 @@
 <template>
-    <div data-bs-theme="dark" class="rounded settings p-2" v-if="menu">
+    <div data-bs-theme="dark" class="rounded p-2" v-if="menu">
         <div class="d-flex m">
             <span class="text-muted ml-1 mt-1">Manage assets</span>
             <div class="btn btn-icon"><IconClose
@@ -8,7 +8,7 @@
                 @click="closeMenu"
             /></div>
         </div>
-        <ul class="list-unstyled pe-auto settings-list">
+        <ul class="list-unstyled pe-auto">
             <li
                 v-for="(item, index) in menuItems"
                 :key="index"
@@ -51,10 +51,3 @@
         clickedIndex.value = index;
     };
 </script>
-
-<style scoped lang="scss">
-    .settings-list li {
-        text-transform: none !important;
-        font-weight: normal !important;
-    }
-</style>

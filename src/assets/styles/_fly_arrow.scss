@@ -172,28 +172,6 @@ a,
     background-position: center;
 }
 
-.logo {
-    background-color: var(--bs-light);
-    mask: var(--logo);
-    -webkit-mask: var(--logo);
-    mask-size: cover;
-    -webkit-mask-size: cover;
-    height: 3rem;
-    width: 12rem;
-    margin-top: 9px;
-
-    /* Hide the text. */
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-/** LISTS **/
-li {
-    text-transform: uppercase;
-    font-weight: $font-weight-bold;
-}
-
 /** OTHER **/
 
 header p {

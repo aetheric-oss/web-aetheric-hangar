@@ -12,7 +12,7 @@ export const usePagesMenuStore = defineStore({
             pages: [
             {
               name: 'My assets',
-              path: '/manage-assets/my-assets',
+              path: '/assets/my-assets/vtol',
               order: 1
             },
             {
