@@ -10,9 +10,9 @@ import type {
 class AircraftModule extends ApiFactory<IAircraft> implements IAircraftModule {
   resource: string;
 
-  constructor(fetchOptions: any, currentCompany: Ref<string>) {
+  constructor(fetchOptions: any, currentCompany: string) {
     super(fetchOptions);
-    this.resource = `/assets/supplier/${currentCompany.value}/aircraft`;
+    this.resource = `/assets/supplier/${currentCompany}/aircraft`;
   }
 
   // ----------------------- get company data --------------------- //
@@ -23,7 +23,10 @@ class AircraftModule extends ApiFactory<IAircraft> implements IAircraftModule {
   };
 
   // ----------------------- create new company --------------------- //
-  async create(request: IAircraftCreate): Promise<string | undefined> {
+  async create(
+    this: AircraftModule,
+    request: IAircraftCreate
+  ): Promise<string | undefined> {
     return await super.create(request);
   }
 

@@ -1,38 +1,51 @@
 import { defineStore } from "pinia";
-import type {
-  IUser,
-} from "~/modules/aetheric-api";
+import type { IUser } from "~/modules/aetheric-api";
 import { useLocalStorage } from "@vueuse/core";
+import { flushAethericApi } from "~/modules/aetheric-api/runtime/composables/useAethericApi";
 
 interface IProfileState {
   _user: IUser | undefined;
-  _currentCompany: string;
 }
 
 export const useProfileStore = defineStore({
   id: "profile-store",
-  state: () : IProfileState => {
+  state: (): IProfileState => {
     return {
       _user: undefined,
-      _currentCompany: "0",
-    }
+    };
   },
 
   actions: {
     switchAccount(uuid: string) {
-      this._currentCompany = uuid;
+      const currentCompany = useCurrentCompany();
+      currentCompany.value = uuid;
+      flushAethericApi();
     },
     async getUser(): Promise<IUser> {
       const username = useLocalStorage("aetheric/auth/username", "");
       if (this._user === undefined && username.value !== "") {
-        const $api = useAethericApi(useCurrentCompany());
+        const $api = useAethericApi(useCurrentCompany().value);
         const [user, success] = await $api.users.getByUsername({
           username: username.value,
         });
         if (user) {
           this._user = user;
+
+          const currentCompany = useCurrentCompany();
+          if (currentCompany.value === "") {
+            let [result, success] = await $api.users.getCompanies({
+              uuid: user.uuid,
+            });
+            if (success && result) {
+              if (result.length > 0) {
+                currentCompany.value = result[0].uuid;
+                flushAethericApi();
+              }
+            }
+          }
         }
       }
+
       return this._user
         ? this._user
         : {

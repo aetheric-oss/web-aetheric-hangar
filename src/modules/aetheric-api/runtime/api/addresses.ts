@@ -1,6 +1,10 @@
 import ApiFactory from "../";
 import type { IGetForIdRequest, IAdvancedSearchFilter } from "../types";
-import type { IAddressesModule, IAddress, IAddressCreate } from "../types/addresses";
+import type {
+  IAddressesModule,
+  IAddress,
+  IAddressCreate,
+} from "../types/addresses";
 
 class AddressesModule extends ApiFactory<IAddress> implements IAddressesModule {
   resource = "/addresses";
@@ -13,7 +17,10 @@ class AddressesModule extends ApiFactory<IAddress> implements IAddressesModule {
   };
 
   // ----------------------- create new address --------------------- //
-  async create(request: IAddressCreate): Promise<string | undefined> {
+  async create(
+    this: AddressesModule,
+    request: IAddressCreate
+  ): Promise<string | undefined> {
     return await super.create(request);
   }
 

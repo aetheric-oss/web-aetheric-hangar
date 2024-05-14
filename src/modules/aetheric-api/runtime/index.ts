@@ -8,13 +8,14 @@ import type {
 } from "./types";
 
 abstract class ApiFactory<T> implements IApiFactory<T> {
-  abstract resource: string;
+  resource: string;
 
   private fetchOptions;
   private _error: string | undefined;
 
   constructor(fetchOptions: any) {
     this.fetchOptions = fetchOptions;
+    this.resource = "";
   }
 
   /**
