@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex p-2 align-items-center text-uppercase rounded">
+    <div class="btn btn-gray d-flex p-2 align-items-center text-uppercase">
         <slot name="left"></slot>
         <div class="flex-grow-1 text-start" :class="'text-' + textColor">
             <div class="text-muted fw-semibold" v-if="textHeading">
@@ -37,8 +37,7 @@
             type: String,
             required: true,
         },
-        textColor: {
-            type: String,
-        },
     });
+
+    const textColor = defineModel("textColor");
 </script>
