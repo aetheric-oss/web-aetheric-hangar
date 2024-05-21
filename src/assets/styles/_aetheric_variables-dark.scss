@@ -3,16 +3,16 @@ $enable-dark-mode: true;
 
 $body-color-dark: $light;
 $body-bg-dark: $dark;
-$body-secondary-bg-dark: $gray-900;
+$body-secondary-bg-dark: $blue-800;
 $body-secondary-color-dark: $gray-300;
 $body-tertiary-bg-dark: $gray-700;
+$body-tertiary-bg-dark-rgb: $gray-700-rgb;
 $body-tertiary-color-dark: $gray-100;
 
 $link-color-dark: $white;
 $link-color-rgb-dark: $white-rgb;
 
-$dark-bg-subtle-dark: $blue-800;
-$dark-bg-emphasis-dark: $gray-900;
+$dark-bg-subtle-dark: $gray-900;
 $light-bg-subtle-dark: $gray-400;
 
 $form-label-color: $blue-300;
@@ -29,6 +29,9 @@ $accordion-bg: var(--bs-secondary-bg);
 $accordion-button-icon-dark:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><rect width='256' height='256' fill='#{$accordion-icon-color-dark}'/><polyline points='208 96 128 176 48 96' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'/></svg>");
 $accordion-button-active-icon-dark:  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><rect width='256' height='256' fill='none'/><polyline points='208 96 128 176 48 96' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'/></svg>");
 $accordion-link-active-icon-dark:    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><rect width='256' height='256' fill='none'/><polyline points='96 48 176 128 96 208' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='16'/></svg>");
+
+$border-color-dark:                 $gray-700;
+$light-border-subtle-dark:          $blue-100;
 
 // Available variables Dark Mode
 //---------------------------------------------------------------------------
@@ -74,7 +77,6 @@ $body-secondary-bg-dark:            $gray-800 !default;
 $body-tertiary-color-dark:          rgba($body-color-dark, .5) !default;
 $body-tertiary-bg-dark:             mix($gray-800, $gray-900, 50%) !default;
 $body-emphasis-color-dark:          $white !default;
-$border-color-dark:                 $gray-700 !default;
 $border-color-translucent-dark:     rgba($white, .15) !default;
 $headings-color-dark:               inherit !default;
 $link-color-dark:                   tint-color($primary, 40%) !default;

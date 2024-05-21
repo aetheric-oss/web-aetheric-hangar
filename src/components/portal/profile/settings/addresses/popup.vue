@@ -2,7 +2,7 @@
     <PortalPopup :popupId="popupId" position="end" ref="addressPopup">
         <template #title>{{ displayTitle }}</template>
         <template #content>
-            <form class="container">
+            <form class="vstack gap-2">
                 <FormInputDropdown
                     id="type"
                     label="Type"

@@ -1,6 +1,6 @@
 <template>
     <div
-        class="shadow card justify-content-center z-0 position-relative"
+        class="shadow card z-0"
         @mouseover="showButton"
         @mouseleave="hideButton"
     >
@@ -35,7 +35,7 @@
                     }}</span>
                 </div>
                 <IconDotsThreeOutline
-                    class="btn btn-link pe-auto fill-orange position-relative z-2"
+                    class="btn btn-link pe-auto text-orange position-relative z-2"
                     size="3rem"
                     weight="fill"
                     @click="updateMenu"
@@ -106,7 +106,7 @@
     }
 
     .battery {
-        background-color: var(--bs-blue-150);
+        background-color: var(--bs-blue-200);
         height: 8px;
     }
 

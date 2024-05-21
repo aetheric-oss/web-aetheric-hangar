@@ -19,7 +19,7 @@
                 </h5>
                 <button
                     type="button"
-                    class="btn pe-0"
+                    class="btn pe-0 border-0"
                     data-bs-dismiss="offcanvas"
                     aria-label="Close"
                 >
@@ -57,10 +57,24 @@
         let popup = document.getElementById(props.popupId)!;
         let offcanvas = $bootstrap.Offcanvas.getInstance(popup)!;
         offcanvas.hide();
+        emit("close");
     };
+
+    // Emits
+    const emit = defineEmits<{
+        (e: "close"): void;
+    }>();
 
     // Exposed functions
     defineExpose({
         close,
+    });
+
+    // Emit close event when close button is clicked
+    onMounted(() => {
+        const myOffcanvas = document.getElementById(props.popupId);
+        myOffcanvas?.addEventListener("hide.bs.offcanvas", (event) => {
+            emit("close");
+        });
     });
 </script>

@@ -1,6 +1,8 @@
 <template>
     <div>
-        <label class="form-label" :for="id">Password</label>
+        <div v-if="label" class="form-label" :for="id">
+            {{ label }}
+        </div>
         <div class="input-box d-flex mb-2" v-bind="$attrs">
             <div class="btn-icon ps-1">
                 <slot name="icon-left"></slot>

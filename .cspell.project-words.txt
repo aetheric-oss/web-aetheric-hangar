@@ -34,3 +34,10 @@ sortedcompanies
 vueuse
 unref
 prerender
+Radiobox
+timeslot
+Vertipad
+vertipad
+vertipads
+Vertiport
+vertiport

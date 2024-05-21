@@ -9,7 +9,6 @@
         <template #content>
             <div class="d-grid gap-1">
                 <PortalNavPopupCard
-                    class="bg-body-tertiary"
                     text="Document is Awaiting Upload"
                     icon="IconWarning"
                     iconColor="warning"
@@ -22,7 +21,6 @@
                 </PortalNavPopupCard>
 
                 <PortalNavPopupCard
-                    class="bg-body-tertiary"
                     text="Teammate Added"
                     icon="IconDotOutline"
                     iconColor="info"
@@ -35,7 +33,6 @@
                 </PortalNavPopupCard>
 
                 <PortalNavPopupCard
-                    class="bg-body-tertiary"
                     text="New VTOL Asset Added"
                     icon="IconDotOutline"
                     iconColor="info"

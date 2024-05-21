@@ -6,15 +6,17 @@ $gray-400: #424752;
 $gray-500: #484d62;
 $gray-600: #4b505b;
 $gray-700: #3d414c;
+$gray-700-rgb: 61, 65, 76;
 $gray-800: #373b46;
 $gray-900: #222732;
 
 // blues
 $blue-100: #ecedfe;
-$blue-150: #cccde0;
+$blue-100-rgb: 236, 237, 254;
+$blue-200: #cccde0;
 $blue-300: #636f8b;
 $blue-800: #252b40;
-$blue-900: #1b202c;
+$blue-900: #090f29;
 
 // indigos
 $indigo-100: #bbbbc4;
@@ -31,7 +33,9 @@ $orange-300: #e08d48;
 $orange-300-rgb: 224, 141, 72;
 $orange-400: #ff8a78;
 $orange-500: #ff5e45;
+$orange-500-rgb: 255, 94, 69;
 $orange: $orange-500;
+$orange-rgb: $orange-500-rgb;
 
 $black: #181c27;
 $arrow-dark: #090F29;
@@ -41,6 +45,7 @@ $white: #fff;
 $white-rgb: 100, 100, 100;
 $red: #c22e17;
 $teal: #2abb94;
+$teal-rgb: 42, 187, 148;
 $pink: #dc7b9a;
 $yellow: #d9b16d;
 $salmon: #ffb2a2;
@@ -54,7 +59,7 @@ $gray-dark-rgb: 61, 65, 76;
 $primary: $orange;
 $primary-rgb: 255, 93, 70;
 $secondary: $teal;
-$secondary-rgb: 42, 187, 148;
+$secondary-rgb: $teal-rgb;
 $info: $secondary;
 $info-rgb: $secondary-rgb;
 $success: #28bb94;
@@ -69,12 +74,15 @@ $link-color-rgb: $white-rgb;
 
 $body-color: $black;
 $body-color-rgb: $black-rgb;
-$body-bg: $white;
+$body-bg: $gray-100;
 $body-bg-rgb: $white-rgb;
-$border-radius: 0.5rem;
+$border-radius: 0.75rem;
 
 $dark-bg-subtle: $gray-400;
-$light-bg-subtle: $gray-400;
+$light-bg-subtle: $gray-200;
+$body-secondary-bg-rgb: $blue-100-rgb;
+$body-secondary-bg: $blue-100;
+$body-secondary-color: $dark;
 $body-tertiary-bg-rgb: $success-rgb;
 $body-tertiary-bg: $success;
 $body-tertiary-color: $white;
@@ -90,8 +98,8 @@ $spacers: (
 );
 
 $font-size-base: 0.8rem;
-$font-family-sans-serif: 'Poppins', sans-serif;
-$headings-font-family: 'Poppins', sans-serif;
+$font-family-sans-serif: 'Open Sans', sans-serif;
+$headings-font-family: "Libre Baskerville", sans-serif;
 
 // cards
 $card-bg: $light;
@@ -103,8 +111,8 @@ $card-height: 100%;
 // dark mode
 $enable-dark-mode: true;
 
-$input-bg: $blue-800;
-$input-color: $light;
+$input-bg: var(--bs-secondary-bg);
+$input-color: var(--bs-secondary-color);
 $input-border-width: 0;
 $input-focus-border-color: $blue-800;
 $input-btn-padding-x: map-get($spacers, 2);
@@ -120,15 +128,22 @@ $accordion-border-color: var(--bs-secondary-bg);
 $accordion-button-padding-y: map-get($spacers, 2);
 
 // offcanvas
-$offcanvas-bg-color: transparent;
+$offcanvas-bg-color: var(--bs-tertiary-gb);
 $offcanvas-border-width: 0;
 $offcanvas-horizontal-width: 500px;
 
 // shadows
-$arrow-drop-shadow: drop-shadow(1px 5px 10px rgba(255, 178, 162, 0.2))
-    drop-shadow(-6px 0px 10px rgba(52, 60, 194, 0.2));
+$arrow-drop-shadow: drop-shadow(1px 5px 10px rgba(var(--bs-orange-rgb), 0.3))
+    drop-shadow(-6px 0px 10px rgba(52, 60, 194, 0.3));
 $box-shadow-lg: filter(var(--arrow-drop-shadow));
 
 // badge
 $badge-font-weight: 'normal';
 $badge-font-size: 0.7rem;
+
+// buttons
+$btn-font-family: "Poppins", "Open Sans", "sans serif";
+
+// drop down
+$dropdown-color: var(--bs-secondary-color);
+$dropdown-bg: var(--bs-secondary-bg);

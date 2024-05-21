@@ -1,4 +1,4 @@
-import { Modal, Collapse, Offcanvas, Dropdown } from "bootstrap";
+import { Modal, Collapse, Offcanvas, Dropdown, Alert } from "bootstrap";
 
 export default defineNuxtPlugin(() => ({
   provide: {
@@ -6,7 +6,8 @@ export default defineNuxtPlugin(() => ({
       Modal,
       Collapse,
       Offcanvas,
-      Dropdown
+      Dropdown,
+      Alert
     },
   },
 }));

@@ -9,12 +9,12 @@
         >
             <div class="accordion-body">
                 <span v-for="(item, index) in items" :key="index">
-                    <router-link
+                    <nuxt-link
                         :to="item.path"
                         class="nav-link accordion-text"
                     >
                         {{ item.name }}
-                    </router-link>
+                    </nuxt-link>
                 </span>
             </div>
         </div>

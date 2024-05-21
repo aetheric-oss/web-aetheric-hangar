@@ -1,5 +1,5 @@
 <template>
-    <nav id="portal-nav" class="nav d-flex position-relative">
+    <nav id="portal-nav" class="nav position-relative">
         <PortalNavNotifications position="top" />
         <PortalNavAccount
             position="start"
@@ -12,18 +12,14 @@
             <div
                 class="nav-header d-flex align-items-center pt-2 pb-3 sticky-top bg-body"
             >
-                <router-link
+                <nuxt-link
                     :to="'/dashboard'"
-                    class="h-100 d-flex flex-grow-1 text-start align-items-center"
+                    class="btn logo h-100 d-flex flex-grow-1 text-start align-items-center"
                 >
-                    <img
-                        class="h-100 mw-100"
-                        src="/img/logo-services.svg"
-                        alt="Arrow Logo"
-                    />
-                </router-link>
+                    aetheric
+                </nuxt-link>
                 <button
-                    class="btn"
+                    class="btn px-2"
                     data-bs-toggle="offcanvas"
                     data-bs-target="#popupNotifications"
                     aria-controls="popupNotifications"
@@ -31,7 +27,7 @@
                     <IconBell size="1.5rem"></IconBell>
                 </button>
                 <button
-                    class="navbar-toggler d-lg-none"
+                    class="navbar-toggler d-lg-none px-2"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#sidenav"
@@ -69,7 +65,7 @@
                         target="popupAccount"
                     />
                     <PortalNavFooterButton
-                        class="bg-body-secondary"
+                        class="bg-dark-subtle"
                         title="My Profile"
                         icon="IconCaretDown"
                         target="popupProfile"
@@ -117,8 +113,9 @@
             }
 
             if (currentCompany.value) {
-                const [company, success]: [ICompany | undefined, boolean] = await $api.companies.get({ uuid: currentCompany.value });
-                if(success) {
+                const [company, success]: [ICompany | undefined, boolean] =
+                    await $api.companies.get({ uuid: currentCompany.value });
+                if (success) {
                     return company;
                 }
             }
@@ -152,13 +149,18 @@
 
     #portal-nav {
         .accordion {
-            --bs-accordion-active-bg: var(--bs-secondary-bg);
+            --bs-accordion-bg: var(--bs-dark-bg-subtle);
+            --bs-accordion-btn-bg: var(--bs-dark-bg-subtle);
+            --bs-accordion-active-bg: var(--bs-dark-bg-subtle);
             --bs-accordion-active-color: var(--bs-white);
             --bs-accordion-btn-focus-box-shadow: none;
+            --bs-accordion-border-radius: var(--bs-border-radius);
+            .accordion-item,
+            .accordion-button {
+                border-radius: var(--bs-accordion-border-radius);
+            }
 
             .accordion-item {
-                border-radius: var(--bs-accordion-border-radius);
-
                 a.nav-link {
                     text-transform: none;
                 }

@@ -9,38 +9,38 @@
         </template>
         <template #content>
             <div class="d-grid gap-1">
-                <router-link
+                <nuxt-link
                     to="/profile/settings/"
                     class="btn btn-gray text-start"
                     @click="close"
                 >
                     <IconUserGear size="1.5rem" weight="fill" class="me-1" />
                     Profile Settings
-                </router-link>
-                <router-link
+                </nuxt-link>
+                <nuxt-link
                     to="/profile/privacy-and-security/"
                     class="btn btn-gray text-start"
                     @click="close"
                 >
                     <IconShieldCheck size="1.5rem" weight="fill" class="me-1" />
                     Privacy & Security
-                </router-link>
-                <router-link
+                </nuxt-link>
+                <nuxt-link
                     to="/profile/payment/"
                     class="btn btn-gray text-start"
                     @click="close"
                 >
                     <IconCreditCard size="1.5rem" weight="fill" class="me-1" />
                     Payment
-                </router-link>
-                <router-link
+                </nuxt-link>
+                <nuxt-link
                     to="/profile/logout/"
                     class="btn btn-gray text-start"
                     @click="close"
                 >
                     <IconSignOut size="1.5rem" weight="fill" class="me-1" />
                     Log out
-                </router-link>
+                </nuxt-link>
             </div>
         </template>
         <template #footer>

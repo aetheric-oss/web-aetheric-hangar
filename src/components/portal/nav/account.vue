@@ -1,10 +1,12 @@
 <template>
-    <PortalNavPopup popupId="popupAccount" position="left" :key="user.uuid">
+    <PortalNavPopup popupId="popupAccount" position="left" :key="user.uuid" @close="selectAccount(unref(currentCompany))">
         <template #title> Select an Account </template>
         <template #content>
             <template
-                v-if="companies"
-                v-for="(letterCompanies, letter) in sortCompanies(companies)"
+                v-if="companyCardData"
+                v-for="(letterCompanies, letter) in sortCompanies(
+                    Array.from(companyCardData.values())
+                )"
                 :key="letter"
             >
                 <div class="py-2 mb-1 border-bottom border-dark">
@@ -17,11 +19,7 @@
                         @click="selectAccount(company)"
                         :key="company.uuid"
                         :text="company.name"
-                        :text-color="
-                            isSelectedCompany(company.uuid)
-                                ? 'secondary'
-                                : 'white'
-                        "
+                        v-model:text-color="company.text_color"
                         :class="isCurrentCompany(company.uuid) ? 'active' : ''"
                     >
                         <template #left v-if="company.imgSrc">
@@ -38,15 +36,14 @@
         </template>
         <template #footer>
             <PortalNavPopupCard
-                :key="currentCompany.uuid"
-                class="mt-auto align-items-center text-uppercase"
                 textHeading="Company"
-                :text="currentCompany.name"
+                :key="selectedCompany.uuid"
+                :text="selectedCompany.name"
             >
                 <template #left>
                     <img
                         class="btn-icon pe-2"
-                        :src="currentCompany.imgSrc"
+                        :src="selectedCompany.imgSrc"
                         alt="Company Image"
                     />
                 </template>
@@ -65,21 +62,25 @@
 </template>
 
 <script setup lang="ts">
+    import type { PortalNavPopupCard } from "#build/components";
     import type { ICompany, IUser } from "~/modules/aetheric-api";
+
+    interface ICompanyCardProps extends ICompany {
+        text_color: string;
+    }
 
     const { $bootstrap } = useNuxtApp();
     const $api = useAethericApi(useCurrentCompany().value);
 
+    // Reactive vars
     const user = defineModel<IUser>("user", {
         default: {},
     });
     const currentCompany = defineModel<ICompany>("currentCompany", {
         default: { uuid: "", name: "", imgSrc: "" } as ICompany,
     });
-
     let selectedCompany: ICompany = unref(currentCompany);
 
-    // Reactive vars
     const currentCompanyBtnClass = ref("disabled border-0");
     const { data: companies } = await useAsyncData<ICompany[]>(
         "companies",
@@ -88,34 +89,63 @@
                 uuid: user.value.uuid,
             });
             if (success) {
-                return data
+                return data;
             } else {
                 return [] as ICompany[];
             }
         },
         {
-            watch: [user.value]
+            watch: [user.value],
         }
     );
+    const companyCardData = computed<Map<string, ICompanyCardProps>>(() => {
+        let companyCardProps: Map<string, ICompanyCardProps> = new Map();
+        if (companies.value) {
+            companies.value.forEach((company: ICompany) => {
+                companyCardProps.set(
+                    company.uuid,
+                    reactive({
+                        text_color: getTextColor(company.uuid),
+                        ...company,
+                    })
+                );
+            });
+        }
+        return companyCardProps;
+    });
 
     // Functions
+    const getTextColor = (uuid: string) => {
+        if (selectedCompany) {
+            return uuid === selectedCompany.uuid ? "secondary" : "white";
+        }
+        return "white";
+    };
+
     const isCurrentCompany = (uuid: string) => {
         if (currentCompany.value) {
             return uuid === currentCompany.value.uuid;
         }
         return false;
     };
-    const isSelectedCompany = (uuid: string) => {
-        if (selectedCompany) {
-            return uuid === selectedCompany.uuid;
-        }
-        false;
-    };
 
     const selectAccount = (company: ICompany) => {
-        if (!isCurrentCompany(company.uuid)) {
-            selectedCompany = company;
+        if (companyCardData.value) {
+            companyCardData.value.forEach((element: ICompanyCardProps) => {
+                element.text_color = "white";
+            });
+            let cardProps = companyCardData.value.get(company.uuid);
+            if (cardProps) {
+                cardProps.text_color = "secondary";
+            }
+        }
+        selectedCompany = company;
+
+        // Check if we should activate the switch button
+        if(currentCompany.value.uuid !== company.uuid) {
             currentCompanyBtnClass.value = "btn-primary";
+        } else {
+            currentCompanyBtnClass.value = "disabled border-0";
         }
     };
 
@@ -139,8 +169,8 @@
         }
     };
 
-    function sortCompanies(companies: ICompany[]) {
-        const sortedcompaniesList: { [key: string]: ICompany[] } = {};
+    function sortCompanies(companies: ICompanyCardProps[]) {
+        const sortedcompaniesList: { [key: string]: ICompanyCardProps[] } = {};
         // return an alphabetically sorted list
         companies
             .sort((a, b) => a.name.localeCompare(b.name))

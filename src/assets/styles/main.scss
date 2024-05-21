@@ -2,11 +2,11 @@
 @import 'bootstrap/scss/functions';
 
 // 2. Include variables
-@import 'fly_arrow_variables';
+@import 'aetheric_variables';
 @import 'bootstrap/scss/variables';
 
 // 3. Include darkmode specific variables
-@import 'fly_arrow_variables-dark';
+@import 'aetheric_variables-dark';
 @import 'bootstrap/scss/variables-dark';
 
 // 4. Include any default map overrides here
@@ -45,6 +45,7 @@ $theme-colors: map-merge-multiple($theme-colors, $all-colors);
 @import 'bootstrap/scss/offcanvas';
 @import 'bootstrap/scss/forms';
 @import 'bootstrap/scss/badge';
+@import 'bootstrap/scss/alert';
 
 // 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
 $utilities: map-merge(
@@ -67,5 +68,5 @@ $utilities: map-merge(
 @import 'bootstrap/scss/utilities/api';
 
 // 8. Custom FlyArrow.io class overrides
-@import 'fly_arrow_root';
-@import 'fly_arrow';
+@import 'aetheric_root';
+@import 'aetheric';

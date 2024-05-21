@@ -8,16 +8,16 @@ export const usePagesMenuStore = defineStore({
         categories: [
           {
             name: 'Manage Assets',
-            icon: 'menu/manage-assets',
+            icon: 'menu/assets',
             pages: [
             {
               name: 'My assets',
-              path: '/manage-assets/my-assets',
+              path: '/assets/my-assets/vtol',
               order: 1
             },
             {
               name: 'Group Management',
-              path: '/manage-assets/group-management',
+              path: '/assets/group-management',
               order: 2
             },
             ]

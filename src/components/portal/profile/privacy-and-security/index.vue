@@ -1,17 +1,20 @@
 <template>
     <!--Page popups-->
     <PortalProfilePrivacyAndSecurityPasswordPopup class="h-100" />
-    <PortalProfilePrivacyAndSecurityPassword class="px-3" />
+    <!--End Page popups-->
+    <PortalContentBlock title="">
+        <PortalProfilePrivacyAndSecurityPassword class="px-3" />
 
-    <!-------------------------->
-    <hr class="my-2 my-md-3" />
-    <!-------------------------->
+        <!-------------------------->
+        <hr class="my-2 my-md-3" />
+        <!-------------------------->
 
-    <PortalProfilePrivacyAndSecurityPrivacy
-        class="px-3"
-        :privacySettings="privacySettings"
-        @updateSettings="updatePrivacySettings"
-    />
+        <PortalProfilePrivacyAndSecurityPrivacy
+            class="px-3"
+            :privacySettings="privacySettings"
+            @updateSettings="updatePrivacySettings"
+        />
+    </PortalContentBlock>
 </template>
 
 <script setup lang="ts">
@@ -37,14 +40,17 @@
         },
         {
             default: () => {
-                return {}
+                return {};
             },
         }
     );
 
     // Functions
     const updatePrivacySettings = async (privacySettings: IPrivacySettings) => {
-        await $api.users.updatePrivacySettings({ uuid: user.value.uuid, privacySettings });
+        await $api.users.updatePrivacySettings({
+            uuid: user.value.uuid,
+            privacySettings,
+        });
         refreshNuxtData("privacySettings");
     };
 </script>

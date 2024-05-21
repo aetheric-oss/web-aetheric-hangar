@@ -1,5 +1,6 @@
 <template>
     <div
+        data-bs-theme="dark"
         class="offcanvas p-2 p-xxl-3"
         tabindex="-1"
         :class="['offcanvas-' + position]"
@@ -71,5 +72,13 @@
     // Exposed functions
     defineExpose({
         close,
+    });
+
+    // Emit close event when close button is clicked
+    onMounted(() => {
+        const myOffcanvas = document.getElementById(props.popupId);
+        myOffcanvas?.addEventListener("hide.bs.offcanvas", (event) => {
+            emit("close");
+        });
     });
 </script>
