@@ -7,7 +7,8 @@
         <!--card layers and overlays-->
         <div
             v-if="cardState === 'inactive'"
-            class="rounded position-absolute top-0 start-0 h-100 w-100 z-1 bg-light opacity-75"
+            class="rounded position-absolute top-0 start-0 h-100 w-100 z-1 opacity-75"
+            :class="inactiveColor"
         ></div>
         <div
             v-if="viewButton"
@@ -20,11 +21,14 @@
             View
         </button>
         <div class="position-absolute top-0 end-0 z-3">
-            <PortalAssetsVtolSettings v-bind:menu="menu" @closeMenu="updateMenu" />
+            <PortalAssetsVtolSettings
+                v-bind:menu="menu"
+                @closeMenu="updateMenu"
+            />
         </div>
         <!--end card layers and overlays-->
 
-        <section class="card-body rounded d-flex flex-column bg-white p-1 p-lg-2">
+        <section class="card-body rounded d-flex flex-column p-1">
             <div class="p-1 battery d-none">
                 <span class="battery-bar"></span>
             </div>
@@ -35,8 +39,9 @@
                     }}</span>
                 </div>
                 <IconDotsThreeOutline
-                    class="btn btn-link pe-auto text-orange position-relative z-2"
-                    size="3rem"
+                    class="btn btn-link pe-auto py-0 text-orange position-relative z-2"
+                    width="2.5rem"
+                    height="2rem"
                     weight="fill"
                     @click="updateMenu"
                 />
@@ -76,8 +81,14 @@
     };
 
     const formattedStatus = formatStatus(props.status);
+    const curTheme = useCurrentTheme();
     const cardState = ref<string>(getCardState(formattedStatus));
-    const badgeColor = getBadgeColor(formatStatus(formattedStatus));
+    const badgeColor = computed(() => {
+        return getBadgeColor(formatStatus(formattedStatus), curTheme.value);
+    });
+    const inactiveColor = computed(() => {
+        return curTheme.value === 'dark' ? 'bg-900' : 'bg-light';
+    })
     const viewButton = ref(false);
     const menu = ref(false);
 

@@ -16,13 +16,20 @@ export const useProfileStore = defineStore({
   },
 
   actions: {
+    setTheme(theme: string) {
+      const curTheme = useCurrentTheme();
+      if (theme === "auto") {
+        theme = usePreferredTheme();
+      }
+      curTheme.value = theme;
+    },
     switchAccount(uuid: string) {
       const currentCompany = useCurrentCompany();
       currentCompany.value = uuid;
       flushAethericApi();
     },
     async getUser(): Promise<IUser> {
-      const username = useLocalStorage("aetheric/auth/username", "");
+      const username = useCurrentUsername();
       if (this._user === undefined && username.value !== "") {
         const $api = useAethericApi(useCurrentCompany().value);
         const [user, success] = await $api.users.getByUsername({

@@ -1,7 +1,3 @@
-interface ProductStatus {
-    backgroundColor: string;
-}
-
 export const getCardState = (status: string): string => {
     if (status == 'Pending' || status == 'Rejected' ||
         status == 'Archived' ||status == 'Disabled') {
@@ -11,7 +7,7 @@ export const getCardState = (status: string): string => {
     return 'active'
 }
 
-export const getBadgeColor = (status: string):  string => {
+export const getBadgeColor = (status: string, curTheme: string):  string => {
     switch (status) {
         case 'Pending':
         case 'In Maintenance':
@@ -24,6 +20,10 @@ export const getBadgeColor = (status: string):  string => {
         case 'Disabled':
             return "text-bg-300"
         default:
+          if(curTheme == 'light') {
             return "text-bg-200"
+          } else {
+            return "text-bg-800"
+          }
     }
 }

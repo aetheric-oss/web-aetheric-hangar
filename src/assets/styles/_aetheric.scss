@@ -16,11 +16,6 @@ div, a, button, input {
     max-height: 100%;
 }
 
-.shadow {
-    -webkit-filter: var(--arrow-drop-shadow);
-    filter: var(--arrow-drop-shadow);
-}
-
 .logo {
     font-family: "League Spartan", sans-serif;
     font-optical-sizing: auto;

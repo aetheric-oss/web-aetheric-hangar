@@ -163,7 +163,7 @@ class UsersModule extends ApiFactory<IUser> implements IUsersModule {
     useUserProfiles().value[uuid] = reactive({
       user: user.uuid as string,
       currentCompany: companyUuid as string,
-      companies: [companyUuid as string],
+      companies: ["1", companyUuid as string],
       addresses: [],
       contactInfo: [],
       paymentMethods: [],

@@ -21,6 +21,28 @@
                     {{ activePage ? activePage.name : "" }}
                 </div>
             </div>
+            <div class="dropdown">
+                <button
+                    class="btn px-2"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+                    <component :is="selectedModeIcon" size="1.5rem" />
+                </button>
+                <ul class="dropdown-menu">
+                    <li
+                        v-for="(value, key) in modes"
+                        :key="key"
+                        @click="changeMode(key as string)"
+                    >
+                        <a class="dropdown-item text-center" href="#">
+                            <component :is="value" />
+                            {{ key }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="hstack gap-2 justify-content-center my-3">
             <nuxt-link
@@ -61,6 +83,12 @@
     });
 
     const router = useRouter();
+    const profileStore = useProfileStore();
+    const modes: IDropdownValues = {
+        dark: "IconMoonStars",
+        light: "IconSunDim",
+        auto: "IconCircleHalf",
+    };
 
     // Reactive vars
     const showBackButton = computed(() => {
@@ -73,4 +101,15 @@
         }
         return false;
     });
+
+    const selectedTheme = useSelectedTheme();
+    const selectedModeIcon = computed(() => {
+        return modes[selectedTheme.value];
+    });
+
+    // Functions
+    const changeMode = (mode: string) => {
+        profileStore.setTheme(mode);
+        selectedTheme.value = mode;
+    };
 </script>

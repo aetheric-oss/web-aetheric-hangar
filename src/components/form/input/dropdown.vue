@@ -5,7 +5,7 @@
         </div>
         <div class="dropdown">
             <button
-                class="btn input-box w-100 dropdown-toggle d-flex rounded-4"
+                class="btn btn-light input-box w-100 dropdown-toggle d-flex rounded-4"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
