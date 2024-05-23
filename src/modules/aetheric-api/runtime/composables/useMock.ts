@@ -61,7 +61,7 @@ const storeAircraft: RemovableRef<{ [key: string]: IAircraft }> =
       uuid: "4",
       owner: "1",
       name: "Angel",
-      imgSrc: "/img/demo/drone-a.png",
+      imgSrc: "/img/demo/drone-d.png",
       status: EnumVehicleState.HOME_BASE
     } as IAircraft,
     "5": {

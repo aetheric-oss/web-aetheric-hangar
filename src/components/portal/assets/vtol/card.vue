@@ -48,7 +48,7 @@
             </header>
             <div class="d-flex justify-content-center flex-grow-1">
                 <img
-                    class="align-self-center"
+                    class="w-75 align-self-center"
                     :src="image"
                     alt="Login Arrow Background"
                     loading="lazy"
