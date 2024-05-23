@@ -1,3 +1,6 @@
+// dark mode
+$enable-dark-mode: true;
+
 // grays
 $gray-100: #f9f9fd;
 $gray-200: #ecefee;
@@ -42,7 +45,7 @@ $arrow-dark: #090F29;
 $arrow-light: #ffffff;
 $black-rgb: 24, 28, 39;
 $white: #fff;
-$white-rgb: 100, 100, 100;
+$white-rgb: 255, 255, 255;
 $red: #c22e17;
 $teal: #2abb94;
 $teal-rgb: 42, 187, 148;
@@ -72,11 +75,11 @@ $danger-rgb: 202, 10, 79;
 $link-color: $white;
 $link-color-rgb: $white-rgb;
 
+// Color settings available in dark mode
 $body-color: $black;
 $body-color-rgb: $black-rgb;
 $body-bg: $gray-100;
 $body-bg-rgb: $white-rgb;
-$border-radius: 0.75rem;
 
 $dark-bg-subtle: $gray-400;
 $light-bg-subtle: $gray-200;
@@ -87,6 +90,8 @@ $body-tertiary-bg-rgb: $success-rgb;
 $body-tertiary-bg: $success;
 $body-tertiary-color: $white;
 
+// General settings
+$border-radius: 0.75rem;
 $spacer: 1.25rem;
 $spacers: (
     0: 0,
@@ -102,14 +107,12 @@ $font-family-sans-serif: 'Open Sans', sans-serif;
 $headings-font-family: "Libre Baskerville", sans-serif;
 
 // cards
-$card-bg: $light;
+$card-bg: $white;
+$card-title-color: $blue-900;
 $card-border-width: 0;
 $card-spacer-x: $spacer;
 $card-spacer-y: $spacer;
 $card-height: 100%;
-
-// dark mode
-$enable-dark-mode: true;
 
 $input-bg: var(--bs-secondary-bg);
 $input-color: var(--bs-secondary-color);
@@ -135,7 +138,7 @@ $offcanvas-horizontal-width: 500px;
 // shadows
 $arrow-drop-shadow: drop-shadow(1px 5px 10px rgba(var(--bs-orange-rgb), 0.3))
     drop-shadow(-6px 0px 10px rgba(52, 60, 194, 0.3));
-$box-shadow-lg: filter(var(--arrow-drop-shadow));
+//$box-shadow-lg: filter(var(--arrow-drop-shadow));
 
 // badge
 $badge-font-weight: 'normal';
